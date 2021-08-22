@@ -11,7 +11,7 @@ class NavigationMenuOption extends Component
      *
      * @return void
      */
-    public function __construct(public string $route = '#', public string $icon = 'fas fa-home', public string $activeRoute = 'THE_ROUTE.NAME')
+    public function __construct(public string $route = '#', public string $icon = 'fas fa-home', public string $activeRoute = 'THE_ROUTE.NAME', public $onclick = null)
     {
         //
     }
