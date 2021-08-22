@@ -14,7 +14,7 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, string $role)
     {
         if (!$request->user()->hasRole($role)) {
             abort(403, 'No tienes autorización para ingresar.');
