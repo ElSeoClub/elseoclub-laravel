@@ -21,6 +21,6 @@ class UserTableSeeder extends Seeder
         $user->password = '$2y$10$1qXs2VzJzyNxFDzlNFPml.MxYmXy/unXDmpEI8C/IaMgbFn3iq7nS';
         $user->save();
 
-        $user->roles()->attach(Role::where('name', 'Administrador')->first());
+        $user->roles()->attach(Role::where('name', 'admin')->first());
     }
 }

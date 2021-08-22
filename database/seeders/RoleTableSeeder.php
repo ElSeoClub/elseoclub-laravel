@@ -15,7 +15,7 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         $role = new Role();
-        $role->name = 'Administrador';
+        $role->name = 'admin';
         $role->description = 'Perfil de control total del sistema, destinado únicamente a TI.';
         $role->save();
     }
