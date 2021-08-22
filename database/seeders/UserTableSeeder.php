@@ -16,11 +16,15 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new User();
-        $user->name = "Ricardo";
+        $user->username = "suvstar";
+        $user->name = "Ricardo Ballesteros Huazano";
         $user->email = 'suvager@gmail.com';
         $user->password = '$2y$10$1qXs2VzJzyNxFDzlNFPml.MxYmXy/unXDmpEI8C/IaMgbFn3iq7nS';
         $user->save();
 
         $user->roles()->attach(Role::where('name', 'admin')->first());
+
+        // Fake data
+        User::factory(10)->create();
     }
 }
