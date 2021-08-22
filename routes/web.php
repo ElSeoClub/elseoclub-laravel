@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function () {
+    Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
+});
