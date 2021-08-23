@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -11,7 +12,8 @@ class UsersController extends Controller
         return view('users.index');
     }
 
-    public function edit()
+    public function edit(User $id)
     {
+        return view('users.edit', ['user' => $id]);
     }
 }
