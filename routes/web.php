@@ -25,4 +25,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function () {
     Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
+    Route::get('/usuarios/{id}', [UsersController::class, 'edit'])->name('users.edit');
 });
