@@ -26,14 +26,16 @@
                 <tr>
                     <td>
                         @if(Auth::user()->profile_photo_path)
-                        <a href="#" class="text-red-600 font-bold hover:text-red-800">
+                        <a href="{{route('users.edit',['id' => $user->id])}}"
+                            class="text-red-600 font-bold hover:text-red-800">
                             <img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}"
                                 class="rounded-full p-1 w-16 h-16">
                         </a>
                         @endif
                     </td>
                     <td class="text-left px-3 pr-2">
-                        <a href="#" class="text-red-600 font-bold hover:text-red-800">{{$user->username}}</a>
+                        <a href="{{route('users.edit',['id' => $user->id])}}"
+                            class="text-red-600 font-bold hover:text-red-800">{{$user->username}}</a>
                     </td>
                     <td class="text-left px-3 py-2">{{$user->name}}</td>
                     <td class="text-left px-3 py-2">{{$user->email}}</td>
