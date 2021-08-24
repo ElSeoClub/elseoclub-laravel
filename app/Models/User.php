@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function permission()
+    {
+        return $this->belongsTo(Permission::class);
+    }
+
     public function hasAnyRole(array $roles): bool
     {
         foreach ($roles as $role) {
@@ -78,5 +83,12 @@ class User extends Authenticatable
     public function hasRole(string $role): bool
     {
         return $this->roles()->where('name', $role)->first() ? true : false;
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        if (!$this->permission)
+            return false;
+        return $this->permission->name == $permission ? true : false;
     }
 }

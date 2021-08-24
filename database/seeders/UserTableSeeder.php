@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder
         $user->name = "Ricardo Ballesteros Huazano";
         $user->email = 'suvager@gmail.com';
         $user->password = '$2y$10$1qXs2VzJzyNxFDzlNFPml.MxYmXy/unXDmpEI8C/IaMgbFn3iq7nS';
+        $user->permission_id = 1;
         $user->save();
 
         $user->roles()->attach(Role::where('name', 'admin')->first());

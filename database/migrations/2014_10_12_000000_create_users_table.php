@@ -21,8 +21,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('profile_photo_path', 2048)->default('user_photos/user.png');
+            $table->string('profile_photo_path', 2048)->default('profile_photos/user.png');
+            $table->unsignedBigInteger('permission_id')->nullable();
+            $table->integer('change_password')->nullable();
             $table->timestamps();
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('SET NULL');
         });
     }
 
