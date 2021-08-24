@@ -18,12 +18,15 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
-Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function () {
-    Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
-    Route::get('/usuarios/{id}', [UsersController::class, 'edit'])->name('users.edit');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::middleware(['changepassword'])->group(function () {
+        Route::middleware(['permission:Administrator'])->group(function () {
+            Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
+            Route::get('/usuarios/{id}', [UsersController::class, 'edit'])->name('users.edit');
+        });
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+    });
+    Route::get('/perfil', [UsersController::class, 'profile'])->name('profile');
 });
