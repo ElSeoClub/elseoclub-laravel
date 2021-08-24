@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -90,5 +91,19 @@ class User extends Authenticatable
         if (!$this->permission)
             return false;
         return $this->permission->name == $permission ? true : false;
+    }
+
+    public function currentPasswordIsValid($currentPassword)
+    {
+        return Hash::check($currentPassword, $this->password);
+    }
+
+    public function updatePassword($currentPassword, $newPassword)
+    {
+        if ($this->currentPasswordIsValid($currentPassword)) {
+            $this->password = Hash::make($newPassword);
+            $this->change_password = null;
+            $this->save();
+        }
     }
 }
