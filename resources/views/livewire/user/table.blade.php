@@ -12,6 +12,7 @@
                 <th class="text-left px-3 py-2">{{__('User')}}</th>
                 <th class="text-left px-3 py-2">{{__('Name')}}</th>
                 <th class="text-left px-3 py-2">{{__('Email')}}</th>
+                <th class="text-left px-3 py-2">{{__('Permission')}}</th>
             </x-slot>
             <x-slot name="tbody">
                 @if (count($users) == 0)
@@ -25,11 +26,10 @@
                 @foreach ($users as $user)
                 <tr>
                     <td>
-                        @if(Auth::user()->profile_photo_path)
+                        @if($user->profile_photo_path)
                         <a href="{{route('users.edit',['id' => $user->id])}}"
                             class="text-red-600 font-bold hover:text-red-800">
-                            <img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}"
-                                class="rounded-full p-1 w-16 h-16">
+                            <img src="{{Storage::url($user->profile_photo_path)}}" class="rounded-full p-1 w-16 h-16">
                         </a>
                         @endif
                     </td>
@@ -39,6 +39,9 @@
                     </td>
                     <td class="text-left px-3 py-2">{{$user->name}}</td>
                     <td class="text-left px-3 py-2">{{$user->email}}</td>
+                    <td class="text-left px-3 py-2">
+                        {{$user->permission ? __($user->permission->name) : __('Without permits')}}
+                    </td>
                 </tr>
                 @endforeach
                 @endif
@@ -51,6 +54,6 @@
 
     </div>
     <div wire:loading.delay wire:loading.inline wire:target="search">
-        <x-loading-table rows="15" columns="3"></x-loading-table>
+        <x-loading-table rows="15" columns="4"></x-loading-table>
     </div>
 </div>
