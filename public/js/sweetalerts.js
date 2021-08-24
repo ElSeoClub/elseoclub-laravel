@@ -1,0 +1,45 @@
+Livewire.on("alert", function (message) {
+    if (Array.isArray(message)) {
+        if (message.length > 1) {
+            if (message[1] == "success") {
+                Swal.fire("¡Excelente!", message[0], message[1]);
+            } else if (message[1] == "error") {
+                Swal.fire("¡Ocurrio un error!", message[0], message[1]);
+            } else if (message[1] == "warning") {
+                Swal.fire("¡Advertencia!", message[0], message[1]);
+            } else if (message[1] == "info") {
+                Swal.fire("¡Información!", message[0], message[1]);
+            } else if (message[1] == "question") {
+                Swal.fire("¡Espera un momento!", message[0], message[1]);
+            }
+        } else {
+            Swal.fire("¡Excelente!", message[0], "success");
+        }
+    } else {
+        Swal.fire("¡Excelente!", message, "success");
+    }
+});
+
+Livewire.on("alert_confirmation", function (data) {
+    Swal.fire({
+        title: data.title,
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "on",
+        },
+        inputLabel: "Escribe la palabra " + data.word + " para confirmar.",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        showLoaderOnConfirm: true,
+        inputValidator: (value) => {
+            if (value != data.word) {
+                return "¡Debes escribir la palabra " + data.word + "!";
+            }
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Livewire.emitTo(data.emitTo, data.callback, data.id);
+        }
+    });
+});
