@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect('login');
-});
+})->name('index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['changepassword'])->group(function () {
@@ -28,5 +30,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             return view('dashboard');
         })->name('dashboard');
     });
-    Route::get('/perfil', [UsersController::class, 'profile'])->name('profile');
+    Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
 });

@@ -17,7 +17,7 @@ class ChangePassword
     public function handle(Request $request, Closure $next)
     {
         if ($request->user()->change_password != null) {
-            return redirect(route('profile'));
+            return redirect(route('profile.index'));
         }
         return $next($request);
     }
