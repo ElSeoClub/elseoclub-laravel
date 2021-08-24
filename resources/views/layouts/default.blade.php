@@ -33,8 +33,8 @@
             {{ $slot }}
         </main>
     </div>
-
     @livewireScripts
+    <script src="{{ asset('js/sweetalerts.js') }}"></script>
 </body>
 
 </html>
