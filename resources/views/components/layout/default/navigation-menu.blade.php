@@ -9,8 +9,8 @@
                     {{__('Home')}}
                 </x-layout.default.navigation-menu-option>
 
-                {{-- This menu can only be seen by role:admin --}}
-                @if(Auth::user()->hasRole('admin'))
+                {{-- This menu can only be seen by permission:Administrador --}}
+                @if(Auth::user()->hasPermission('Administrator'))
                 <li class="mt-2 pt-2 text-xs font-bold text-center text-red-700 uppercase border-t border-gray-200">
                     Admin
                 </li>
