@@ -16,4 +16,9 @@ class UsersController extends Controller
     {
         return view('users.edit', ['user' => $id]);
     }
+
+    public function profile()
+    {
+        return view('users.profile');
+    }
 }
