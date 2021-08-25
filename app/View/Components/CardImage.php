@@ -6,8 +6,10 @@ use Illuminate\View\Component;
 
 class CardImage extends Component
 {
-    public function __construct(public $image)
+    public $image;
+    public function __construct($image)
     {
+        $this->image = $image;
     }
 
     public function render()

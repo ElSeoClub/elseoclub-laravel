@@ -6,8 +6,14 @@ use Illuminate\View\Component;
 
 class Search extends Component
 {
-    public function __construct(public string $placeholder = 'Buscar...', public string $model = 'search', public string $debounce = '500')
+    public $placeholder;
+    public $model;
+    public $debounce;
+    public function __construct($placeholder = 'Buscar...', $model = 'search', $debounce = '500')
     {
+        $this->placeholder = $placeholder;
+        $this->model = $model;
+        $this->debounce = $debounce;
     }
 
     public function render()
