@@ -9,6 +9,11 @@
                     {{__('Home')}}
                 </x-layout.default.navigation-menu-option>
 
+                <x-layout.default.navigation-menu-option :route="route('legitimation.index')"
+                    activeRoute='legitimation.*' icon="fas fa-gavel">
+                    Legitimaciones
+                </x-layout.default.navigation-menu-option>
+
                 {{-- This menu can only be seen by permission:Administrador --}}
                 @if(Auth::user()->hasPermission('Administrator'))
                 <li class="mt-2 pt-2 text-xs font-bold text-center text-red-700 uppercase border-t border-gray-200">

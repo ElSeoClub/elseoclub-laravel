@@ -22,8 +22,8 @@ class PermissionTableSeeder extends Seeder
 
         $permission = new Permission();
 
-        $permission->name = 'Only view';
-        $permission->description = 'You can only view the site, without the ability to edit anything.';
+        $permission->name = 'Jurídico';
+        $permission->description = 'Personal encargado de revisar la evidencia de los eventos.';
         $permission->save();
     }
 }

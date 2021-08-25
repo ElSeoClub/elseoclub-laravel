@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +31,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         })->name('dashboard');
     });
     Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
+});
+
+/* Legitimaciones */
+Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(function () {
+    Route::get('/legitimaciones', [EventController::class, 'legitimations'])->name('legitimation.index');
+    Route::get('/legitimaciones/crear', [EventController::class, 'createLegitimation'])->name('legitimation.create');
+    Route::get('/legitimaciones/{legitimation}', [EventController::class, 'legitimation'])->name('legitimation.show');
 });
