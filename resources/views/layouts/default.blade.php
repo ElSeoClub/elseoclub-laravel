@@ -25,7 +25,6 @@
 
 <body class="font-sans antialiased">
     <div class="h-screen w-full flex overflow-hidden">
-        <x-layout.default.navigation-menu></x-layout.default.navigation-menu>
 
         <main class="pt-2 pb-2 px-5 flex-1 bg-gray-200 dark:bg-black
                 transition duration-500 ease-in-out overflow-y-auto">
