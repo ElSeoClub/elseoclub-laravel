@@ -15,6 +15,6 @@ class GeneralLayout extends Component
 
     public function render()
     {
-        return view('layouts.default');
+        return view('layouts.general');
     }
 }
