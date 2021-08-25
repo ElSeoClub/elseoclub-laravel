@@ -1,9 +1,9 @@
-<x-default-layout>
+<x-general-layout>
     <x-slot name="title">Legitimaciones</x-slot>
-    <x-layout.default.breadcrumbs>
-        <x-layout.default.breadcrumb-option name="Legitimaciones" arrow="true" :route="route('legitimation.index')" />
-        <x-layout.default.breadcrumb-option :name="$legitimation->name" arrow="false" />
-    </x-layout.default.breadcrumbs>
+    <x-layout.general.breadcrumbs>
+        <x-layout.general.breadcrumb-option name="Legitimaciones" arrow="true" :route="route('legitimation.index')" />
+        <x-layout.general.breadcrumb-option :name="$legitimation->name" arrow="false" />
+    </x-layout.general.breadcrumbs>
 
     <div class="grid grid-cols-2 gap-5 mb-5">
         @if (Auth::user()->hasPermission('Administrator'))
@@ -68,4 +68,4 @@
             </div>
         </x-card-image>
     </div>
-</x-default-layout>
+</x-general-layout>
