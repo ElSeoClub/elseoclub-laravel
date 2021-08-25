@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class DefaultLayout extends Component
+class GeneralLayout extends Component
 {
     public $title;
 
