@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Layout\Default;
+namespace App\View\Components\Layout\General;
 
 use Illuminate\View\Component;
 
@@ -21,6 +21,6 @@ class NavigationMenuOption extends Component
 
     public function render()
     {
-        return view('components.layout.default.navigation-menu-option');
+        return view('components.layout.general.navigation-menu-option');
     }
 }

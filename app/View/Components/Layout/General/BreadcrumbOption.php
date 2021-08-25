@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Layout\Default;
+namespace App\View\Components\Layout\General;
 
 use Illuminate\View\Component;
 
@@ -19,6 +19,6 @@ class BreadcrumbOption extends Component
 
     public function render()
     {
-        return view('components.layout.default.breadcrumb-option');
+        return view('components.layout.general.breadcrumb-option');
     }
 }
