@@ -21,17 +21,8 @@
 
 <body class="bg-gray-100" style="overflow: hidden">
 
-    <div class="flex bg-red-500 p-2 text-center text-white font-bold border-b-4 border-yellow-400">
-        <div class="px-10">
-            <a><img src="{{asset('svg/siconecta-txt.svg')}}" style="height:40px"></a>
-        </div>
-        <div class="text-3xl text-center w-full h-full align-middle">
-            Legitimación del contrato colectivo de trabajo 2020
-        </div>
-    </div>
-    <div class="m-6">
-        {{ $slot }}
-    </div>
+
+    {{ $slot }}
     @livewireScripts
     <script src="{{ asset('js/sweetalerts.js') }}"></script>
 </body>

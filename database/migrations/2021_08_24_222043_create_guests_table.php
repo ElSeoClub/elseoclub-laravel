@@ -19,10 +19,10 @@ class CreateGuestsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('door_id');
-            $table->unsignedBigInteger('attendance_location_id');
-            $table->unsignedBigInteger('attendance_door_id');
-            $table->unsignedBigInteger('manager_id');
-            $table->datetime('attendance_date');
+            $table->unsignedBigInteger('attendance_location_id')->nullable();
+            $table->unsignedBigInteger('attendance_door_id')->nullable();
+            $table->unsignedBigInteger('manager_id')->nullable();
+            $table->datetime('attendance_date')->nullable();
             $table->unique(['event_id', 'user_id']);
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Eventtype;
 use App\Models\Location;
+use App\Models\Guest;
 
 class Event extends Model
 {
@@ -24,5 +25,10 @@ class Event extends Model
     public function locations()
     {
         return $this->hasMany(Location::class);
+    }
+
+    public function guests()
+    {
+        return $this->belongsToMany(User::class, 'guests', 'event_id')->withPivot(['location_id', 'door_id', 'attendance_location_id', 'attendance_door_id', 'manager_id']);
     }
 }

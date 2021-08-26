@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Door;
 use Illuminate\Http\Request;
 use App\Models\Event;
 
@@ -52,9 +53,9 @@ class EventController extends Controller
         return view('event.legitimation.attendance', compact('event'));
     }
 
-    public function legitimationAttendanceScreen(Event $event)
+    public function legitimationAttendanceScreen(Door $door)
     {
-        return view('event.legitimation.attendance.screen', compact('event'));
+        return view('event.legitimation.attendance.screen', compact('door'));
     }
 
     public function legitimationVotting(Event $event)

@@ -17,9 +17,9 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('event_id');
             $table->string('name');
-            $table->text('description');
-            $table->string('georeferences');
-            $table->string('schedule');
+            $table->text('description')->nullable();
+            $table->string('georeferences')->nullable();
+            $table->string('schedule')->nullable();
             $table->timestamps();
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });

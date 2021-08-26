@@ -26,6 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
@@ -105,5 +106,20 @@ class User extends Authenticatable
             $this->change_password = null;
             $this->save();
         }
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'guests', 'user_id')->withPivot(['location_id', 'door_id', 'attendance_location_id', 'attendance_door_id', 'manager_id']);
+    }
+
+    public function location()
+    {
+        return Location::find($this->pivot->location_id);
+    }
+
+    public function door()
+    {
+        return Door::find($this->pivot->door_id);
     }
 }

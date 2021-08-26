@@ -24,8 +24,5 @@ class UserTableSeeder extends Seeder
         $user->save();
 
         $user->roles()->attach(Role::where('name', 'admin')->first());
-
-        // Fake data
-        User::factory(200)->create();
     }
 }

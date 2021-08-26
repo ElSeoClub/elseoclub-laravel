@@ -20,6 +20,9 @@ class CreateEventsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('status')->default('open');
+            $table->unsignedInteger('si')->default(0);
+            $table->unsignedInteger('no')->default(0);
+            $table->unsignedInteger('nulo')->default(0);
             $table->timestamps();
         });
     }

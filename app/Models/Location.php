@@ -11,6 +11,8 @@ class Location extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function doors()
     {
         return $this->hasMany(Door::class);

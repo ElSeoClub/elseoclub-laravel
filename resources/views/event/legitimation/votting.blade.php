@@ -3,5 +3,5 @@
     <x-layout.general.breadcrumbs>
         <x-layout.general.breadcrumb-option name="Legitimaciones" arrow="false" />
     </x-layout.general.breadcrumbs>
-    @livewire('event.legitimation.guests', ['event' => $event])
+    @livewire('event.legitimation.votting', ['event' => $event])
 </x-general-layout>
