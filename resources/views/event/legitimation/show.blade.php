@@ -9,7 +9,7 @@
         @if (Auth::user()->hasPermission('Administrator'))
         <x-card-image image="{{asset('svg/note.svg')}}">
             <div class="font-bold text-2xl">Padrón del evento</div>
-            <div>{{$event->guests()->count()}} Invitados en 0 sedes</div>
+            <div>{{$event->guests()->count()}} Invitados en {{$event->locations()->count()}} sedes</div>
             <div class="mt-20 w-full">
                 <x-button href="{{route('legitimation.guests', ['event' => $event])}}" color="blue" class="w-full">
                     Gestionar padrón</x-button>
