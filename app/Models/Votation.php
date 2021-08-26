@@ -4,14 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Location;
 
-class Door extends Model
+class Votation extends Model
 {
     use HasFactory;
-
-    public function location()
-    {
-        return $this->belongsTo(Location::class);
-    }
 }

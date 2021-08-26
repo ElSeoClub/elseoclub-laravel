@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-})->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['changepassword'])->group(function () {
@@ -36,6 +35,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 /* Legitimaciones */
 Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(function () {
     Route::get('/legitimaciones', [EventController::class, 'legitimations'])->name('legitimation.index');
-    Route::get('/legitimaciones/crear', [EventController::class, 'createLegitimation'])->name('legitimation.create');
-    Route::get('/legitimaciones/{legitimation}', [EventController::class, 'legitimation'])->name('legitimation.show');
+
+    Route::middleware(['permission:Administrator'])->group(function () {
+        Route::get('/legitimaciones/crear', [EventController::class, 'createLegitimation'])->name('legitimation.create');
+        Route::get('/legitimaciones/asistencia/sede/{event}', [EventController::class, 'legitimationAttendanceScreen'])->name('legitimation.attendance.screen');
+        Route::get('/legitimaciones/padron/{event}', [EventController::class, 'legitimationGuests'])->name('legitimation.guests');
+        Route::get('/legitimaciones/sedes/{event}', [EventController::class, 'legitimationLocations'])->name('legitimation.locations');
+        Route::get('/legitimaciones/configuracion/{event}', [EventController::class, 'legitimationConfiguration'])->name('legitimation.configuration');
+        Route::get('/legitimaciones/asistencia/{event}', [EventController::class, 'legitimationAttendance'])->name('legitimation.attendance');
+        Route::get('/legitimaciones/{event}', [EventController::class, 'legitimation'])->name('legitimation.show');
+    });
 });

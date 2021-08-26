@@ -2,7 +2,7 @@
     <x-slot name="title">Legitimaciones</x-slot>
     <x-layout.general.breadcrumbs>
         <x-layout.general.breadcrumb-option name="Legitimaciones" arrow="true" :route="route('legitimation.index')" />
-        <x-layout.general.breadcrumb-option :name="$legitimation->name" arrow="false" />
+        <x-layout.general.breadcrumb-option :name="$event->name" arrow="false" />
     </x-layout.general.breadcrumbs>
 
     <div class="grid grid-cols-2 gap-5 mb-5">
@@ -11,7 +11,7 @@
             <div class="font-bold text-2xl">Padrón del evento</div>
             <div>0 Invitados en 0 sedes</div>
             <div class="mt-20 w-full">
-                <x-button href="#" color="blue" class="w-full">
+                <x-button href="{{route('legitimation.guests', ['event' => $event])}}" color="blue" class="w-full">
                     Gestionar padrón</x-button>
             </div>
         </x-card-image>
@@ -19,7 +19,8 @@
             <div class="font-bold text-2xl">Sedes del evento</div>
             <div>0 Sedes</div>
             <div class="mt-20 w-full">
-                <x-button href="#" color="blue" class="w-full">Gestionar sedes</x-button>
+                <x-button href="{{route('legitimation.locations', ['event' => $event])}}" color="blue" class="w-full">
+                    Gestionar sedes</x-button>
             </div>
         </x-card-image>
         @endif
@@ -43,7 +44,8 @@
             <div class="font-bold text-2xl">Pase de asistencia</div>
             <div>A</div>
             <div class="mt-20 w-full">
-                <x-button href="#" color="blue" class="w-full">Gestionar asistencia</x-button>
+                <x-button href="{{route('legitimation.attendance',['event' => $event])}}" color="blue" class="w-full">
+                    Gestionar asistencia</x-button>
             </div>
         </x-card-image>
         <x-card-image image="{{asset('svg/voting.svg')}}">

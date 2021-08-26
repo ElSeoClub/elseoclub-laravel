@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Eventtype;
+use App\Models\Location;
 
 class Event extends Model
 {
@@ -18,5 +19,10 @@ class Event extends Model
     public function type()
     {
         return $this->belongsTo(Eventtype::Class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
     }
 }

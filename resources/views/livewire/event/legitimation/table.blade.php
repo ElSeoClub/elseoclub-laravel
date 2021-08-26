@@ -27,7 +27,7 @@
                         <td class="text-left p-3">
                             <i
                                 class="fas fa-lock{{$legitimation->status == 'open'? '-open':''}} text-yellow-500 mr-2"></i>
-                            <a href="{{route('legitimation.show',['legitimation' => $legitimation->id])}}"
+                            <a href="{{route('legitimation.show',['event' => $legitimation->id])}}"
                                 class="text-red-600 font-bold hover:text-red-800">
 
                                 {{$legitimation->name}}

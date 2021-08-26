@@ -15,10 +15,17 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('css/star.css') }}">
+
+    @livewireStyles
+
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 <body>
     {{$slot}}
+    @livewireScripts
+    <script src="{{ asset('js/sweetalerts.js') }}"></script>
 </body>
 
 </html>
