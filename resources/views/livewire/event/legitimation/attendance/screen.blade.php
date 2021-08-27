@@ -99,7 +99,8 @@
                 </div>
             </div>
             <span class="font-bold text-xl">Asistencia general:
-                {{$door->location->event->guests()->whereNotNull('attendance_door_id')->count()}}</span>
+                {{$door->location->event->guests()->whereNotNull('attendance_door_id')->count()}} de
+                {{$door->location->event->guests()->count()}}</span>
             <div class=" shadow-md w-full bg-gray-200 h-9 rounded">
                 <div class="bg-green-500 text-xs leading-none text-center text-white h-full rounded py-2 font-bold text-lg"
                     style="width: {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%">
