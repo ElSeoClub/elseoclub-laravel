@@ -91,7 +91,8 @@
     </div>
     <div class="mt-6" style="height:130px">
         <div class="w-full h-full">
-            <span class="font-bold text-xl">Asistencia de la puerta: </span>
+            <span class="font-bold text-xl">Asistencia de la puerta:
+                {{$door->guests()->whereNotNull('attendance_door_id')->count()}} de {{$door->guests()->count()}}</span>
             <div class="shadow-md w-full bg-gray-200 h-9 mb-3 flex">
                 <div class="bg-green-500 text-xs leading-none text-center text-white h-full py-2 font-bold text-lg z-10"
                     style="width: {{round(($door->guests()->whereNotNull('attendance_door_id')->count()/$door->guests()->count())*100)}}%">
