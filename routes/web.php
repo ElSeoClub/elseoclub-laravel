@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         });
     });
     Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
+    Route::middleware(['permission:Administrator'])->get('/fotos', [EventController::class, 'guestsPhotos'])->name('photos.index');
 });
 
 /* Legitimaciones */
