@@ -12,6 +12,7 @@
                     <th class="text-left px-3 py-2">{{__('Legitimación')}}</th>
                     <th class="text-left px-3 py-2 w-44">{{__('Fecha de inicio')}}</th>
                     <th class="text-left px-3 py-2 w-44">{{__('Fecha de cierre')}}</th>
+                    <th class="w-4"></th>
                 </x-slot>
                 <x-slot name="tbody">
                     @if (count($legitimations) == 0)
@@ -39,6 +40,13 @@
                         <td class="text-left p-3">
                             {{$legitimation->end_date->format('d/m/Y')}}
                         </td>
+
+                        <td class="text-left p-3">
+                            @if (Auth::user()->hasPermission('Administrator'))
+                            <i class="fas fa-trash text-red-600 hover:text-red-700 cursor-pointer"
+                                wire:click="delete({{$legitimation->id}})"></i>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                     @endif
@@ -55,6 +63,7 @@
         </div>
     </div>
     @if (Auth::user()->hasPermission('Administrator'))
-    <x-button icon="fas fa-plus" color="green" :href="route('legitimation.create')">Crear nueva legitimación</x-button>
+    <x-button icon="fas fa-plus" class="mt-5" color="green" :href="route('legitimation.create')">Crear nueva
+        legitimación</x-button>
     @endif
 </div>

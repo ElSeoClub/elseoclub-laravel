@@ -58,6 +58,7 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     Route::middleware(['permission:Jurídico'])->group(function () {
         Route::get('/solicitar/evidencias/{event}/{location}', [EventController::class, 'legitimationEvidenceRequired'])->name('legitimation.evidence.required');
     });
+    Route::get('/subir/evidencias/{event}/{location}', [EventController::class, 'legitimationEvidenceUpload'])->name('legitimation.evidence.upload');
 
     Route::get('/legitimaciones/archivo/{event}', [EventController::class, 'legitimationArchive'])->name('legitimation.archive.index');
     Route::middleware(['permission:Jurídico'])->group(function () {

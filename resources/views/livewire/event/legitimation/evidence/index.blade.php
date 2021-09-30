@@ -59,7 +59,7 @@
             <div class="flex gap-3 justify-between">
                 <div>
                     <x-button color="blue" icon="fas fa-plus"
-                        :href="route('legitimation.evidence.required',['event' => $event->id, 'location' => $location->id])">
+                        :href="route('legitimation.evidence.upload',['event' => $event->id, 'location' => $location->id])">
                         Añadir otra evidencia</x-button>
                 </div>
 

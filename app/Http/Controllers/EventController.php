@@ -122,6 +122,12 @@ class EventController extends Controller
         return view('event.legitimation.evidence.required', compact('event', 'location'));
     }
 
+    public function legitimationEvidenceUpload(Event $event, $location)
+    {
+        $location = Location::find($location);
+        return view('event.legitimation.evidence.upload', compact('event', 'location'));
+    }
+
     public function legitimationEvidenceTypes()
     {
         return view('event.legitimation.evidence.types');

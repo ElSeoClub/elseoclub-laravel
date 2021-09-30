@@ -18,7 +18,6 @@ class Evidence extends Model
         'uploaded_date' => 'datetime'
     ];
 
-
     public function evidencetype()
     {
         return $this->belongsTo(Evidencetype::class);
