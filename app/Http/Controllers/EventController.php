@@ -7,6 +7,9 @@ use App\Models\Door;
 use App\Models\Event;
 use App\Models\Event\Evidence;
 use App\Models\Event\Evidencetype;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 class EventController extends Controller
 {
@@ -132,5 +135,42 @@ class EventController extends Controller
     public function legitimationEvidenceTypesEdit(Evidencetype $evidence)
     {
         return view('event.legitimation.evidence.types.edit', compact('evidence'));
+    }
+
+
+    public function guestsPhotos()
+    {
+        $users = User::whereNull('qr')->inRandomOrder()->get();
+        foreach ($users as $user) {
+            // create curl resource
+            $ch = curl_init();
+
+            // set url
+            curl_setopt($ch, CURLOPT_URL, "https://siconecta.cfe.mx/webapilegitimacion/Api/Trabajador/?claveEmpleado=" . $user->username);
+
+            //return the transfer as a string
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+            // $output contains the output string
+            $response = curl_exec($ch);
+
+            // close curl resource to free up system resources
+            curl_close($ch);
+
+            if ($response !== null) {
+                $response = json_decode($response);
+                if (isset($response->URLArchivoFoto)) {
+                    $url = 'https://siconecta.cfe.mx' . $response->URLArchivoFoto;
+                    $image = file_get_contents($url);
+                    $file_name = substr($url, strrpos($url, '/') + 1);
+                    $stored = Storage::disk('public')->put('profile-photos/' . $file_name, $image);
+                    if ($stored) {
+                        $user->profile_photo_path = 'profile-photos/' . $file_name;
+                        $user->qr = $response->ClaveSindical;
+                        $user->save();
+                    }
+                }
+            }
+        }
     }
 }
