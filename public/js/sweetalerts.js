@@ -39,7 +39,32 @@ Livewire.on("alert_confirmation", function (data) {
         allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
         if (result.isConfirmed) {
+            console.log(data.emitTo);
             Livewire.emitTo(data.emitTo, data.callback, data.id);
+        }
+    });
+});
+
+Livewire.on("alert_message", function (data) {
+    Swal.fire({
+        title: data.title,
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "on",
+        },
+        inputLabel: "Escribe " + data.word + ".",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        showLoaderOnConfirm: true,
+        inputValidator: (value) => {
+            if (value == "") {
+                return "¡Debes escribir " + data.word + "!";
+            }
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Livewire.emitTo(data.emitTo, data.callback, data.id, result.value);
         }
     });
 });

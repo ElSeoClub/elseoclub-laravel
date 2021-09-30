@@ -5,10 +5,6 @@
                 <img src="{{asset('svg/logo.svg')}}" width="50px" height="50px" />
             </div>
             <ul class="mt-2 text-gray-700 dark:text-gray-400 capitalize w-full p-1">
-                <x-layout.general.navigation-menu-option :route="route('dashboard')" activeRoute='dashboard'>
-                    {{__('Home')}}
-                </x-layout.general.navigation-menu-option>
-
                 <x-layout.general.navigation-menu-option :route="route('legitimation.index')"
                     activeRoute='legitimation.*' icon="fas fa-gavel">
                     Legitimaciones
@@ -22,6 +18,14 @@
                 <x-layout.general.navigation-menu-option :route="route('users.index')" activeRoute='users.*'
                     icon="fas fa-users">
                     {{__("Users")}}
+                </x-layout.general.navigation-menu-option>
+
+                <li class="mt-2 pt-2 text-xs font-bold text-center text-red-700 uppercase border-t border-gray-200">
+                    Catálogos
+                </li>
+                <x-layout.general.navigation-menu-option :route="route('legitimation.evidence.types')"
+                    activeRoute='users.*' icon="fas fa-gavel">
+                    {{__("Evidencias")}}
                 </x-layout.general.navigation-menu-option>
                 @endif
 

@@ -18,6 +18,9 @@
                 <a href="https://suterm.mx" target="_blank">
                     <i class="fas fa-home text-2xl"></i>
                 </a>
+                <a href="{{route('legitimation.index')}}">
+                    <i class="fas fa-cogs text-2xl"></i>
+                </a>
             </div>
         </div>
         <div class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0"

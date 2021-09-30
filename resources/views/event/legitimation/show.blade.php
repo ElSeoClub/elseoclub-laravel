@@ -15,12 +15,20 @@
                     Gestionar padrón</x-button>
             </div>
         </x-card-image>
-        {{-- <x-card-image image="{{asset('svg/map.svg')}}">
-        <div class="font-bold text-2xl">Sedes del evento</div>
-        <div>0 Sedes</div>
+        <x-card-image image="{{asset('svg/map.svg')}}">
+            <div class="font-bold text-2xl">Sedes del evento</div>
+            <div>0 Sedes</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.locations', ['event' => $event])}}" color="blue" class="w-full">
+                    Gestionar sedes</x-button>
+            </div>
+        </x-card-image>
+        {{-- <x-card-image image="{{asset('svg/teamwork.svg')}}">
+        <div class="font-bold text-2xl">Equipo de trabajo</div>
+        <div>&nbsp;</div>
         <div class="mt-20 w-full">
-            <x-button href="{{route('legitimation.locations', ['event' => $event])}}" color="blue" class="w-full">
-                Gestionar sedes</x-button>
+            <x-button href="{{route('legitimation.teamwork.index', ['event' => $event])}}" color="blue" class="w-full">
+                Gestionar equipo de trabajo</x-button>
         </div>
         </x-card-image> --}}
         @endif
@@ -49,7 +57,7 @@
             </div>
         </x-card-image>
         <x-card-image image="{{asset('svg/voting.svg')}}">
-            <div class="font-bold text-2xl">Votaciones</div>
+            <div class="font-bold text-2xl">Computo de resultados parciales</div>
             <div>&nbsp;</div>
             <div class="mt-20 w-full">
                 <x-button href="{{route('legitimation.votting',['event' => $event])}}" color="blue" class="w-full">
@@ -57,19 +65,34 @@
                     votaciones</x-button>
             </div>
         </x-card-image>
-        {{-- <x-card-image image="{{asset('svg/folder.svg')}}">
-        <div class="font-bold text-2xl">Evidencia del proceso de legitimación</div>
-        <div>A</div>
-        <div class="mt-20 w-full">
-            <x-button href="#" color="blue" class="w-full">Gestionar evidencia</x-button>
-        </div>
+
+        @if (Auth::user()->hasPermission('Administrator') || Auth::user()->hasPermission('Jurídico'))
+        <x-card-image image="{{asset('svg/vote.svg')}}">
+            <div class="font-bold text-2xl">Computo de resultado final</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.votting.juridico',['event' => $event])}}" color="blue"
+                    class="w-full">
+                    Gestionar
+                    votaciones</x-button>
+            </div>
+        </x-card-image>
+        @endif
+        <x-card-image image="{{asset('svg/folder.svg')}}">
+            <div class="font-bold text-2xl">Evidencia del proceso de legitimación</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button :href="route('legitimation.evidence.index',compact('event'))" color="blue" class="w-full">
+                    Gestionar evidencia</x-button>
+            </div>
         </x-card-image>
         <x-card-image image="{{asset('svg/printer.svg')}}">
             <div class="font-bold text-2xl">Expediente para el día del evento</div>
             <div>&nbsp;</div>
             <div class="mt-20 w-full">
-                <x-button href="#" color="blue" class="w-full">Ver expediente</x-button>
+                <x-button :href="route('legitimation.archive.index',compact('event'))" color="blue" class="w-full">Ver
+                    expediente</x-button>
             </div>
-        </x-card-image> --}}
+        </x-card-image>
     </div>
 </x-general-layout>

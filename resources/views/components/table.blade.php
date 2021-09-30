@@ -2,7 +2,7 @@
 'pagination' => null
 ])
 <div>
-    <div class="bg-white shadow-md rounded mb-5">
+    <div class="bg-white shadow-md rounded ">
         <table class="min-w-max w-full table-auto">
             <thead>
                 <tr class="bg-gray-100 text-gray-600 uppercase text-sm">

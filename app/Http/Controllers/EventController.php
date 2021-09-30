@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use App\Models\Door;
-use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Event\Evidence;
+use App\Models\Event\Evidencetype;
 
 class EventController extends Controller
 {
@@ -63,13 +65,72 @@ class EventController extends Controller
         return view('event.legitimation.votting', compact('event'));
     }
 
-    public function legitimationEvidence(Event $event)
+    public function legitimationVottingLocation(Event $event, Location $location)
     {
-        return view('event.legitimation.evidence', compact('event'));
+        return view('event.legitimation.votting.location', compact('event', 'location'));
+    }
+
+    public function legitimationVottingJuridico(Event $event)
+    {
+        return view('event.legitimation.votting.juridico', compact('event'));
+    }
+
+    public function legitimationVottingLocationJuridico(Event $event, Location $location)
+    {
+        return view('event.legitimation.votting.locationjuridico', compact('event', 'location'));
+    }
+
+    public function legitimationVottingConsolidate(Event $event)
+    {
+        return view('event.legitimation.votting.consolidate', compact('event'));
     }
 
     public function legitimationArchive(Event $event)
     {
-        return view('event.legitimation.archive', compact('event'));
+        return view('event.legitimation.archive.index', compact('event'));
+    }
+
+    public function legitimationArchiveUpload(Event $event, $location = null)
+    {
+        if ($location != null) {
+            $location = Location::find($location);
+        }
+        return view('event.legitimation.archive.upload', compact('event', 'location'));
+    }
+
+    public function legitimationTeamwork(Event $event)
+    {
+        return view('event.legitimation.teamwork.index', compact('event'));
+    }
+
+    public function legitimationEvidence(Event $event)
+    {
+        return view('event.legitimation.evidence.index', compact('event'));
+    }
+
+    public function legitimationEvidenceEdit(Event $event, Evidence $evidence)
+    {
+        return view('event.legitimation.evidence.edit', compact('event', 'evidence'));
+    }
+
+    public function legitimationEvidenceRequired(Event $event, $location)
+    {
+        $location = Location::find($location);
+        return view('event.legitimation.evidence.required', compact('event', 'location'));
+    }
+
+    public function legitimationEvidenceTypes()
+    {
+        return view('event.legitimation.evidence.types');
+    }
+
+    public function legitimationEvidenceTypesCreate()
+    {
+        return view('event.legitimation.evidence.types.create');
+    }
+
+    public function legitimationEvidenceTypesEdit(Evidencetype $evidence)
+    {
+        return view('event.legitimation.evidence.types.edit', compact('evidence'));
     }
 }
