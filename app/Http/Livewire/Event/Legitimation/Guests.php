@@ -21,7 +21,7 @@ class Guests extends Component
     public $users_data = [];
 
     protected $rules = [
-        'users' => 'required|mimes:csv'
+        'users' => ''
     ];
 
     public function updatingSearch()
