@@ -21,9 +21,9 @@ class Screen extends Component
     public function get_user($qr_code)
     {
         $this->user = null;
-        $user = $this->door->location->event->guests()->where('qr', $qr_code)->first();
+        $user = $this->door->location->event->guests()->where('qr', str_replace("'", '-', $qr_code))->first();
         if (!$user) {
-            $user = $this->door->location->event->guests()->where('username', $qr_code)->first();
+            $user = $this->door->location->event->guests()->where('username', str_replace("'", '-', $qr_code))->first();
             if (!$user) {
                 $this->emit('alert', ['El código QR es incorrecto o el trabajador no se encuentra registrado en el padrón.', 'error']);
             } else {
