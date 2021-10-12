@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="w-2/3 ml-6">
-                    <div class="w-full text-center text-xl mb-3">Viernes 8 de Octubre de 2021 <span id="clock"></span>
+                    <div class="w-full text-center text-xl mb-3">Martes 12 de Octubre de 2021 <span id="clock"></span>
                     </div>
                     <x-card title="Datos del trabajador:">
                         <div class="-m-5 p-6" style="height:calc(100vh - 590px); overflow-y:hidden">
