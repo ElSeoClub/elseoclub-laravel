@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Consejo\Consulta;
 use App\Models\Event\Archive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -40,5 +41,11 @@ class Event extends Model
     public function globalArchives()
     {
         return $this->archives()->whereNull('location_id')->orderBy('name')->get();
+    }
+
+
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class);
     }
 }

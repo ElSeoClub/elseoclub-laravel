@@ -7,14 +7,13 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $year;
+    public $name;
     public $revision;
     public $startDate;
     public $endDate;
 
     protected $rules = [
-        'year'      => 'required|numeric|min:2020|max:2050',
-        'revision'  => 'required|numeric|min:1|max:10',
+        'name'      => 'required|',
         'startDate' => 'required|date',
         'endDate'   => 'required|date|after_or_equal:startDate'
     ];
@@ -24,7 +23,7 @@ class Create extends Component
         $this->validate();
         $event = new Event();
         $event->eventtype_id = env('LEGITIMACION', 1);
-        $event->name = 'Legitimación del contrato colectivo de trabajo ' . $this->year . ' - Revisión #' . $this->revision;
+        $event->name = $this->name;
         $event->start_date = $this->startDate;
         $event->end_date = $this->endDate;
         $event->save();

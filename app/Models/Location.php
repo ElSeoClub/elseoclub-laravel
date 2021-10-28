@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Consejo\Consulta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Door;
@@ -33,6 +34,11 @@ class Location extends Model
     public function evidences()
     {
         return $this->hasMany(Evidence::class);
+    }
+
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class);
     }
 
     public function guests()

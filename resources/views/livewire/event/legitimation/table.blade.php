@@ -9,7 +9,7 @@
         <div wire:loading.remove wire:target="search">
             <x-table>
                 <x-slot name="thead">
-                    <th class="text-left px-3 py-2">{{__('Legitimación')}}</th>
+                    <th class="text-left px-3 py-2">{{__('Consejo')}}</th>
                     <th class="text-left px-3 py-2 w-44">{{__('Fecha de inicio')}}</th>
                     <th class="text-left px-3 py-2 w-44">{{__('Fecha de cierre')}}</th>
                     <th class="w-4"></th>
@@ -63,7 +63,7 @@
         </div>
     </div>
     @if (Auth::user()->hasPermission('Administrator'))
-    <x-button icon="fas fa-plus" class="mt-5" color="green" :href="route('legitimation.create')">Crear nueva
-        legitimación</x-button>
+    <x-button icon="fas fa-plus" class="mt-5" color="green" :href="route('legitimation.create')">Crear nuevo
+        Consejo</x-button>
     @endif
 </div>

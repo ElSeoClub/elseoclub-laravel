@@ -1,7 +1,7 @@
 <x-general-layout>
-    <x-slot name="title">Legitimaciones</x-slot>
+    <x-slot name="title">Consejos</x-slot>
     <x-layout.general.breadcrumbs>
-        <x-layout.general.breadcrumb-option name="Legitimaciones" arrow="true" :route="route('legitimation.index')" />
+        <x-layout.general.breadcrumb-option name="Consejos" arrow="true" :route="route('legitimation.index')" />
         <x-layout.general.breadcrumb-option :name="$event->name" arrow="false" />
     </x-layout.general.breadcrumbs>
 
@@ -24,22 +24,23 @@
             </div>
         </x-card-image>
         {{-- <x-card-image image="{{asset('svg/teamwork.svg')}}">
-        <div class="font-bold text-2xl">Equipo de trabajo</div>
-        <div>&nbsp;</div>
-        <div class="mt-20 w-full">
-            <x-button href="{{route('legitimation.teamwork.index', ['event' => $event])}}" color="blue" class="w-full">
-                Gestionar equipo de trabajo</x-button>
-        </div>
+            <div class="font-bold text-2xl">Equipo de trabajo</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.teamwork.index', ['event' => $event])}}" color="blue"
+                    class="w-full">
+                    Gestionar equipo de trabajo</x-button>
+            </div>
         </x-card-image> --}}
         @endif
         {{-- <x-card-image image="{{asset('svg/stats.svg')}}">
-        <div class="font-bold text-2xl">Estadísticas</div>
-        <div>Asistencia global
-            0 de
-            0</div>
-        <div class="mt-20 w-full">
-            <x-button href="#" color="blue" class="w-full">Ver estadísticas</x-button>
-        </div>
+            <div class="font-bold text-2xl">Estadísticas</div>
+            <div>Asistencia global
+                0 de
+                0</div>
+            <div class="mt-20 w-full">
+                <x-button href="#" color="blue" class="w-full">Ver estadísticas</x-button>
+            </div>
         </x-card-image>
         <x-card-image image="{{asset('svg/seo-report.svg')}}">
             <div class="font-bold text-2xl">Reportes</div>
@@ -57,6 +58,26 @@
             </div>
         </x-card-image>
         <x-card-image image="{{asset('svg/voting.svg')}}">
+            <div class="font-bold text-2xl">Votaciones</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.consejo.votaciones',['event' => $event])}}" color="blue"
+                    class="w-full">
+                    Gestionar
+                    votaciones</x-button>
+            </div>
+        </x-card-image>
+        <x-card-image image="{{asset('svg/stats.svg')}}">
+            <div class="font-bold text-2xl">Estadísticas</div>
+            <div>Asistencia global
+                0 de
+                0</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.consejo.stats',['event' => $event])}}" color="blue"
+                    class="w-full">Ver estadísticas</x-button>
+            </div>
+        </x-card-image>
+        {{-- <x-card-image image="{{asset('svg/voting.svg')}}">
             <div class="font-bold text-2xl">Computo de resultados parciales</div>
             <div>&nbsp;</div>
             <div class="mt-20 w-full">
@@ -93,6 +114,7 @@
                 <x-button :href="route('legitimation.archive.index',compact('event'))" color="blue" class="w-full">Ver
                     expediente</x-button>
             </div>
-        </x-card-image>
+        </x-card-image> --}}
     </div>
+
 </x-general-layout>

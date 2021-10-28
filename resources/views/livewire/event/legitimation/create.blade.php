@@ -2,22 +2,13 @@
     <x-card title="Crear nueva la legitimación" icon="fas fa-plus">
         <div class="grid grid-cols-12">
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
-                <p class="font-bold">Año del CCT</p>
+                <p class="font-bold">Nombre del evento</p>
                 <p class="text-sm">
-                    Año en que se estableció el contrato colectivo de trabajo.
+                    Nombre con el que se identificara el evento.
                 </p>
             </div>
             <div class="col-span-8 pl-4 mb-3">
-                <x-input type="number" label="Año del CCT" model="year"></x-input>
-            </div>
-            <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
-                <p class="font-bold">Revisión</p>
-                <p class="text-sm">
-                    Es el número de veces que se ha intentado legitimar el CCT.
-                </p>
-            </div>
-            <div class="col-span-8 pl-4 mb-3">
-                <x-input type="number" label="Revisión" model="revision"></x-input>
+                <x-input type="text" label="Nombre del evento" model="name"></x-input>
             </div>
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
                 <p class="font-bold">Fecha de inicio</p>
