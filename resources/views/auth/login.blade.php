@@ -4,7 +4,7 @@
             style="background-image: url({{asset('img/login_background.jpg')}});">
             <div class="clouds z-10"></div>
             <div class="w-full px-24 z-20">
-                <h1 class="text-5xl font-bold text-left tracking-wide">Sistema de legitimación</h1>
+                <h1 class="text-5xl font-bold text-left tracking-wide">CAR Nodo Divisional</h1>
                 <p class="text-3xl my-4">Sindicato Único de trabajadores Electricistas de la República Mexicana</p>
                 <p class="text-lg my-4">"Por la transformación de México"</p>
             </div>
@@ -30,12 +30,11 @@
             <div class="w-full py-6 z-20">
                 <h1 class="my-6">
                     <img class="m-auto" src="{{asset('svg/suterm.png')}}" />
-                    <img class="m-auto h-12 mt-2" src="{{asset('svg/logo_name.svg')}}" />
                 </h1>
                 <form method="post" action="{{route('login')}}" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                     @csrf
                     <div class="pb-2 pt-4">
-                        <input type="text" name="username" id="username" placeholder="{{__("Username")}}"
+                        <input type="text" name="username" id="username" placeholder="{{__(" Usuario")}}"
                             value="{{old('username')}}" class="block w-full p-4 text-lg rounded-sm bg-black" required
                             autofocus autocomplete="off">
                     </div>
@@ -46,7 +45,8 @@
                     </div>
                     <div class="px-4 pb-2 pt-4">
                         <button
-                            class="uppercase block w-full p-4 text-lg rounded-full bg-red-500 hover:bg-red-600 focus:outline-none">{{__('Sign In')}}</button>
+                            class="uppercase block w-full p-4 text-lg rounded-full bg-red-500 hover:bg-red-600 focus:outline-none">{{__('Sign
+                            In')}}</button>
                     </div>
                 </form>
             </div>

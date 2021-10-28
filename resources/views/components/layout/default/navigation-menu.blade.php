@@ -18,6 +18,10 @@
                     icon="fas fa-users">
                     {{__("Users")}}
                 </x-layout.default.navigation-menu-option>
+                <x-layout.default.navigation-menu-option :route="route('puestos.index')" activeRoute='puestos.*'
+                    icon="fas fa-user-md">
+                    {{__("Puestos")}}
+                </x-layout.default.navigation-menu-option>
                 @endif
 
                 <li class="mt-2 pt-2 text-xs font-bold text-center text-red-700 uppercase border-t border-gray-200">

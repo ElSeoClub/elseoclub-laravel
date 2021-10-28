@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Profiler\Profile;
+use App\Http\Controllers\PuestosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['permission:Administrator'])->group(function () {
             Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
             Route::get('/usuarios/{id}', [UsersController::class, 'edit'])->name('users.edit');
+            Route::get('/puestos', [PuestosController::class, 'index'])->name('puestos.index');
         });
         Route::get('/dashboard', function () {
             return view('dashboard');
