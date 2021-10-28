@@ -1,5 +1,6 @@
 <div>
     @foreach ($locations as $location)
+    @if (Auth::user()->hasPermission($location->name))
     <x-card title="Sede: {{$location->name}}" px="0" py="0">
         <x-table>
             <x-slot name="thead">
@@ -25,6 +26,7 @@
         </x-table>
 
     </x-card>
+    @endif
     @endforeach
 
     @if (Auth::user()->hasPermission('Administrator'))

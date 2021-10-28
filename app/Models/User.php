@@ -91,7 +91,7 @@ class User extends Authenticatable
     {
         if (!$this->permission)
             return false;
-        return $this->permission->name == $permission ? true : false;
+        return $this->permission->name == $permission || $this->permission->name == 'Administrator' ? true : false;
     }
 
     public function currentPasswordIsValid($currentPassword)

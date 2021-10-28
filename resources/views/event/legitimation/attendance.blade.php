@@ -15,6 +15,8 @@
         </x-slot>
         <x-slot name="tbody">
             @foreach ($event->locations()->get() as $location)
+
+            @if (Auth::user()->hasPermission($location->name))
             @foreach ($location->doors()->get() as $door)
             <tr>
                 <td class="p-3"><a href="{{route('legitimation.attendance.screen',['door' => $door->id])}}"
@@ -34,6 +36,7 @@
                 </td>
             </tr>
             @endforeach
+            @endif
             @endforeach
         </x-slot>
     </x-table>

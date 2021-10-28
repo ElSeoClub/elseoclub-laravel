@@ -4,6 +4,8 @@
             <canvas id="myCharta" width="400" height="400"></canvas>
             <div class="bg-white shadow-xl rounded-lg">
                 <ul class="divide-y divide-gray-300">
+
+                    @if (Auth::user()->hasPermission('Global'))
                     <li class="p-4 hover:bg-gray-50">
                         <i
                             class="fas fa-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>Nacional
@@ -12,7 +14,10 @@
                             {{$event->guests()->count()}}
                         </div>
                     </li>
+                    @endif
                     @foreach ($locations as $location)
+
+                    @if (Auth::user()->hasPermission($location->name) || Auth::user()->hasPermission('Global'))
                     <li class="p-4 hover:bg-gray-50">
                         <i
                             class="fas fa-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>{{$location->name}}
@@ -21,6 +26,7 @@
                             {{$location->guests()->count()}}
                         </div>
                     </li>
+                    @endif
                     @endforeach
                 </ul>
             </div>
@@ -30,6 +36,7 @@
             <canvas id="{{$consulta->short_name}}" width="400" height="400"></canvas>
             <div class="bg-white shadow-xl rounded-lg">
                 <ul class="divide-y divide-gray-300">
+                    @if (Auth::user()->hasPermission('Global'))
                     <li class="p-4 hover:bg-gray-50"><i
                             class="fas fa-thumbs-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'up':'down'}} mr-2 text-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'green':'red'}}-600"></i>Nacional
                         <div class="float-right">
@@ -38,7 +45,9 @@
                             {{$event->consultas()->where('name',$consulta->name)->sum('nulo')}}
                         </div>
                     </li>
+                    @endif
                     @foreach ($locations as $location)
+                    @if (Auth::user()->hasPermission($location->name) || Auth::user()->hasPermission('Global'))
                     <li class="p-4 hover:bg-gray-50"><i
                             class="fas fa-thumbs-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'up':'down'}} mr-2 text-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'green':'red'}}-600"></i>{{$location->name}}
                         <div class="float-right">
@@ -49,7 +58,7 @@
                             {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->nulo}}
                         </div>
                     </li>
-
+                    @endif
                     @endforeach
                 </ul>
             </div>

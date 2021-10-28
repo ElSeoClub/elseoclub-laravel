@@ -7,12 +7,15 @@
         </x-slot>
         <x-slot name="tbody">
             @foreach ($locations as $key => $location)
+            @if (Auth::user()->hasPermission($location->name))
             <tr class="hover:bg-gray-100">
                 <td class="px-5 py-3">{{$location->name}}</td>
                 <td class="px-5 py-3">{{$location->guests()->count()}}</td>
                 <td class="px-5 py-3"><input type="text" wire:keyup="save({{$location->id}},event.target.value)"
                         value="{{$location->boletas}}"></td>
             </tr>
+            @endif
+
             @endforeach
         </x-slot>
     </x-table>
