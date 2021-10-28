@@ -4,7 +4,7 @@
             style="background-image: url({{asset('img/login_background.jpg')}});">
             <div class="clouds z-10"></div>
             <div class="w-full px-24 z-20">
-                <h1 class="text-5xl font-bold text-left tracking-wide">Sistema de legitimación</h1>
+                <h1 class="text-5xl font-bold text-left tracking-wide">Sistema de eventos</h1>
                 <p class="text-3xl my-4">Sindicato Único de trabajadores Electricistas de la República Mexicana</p>
                 <p class="text-lg my-4">"Por la transformación de México"</p>
             </div>

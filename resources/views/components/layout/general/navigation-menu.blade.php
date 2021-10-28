@@ -7,7 +7,7 @@
             <ul class="mt-2 text-gray-700 dark:text-gray-400 capitalize w-full p-1">
                 <x-layout.general.navigation-menu-option :route="route('legitimation.index')"
                     activeRoute='legitimation.*' icon="fas fa-gavel">
-                    Legitimaciones
+                    Consejos
                 </x-layout.general.navigation-menu-option>
 
                 {{-- This menu can only be seen by permission:Administrador --}}

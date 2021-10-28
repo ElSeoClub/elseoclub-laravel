@@ -26,7 +26,9 @@
 
     </x-card>
     @endforeach
+
+    @if (Auth::user()->hasPermission('Administrator'))
     <x-button icon="fas fa-plus" color="blue" :href="route('legitimation.consejo.nuevo',compact('event'))">Añadir
         consulta</x-button>
-
+    @endif
 </div>
