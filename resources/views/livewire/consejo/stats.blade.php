@@ -80,7 +80,7 @@
         @endforeach
     </div>
     <div>
-        <select onchange="location.href='/consejo/estadisticas/1/'+this.value">
+        <select onchange="location.href='/consejo/estadisticas/{{$event->id}}/'+this.value">
             <option value="0">
                 Asistencia</option>
             @foreach ($event->consultas()->get()->unique('name') as $consulta)
