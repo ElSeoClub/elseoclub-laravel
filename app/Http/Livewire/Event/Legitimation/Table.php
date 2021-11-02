@@ -26,7 +26,7 @@ class Table extends Component
 
     public function render()
     {
-        $legitimations = Event::where('eventtype_id', env('LEGITIMACION', 1))->where('status', '!=', 'deleted')->where('name', 'like', '%' . $this->search . '%')->paginate(10);
+        $legitimations = Event::where('eventtype_id', env('LEGITIMACION', 1))->where('status', '!=', 'deleted')->where('name', 'like', '%' . $this->search . '%')->paginate(30);
         return view('livewire.event.legitimation.table', compact('legitimations'));
     }
 }
