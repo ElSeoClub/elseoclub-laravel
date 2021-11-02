@@ -138,7 +138,7 @@
 function go(){
     setTimeout(() => {
         location.reload(true);
-    }, 50000);
+    }, 10000);
 }
 
 go();
