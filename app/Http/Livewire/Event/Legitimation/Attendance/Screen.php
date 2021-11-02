@@ -36,7 +36,7 @@ class Screen extends Component
                     }
                 } else {
                     if ($user->pivot->door_id == $this->door->id) {
-                        $this->emit('alert_confirmation', ['title' => '<img class="w-16 h-16 mx-auto" src="' . Storage::url($user->profile_photo_path) . '">' . '<b>' . $user->name . '</b><br /> ¿En trabajador es el correcto?', 'word' => 'si', 'emitTo' => 'event.legitimation.attendance.screen', 'callback' => 'acceptVisit', 'id' => $user->id]);
+                        $this->emit('alert_confirmation', ['title' => '<img class="w-16 h-16 mx-auto" src="' . Storage::url($user->profile_photo_path) . '">' . '<b>' . $user->name . '</b><br /> ¿El trabajador es el correcto?', 'word' => 'si', 'emitTo' => 'event.legitimation.attendance.screen', 'callback' => 'acceptVisit', 'id' => $user->id]);
                     } else {
                         $this->emit('alert_confirmation', ['title' => '<img class="w-16 h-16 mx-auto" src="' . Storage::url($user->profile_photo_path) . '">' . $user->name . '<br /> <b class="font-bold text-red-600">NO PERTENECE</b> a esta sede.<br />¿Se le permitirá votar en esta sede?', 'word' => 'si', 'emitTo' => 'event.legitimation.attendance.screen', 'callback' => 'acceptVisit', 'id' => $user->id]);
                     }
@@ -52,7 +52,7 @@ class Screen extends Component
                 }
             } else {
                 if ($user->pivot->door_id == $this->door->id) {
-                    $this->emit('alert_confirmation', ['title' => '<img class="w-16 h-16 mx-auto" src="' . Storage::url($user->profile_photo_path) . '">' . '<b>' . $user->name . '</b><br /> ¿En trabajador es el correcto?', 'word' => 'si', 'emitTo' => 'event.legitimation.attendance.screen', 'callback' => 'acceptVisit', 'id' => $user->id]);
+                    $this->emit('alert_confirmation', ['title' => '<img class="w-16 h-16 mx-auto" src="' . Storage::url($user->profile_photo_path) . '">' . '<b>' . $user->name . '</b><br /> ¿El trabajador es el correcto?', 'word' => 'si', 'emitTo' => 'event.legitimation.attendance.screen', 'callback' => 'acceptVisit', 'id' => $user->id]);
                 } else {
                     $this->emit('alert_confirmation', ['title' => '<img class="w-16 h-16 mx-auto" src="' . Storage::url($user->profile_photo_path) . '">' . $user->name . '<br /> <b class="font-bold text-red-600">NO PERTENECE</b> a esta sede.<br />¿Se le permitirá votar en esta sede?', 'word' => 'si', 'emitTo' => 'event.legitimation.attendance.screen', 'callback' => 'acceptVisit', 'id' => $user->id]);
                 }
