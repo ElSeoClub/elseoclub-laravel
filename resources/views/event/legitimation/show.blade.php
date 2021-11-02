@@ -73,8 +73,8 @@
                 0 de
                 0</div>
             <div class="mt-20 w-full">
-                <x-button href="{{route('legitimation.consejo.stats',['event' => $event])}}" color="blue"
-                    class="w-full">Ver estadísticas</x-button>
+                <x-button href="{{route('legitimation.consejo.stats',['event' => $event,'consulta' => 0])}}"
+                    color="blue" class="w-full">Ver estadísticas</x-button>
             </div>
         </x-card-image>
         {{-- <x-card-image image="{{asset('svg/voting.svg')}}">
