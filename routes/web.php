@@ -67,6 +67,7 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     });
 
     Route::get('/consejo/estadisticas/{event}', [ConsejoController::class, 'stats'])->name('legitimation.consejo.stats');
+    Route::get('/consejo/estadisticas/{event}/{consulta}', [ConsejoController::class, 'stats'])->name('legitimation.consejo.stats');
     Route::get('/consejo/votaciones/{event}', [ConsejoController::class, 'votaciones'])->name('legitimation.consejo.votaciones');
     Route::middleware(['permission:Administrator'])->group(function () {
         Route::get('/consejo/nuevo/{event}', [ConsejoController::class, 'nuevo'])->name('legitimation.consejo.nuevo');

@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class ConsejoController extends Controller
 {
-    public function stats(Event $event)
+    public function stats(Event $event, $consulta = 0)
     {
-        return view('consejo.stats', compact('event'));
+        return view('consejo.stats', compact('event', 'consulta'));
     }
 
     public function votaciones(Event $event)

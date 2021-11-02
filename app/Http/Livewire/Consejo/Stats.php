@@ -8,10 +8,12 @@ use Livewire\Component;
 class Stats extends Component
 {
     public $event;
+    public $consultax;
 
-    public function mount(Event $event)
+    public function mount(Event $event, $consulta)
     {
         $this->event = $event;
+        $this->consultax = $consulta;
     }
 
 

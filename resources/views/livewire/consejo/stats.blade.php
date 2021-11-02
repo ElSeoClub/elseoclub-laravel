@@ -1,83 +1,95 @@
 <div>
     <div class="grid grid-cols-3 gap-3">
-        <x-card title="Asistencia" px="0" py="3">
-            <canvas id="myCharta" width="400" height="400"></canvas>
-        </x-card>
-        <div class="col-span-2">
-            <x-card title="Coordinaciones" px="0" py="0">
-                <div class="bg-white shadow-xl rounded-lg">
-                    <div class="grid grid-cols-2 gap-5 py-3 px-5">
-                        @if (Auth::user()->hasPermission('Global'))
-                        <div class="px-2 hover:bg-gray-50 col-span-2">
-                            <i
-                                class="fas fa-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>Nacional
-                            <div class="float-right">
-                                {{$event->guests()->whereNotNull('attendance_door_id')->count()}} de
-                                {{$event->guests()->count()}}
-                            </div>
-                            </li>
-                        </div>
-                        @endif
-                        @foreach ($locations as $location)
-
-                        @if (Auth::user()->hasPermission($location->name) || Auth::user()->hasPermission('Global'))
-                        <div class="px-2 hover:bg-gray-50">
-                            <i
-                                class="fas fa-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>{{$location->name}}
-                            <div class="float-right">
-                                {{$location->guests()->whereNotNull('attendance_door_id')->count()}} de
-                                {{$location->guests()->count()}}
-                            </div>
-                        </div>
-                        @endif
-                        @endforeach
-                    </div>
-                </div>
+        <div class="col-span-3 grid grid-cols-3 gap-3" id="stats_0" style="{{$consultax == 0 ? '':'display:none'}}">
+            <x-card title="Asistencia" px="0" py="3">
+                <canvas id="myCharta" width="400" height="400"></canvas>
             </x-card>
+            <div class="col-span-2">
+                <x-card title="Coordinaciones" px="0" py="0">
+                    <div class="bg-white shadow-xl rounded-lg">
+                        <div class="grid grid-cols-2 gap-5 py-3 px-5">
+                            @if (Auth::user()->hasPermission('Global'))
+                            <div class="px-2 hover:bg-gray-50 col-span-2">
+                                <i
+                                    class="fas fa-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>Nacional
+                                <div class="float-right">
+                                    {{$event->guests()->whereNotNull('attendance_door_id')->count()}} de
+                                    {{$event->guests()->count()}}
+                                </div>
+                                </li>
+                            </div>
+                            @endif
+                            @foreach ($locations as $location)
+
+                            @if (Auth::user()->hasPermission($location->name) || Auth::user()->hasPermission('Global'))
+                            <div class="px-2 hover:bg-gray-50">
+                                <i
+                                    class="fas fa-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>{{$location->name}}
+                                <div class="float-right">
+                                    {{$location->guests()->whereNotNull('attendance_door_id')->count()}} de
+                                    {{$location->guests()->count()}}
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </x-card>
+            </div>
         </div>
         @foreach ($event->consultas()->get()->unique('name') as $consulta)
-        <x-card title="{{$consulta->name}}" px="0" py="3">
-            <canvas id="{{$consulta->short_name}}" width="400" height="400"></canvas>
-        </x-card>
-        <div class="col-span-2">
-            <x-card title="Coordinaciones" px="0" py="0">
-                <div class="bg-white shadow-xl rounded-lg">
-                    <div class="grid grid-cols-2 gap-5 py-3 px-5">
-                        @if (Auth::user()->hasPermission('Global'))
-                        <div class="px-2 hover:bg-gray-50 col-span-2"><i
-                                class="fas fa-thumbs-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'up':'down'}} mr-2 text-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'green':'red'}}-600"></i>Nacional
-                            <div class="float-right">
-                                {{$event->consultas()->where('name',$consulta->name)->sum('si')}} /
-                                {{$event->consultas()->where('name',$consulta->name)->sum('no')}} /
-                                {{$event->consultas()->where('name',$consulta->name)->sum('nulo')}}
-                            </div>
-                        </div>
-                        @endif
-                        @foreach ($locations as $location)
-                        @if (Auth::user()->hasPermission($location->name) || Auth::user()->hasPermission('Global'))
-                        <div class="px-2 hover:bg-gray-50"><i
-                                class="fas fa-thumbs-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'up':'down'}} mr-2 text-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'green':'red'}}-600"></i>{{$location->name}}
-                            <div class="float-right">
-                                {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si}}
-                                /
-                                {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no}}
-                                /
-                                {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->nulo}}
-                            </div>
-                        </div>
-                        @endif
-                        @endforeach
-                    </div>
-                </div>
+        <div class="col-span-3 grid grid-cols-3 gap-3" id="stats_{{$consulta->id}}"
+            style="{{$consultax == $consulta->id ? '':'display:none'}}">
+            <x-card title="{{$consulta->name}}" px="0" py="3">
+                <canvas id="{{$consulta->short_name}}" width="400" height="400"></canvas>
             </x-card>
+            <div class="col-span-2">
+                <x-card title="Coordinaciones" px="0" py="0">
+                    <div class="bg-white shadow-xl rounded-lg">
+                        <div class="grid grid-cols-2 gap-5 py-3 px-5">
+                            @if (Auth::user()->hasPermission('Global'))
+                            <div class="px-2 hover:bg-gray-50 col-span-2"><i
+                                    class="fas fa-thumbs-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'up':'down'}} mr-2 text-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'green':'red'}}-600"></i>Nacional
+                                <div class="float-right">
+                                    {{$event->consultas()->where('name',$consulta->name)->sum('si')}} /
+                                    {{$event->consultas()->where('name',$consulta->name)->sum('no')}} /
+                                    {{$event->consultas()->where('name',$consulta->name)->sum('nulo')}}
+                                </div>
+                            </div>
+                            @endif
+                            @foreach ($locations as $location)
+                            @if (Auth::user()->hasPermission($location->name) ||
+                            Auth::user()->hasPermission('Global'))
+                            <div class="px-2 hover:bg-gray-50"><i
+                                    class="fas fa-thumbs-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'up':'down'}} mr-2 text-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'green':'red'}}-600"></i>{{$location->name}}
+                                <div class="float-right">
+                                    {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si}}
+                                    /
+                                    {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no}}
+                                    /
+                                    {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->nulo}}
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </x-card>
+            </div>
         </div>
         @endforeach
-
     </div>
-</div>
-
-<script>
-    @foreach ($event->consultas()->get()->unique('name') as $consulta)
+    <div>
+        <select onchange="location.href='/consejo/estadisticas/1/'+this.value">
+            <option value="0">
+                Asistencia</option>
+            @foreach ($event->consultas()->get()->unique('name') as $consulta)
+            <option value="{{$consulta->id}}" {{$consultax==$consulta->id ? 'selected':''}}>{{$consulta->name}}</option>
+            @endforeach
+        </select>
+    </div>
+    <script>
+        @foreach ($event->consultas()->get()->unique('name') as $consulta)
     var ctx{{$consulta->short_name}} = document.getElementById("{{$consulta->short_name}}");
         var {{$consulta->short_name}} = new Chart(ctx{{$consulta->short_name}}, {
         type: 'doughnut',
@@ -130,5 +142,5 @@ function go(){
 }
 
 go();
-</script>
+    </script>
 </div>

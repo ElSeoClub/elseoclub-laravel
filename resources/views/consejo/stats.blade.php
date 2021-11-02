@@ -6,6 +6,6 @@
             :route="route('legitimation.show',compact('event'))" />
         <x-layout.general.breadcrumb-option name="Estadísticas" arrow="false" />
     </x-layout.general.breadcrumbs>
-    @livewire('consejo.stats', ['event' => $event])
+    @livewire('consejo.stats', ['event' => $event, 'consulta' => $consulta])
 
 </x-general-layout>
