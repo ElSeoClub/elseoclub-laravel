@@ -116,7 +116,7 @@
             legend: {
                 labels: {
                     font: {
-                        size: 24,
+                        size: 22,
                         weight: 'bold'
                     }
                 }
