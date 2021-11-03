@@ -9,7 +9,7 @@
                     <div class="bg-white shadow-xl rounded-lg">
                         <div class="grid grid-cols-2 gap-5 py-3 px-5">
                             @if (Auth::user()->hasPermission('Global'))
-                            <div class="px-2 hover:bg-gray-50 col-span-2">
+                            <div class="px-2 hover:bg-gray-50 col-span-2 font-bold text-black text-xl">
                                 <i
                                     class="fas fa-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$event->guests()->count()/2 <= $event->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>Nacional
                                 <div class="float-right font-bold text-black text-xl">
@@ -22,7 +22,7 @@
                             @foreach ($locations as $location)
 
                             @if (Auth::user()->hasPermission($location->name) || Auth::user()->hasPermission('Global'))
-                            <div class="px-2 hover:bg-gray-50">
+                            <div class="px-2 hover:bg-gray-50 font-bold text-black text-xl">
                                 <i
                                     class="fas fa-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'check': 'times'}} mr-2 text-{{$location->guests()->count()/2 <= $location->guests()->whereNotNull('attendance_door_id')->count() ? 'green': 'red'}}-600"></i>{{$location->name}}
                                 <div class="float-right font-bold text-black text-xl">
@@ -48,7 +48,7 @@
                     <div class="bg-white shadow-xl rounded-lg">
                         <div class="grid grid-cols-2 gap-5 py-3 px-5">
                             @if (Auth::user()->hasPermission('Global'))
-                            <div class="px-2 hover:bg-gray-50 col-span-2"><i
+                            <div class="px-2 hover:bg-gray-50 col-span-2 font-bold text-black text-xl"><i
                                     class="fas fa-thumbs-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'up':'down'}} mr-2 text-{{$event->consultas()->where('name',$consulta->name)->sum('si') > $event->consultas()->where('name',$consulta->name)->sum('no') ? 'green':'red'}}-600"></i>Nacional
                                 <div class="float-right font-bold text-black text-xl">
                                     {{$event->consultas()->where('name',$consulta->name)->sum('si')}} /
@@ -60,7 +60,7 @@
                             @foreach ($locations as $location)
                             @if (Auth::user()->hasPermission($location->name) ||
                             Auth::user()->hasPermission('Global'))
-                            <div class="px-2 hover:bg-gray-50"><i
+                            <div class="px-2 hover:bg-gray-50 font-bold text-black text-xl"><i
                                     class="fas fa-thumbs-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'up':'down'}} mr-2 text-{{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si > $location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->no ? 'green':'red'}}-600"></i>{{$location->name}}
                                 <div class="float-right font-bold text-black text-xl">
                                     {{$location->consultas()->where('location_id',$location->id)->where('name',$consulta->name)->first()->si}}
