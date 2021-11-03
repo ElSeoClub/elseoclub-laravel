@@ -113,47 +113,27 @@
         },
     });
     @endforeach
+    
 
     var ctxa = document.getElementById("myCharta");
-    var options = {
-  tooltips: {
-    enabled: true
-  },
-  plugins: {
-    datalabels: {
-      formatter: (value, ctxa) => {
-
-        let sum = ctxa.dataset._meta[0].total;
-        let percentage = (value * 100 / sum).toFixed(2) + "%";
-        return percentage;
-
-
-      },
-      color: '#fff',
-    }
-  }
-};
-
     var myCharta = new Chart(ctxa, {
-    type: 'doughnut',
-    data: {
-        labels: ["Asistió", "No Asistió"],
-        datasets: [{
-            label: '# of Votes',
-            data: [{{$event->guests()->whereNotNull('attendance_door_id')->count()}}, {{$event->guests()->whereNull('attendance_door_id')->count()}}],
-            backgroundColor: [
-                'rgba(80, 128, 27, 0.4)',
-                'rgba(125, 125, 125, 0.4)'
-            ],
-            borderColor: [
-                'rgba(80, 128, 27, 1)',
-                'rgba(125, 125, 125, 1)'
-            ],
-            borderWidth: 1
-        }],
-        options: options
-    },
-});
+        type: 'pie',
+        data: {
+            labels: ["Asistió {{round(($event->guests()->whereNotNull('attendance_door_id')->count()/($event->guests()->whereNotNull('attendance_door_id')->count()+$event->guests()->whereNull('attendance_door_id')->count()))*100,0)}}%", "No Asistió {{round(($event->guests()->whereNull('attendance_door_id')->count()/($event->guests()->whereNotNull('attendance_door_id')->count()+$event->guests()->whereNull('attendance_door_id')->count()))*100,0)}}%"],
+            datasets: [{
+                data: [{{$event->guests()->whereNotNull('attendance_door_id')->count()}}, {{$event->guests()->whereNull('attendance_door_id')->count()}}],
+                backgroundColor: [
+                    'rgba(80, 128, 27, 0.4)',
+                    'rgba(125, 125, 125, 0.4)'
+                ],
+                borderColor: [
+                    'rgba(80, 128, 27, 1)',
+                    'rgba(125, 125, 125, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+    });
 
 function go(){
     setTimeout(() => {
