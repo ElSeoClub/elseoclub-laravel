@@ -116,7 +116,7 @@
             legend: {
                 labels: {
                     font: {
-                        size: 26,
+                        size: 24,
                         weight: 'bold'
                     }
                 }
@@ -150,7 +150,7 @@
             legend: {
                 labels: {
                     font: {
-                        size: 26,
+                        size: 24,
                         weight: 'bold'
                     }
                 }
