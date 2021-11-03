@@ -33,7 +33,7 @@
                             <div class="text-lg text-gray-900 font-bold mb-2"><span
                                     class="text-gray-600 ">Nombre:</span> {{strtoupper($user->name)}}</div>
                             <div class="text-xl text-green-600 font-bold w-full text-center">¡Bienvenido a la
-                                legitimación!</div>
+                                consejo!</div>
                             @endif
                         </div>
                         <x-slot name="footer">
