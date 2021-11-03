@@ -22,7 +22,8 @@
                     </div>
                 </div>
                 <div class="w-2/3 ml-6">
-                    <div class="w-full text-center text-xl mb-3">Martes 12 de Octubre de 2021 <span id="clock"></span>
+                    <div class="w-full text-center text-xl mb-3">Miercoles 3 de Noviembre de 2021 <span
+                            id="clock"></span>
                     </div>
                     <x-card title="Datos del trabajador:">
                         <div class="-m-5 p-6" style="height:calc(100vh - 590px); overflow-y:hidden">
@@ -73,42 +74,40 @@
                         @foreach($door->guests()->get() as $user)
                         @if ($n < 4) <div class="flex border-b border-b-2 pb-2 p-3">
                             <div class="w-16 h-16 min-w-16">
-                                <img src="{{Storage::url($user->profile_photo_path)}}"
-                        class="max-h-full max-w-full max-h-full h-16 w-16 m-auto rounded-full shadow-lg border
-                        border-gray-300 imgDNE"
-                        alt="" />
+                                <img src="{{Storage::url($user->profile_photo_path)}}" class="max-h-full max-w-full max-h-full h-16 w-16 m-auto rounded-full shadow-lg border
+                        border-gray-300 imgDNE" alt="" />
+                            </div>
+                            <div class="h-16 content-center flex flex-wrap w-full text-sm">
+                                <div class="text-center font-bold w-full uppercase">{{$user->name}}</div>
+                            </div>
                     </div>
-                    <div class="h-16 content-center flex flex-wrap w-full text-sm">
-                        <div class="text-center font-bold w-full uppercase">{{$user->name}}</div>
-                    </div>
+                    @php $n++; @endphp
+                    @endif
+                    @endforeach --}}
             </div>
-            @php $n++; @endphp
-            @endif
-            @endforeach --}}
-        </div>
-        &nbsp;
-        </x-card>
-    </div>
-</div>
-<div class="mt-6" style="height:130px">
-    <div class="w-full h-full">
-        <span class="font-bold text-xl">Asistencia de la puerta:
-            {{$door->guests()->whereNotNull('attendance_door_id')->count()}} de {{$door->guests()->count()}}</span>
-        <div class="shadow-md w-full bg-gray-200 h-9 mb-3 flex">
-            <div class="bg-green-500 text-xs leading-none text-center text-white h-full py-2 font-bold text-lg z-10"
-                style="width: {{round(($door->guests()->whereNotNull('attendance_door_id')->count()/$door->guests()->count())*100)}}%">
-                {{round(($door->guests()->whereNotNull('attendance_door_id')->count()/$door->guests()->count())*100)}}%
-            </div>
-        </div>
-        <span class="font-bold text-xl">Asistencia general:
-            {{$door->location->event->guests()->whereNotNull('attendance_door_id')->count()}} de
-            {{$door->location->event->guests()->count()}}</span>
-        <div class=" shadow-md w-full bg-gray-200 h-9 rounded">
-            <div class="bg-green-500 text-xs leading-none text-center text-white h-full rounded py-2 font-bold text-lg"
-                style="width: {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%">
-                {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%
-            </div>
+            &nbsp;
+            </x-card>
         </div>
     </div>
-</div>
+    <div class="mt-6" style="height:130px">
+        <div class="w-full h-full">
+            <span class="font-bold text-xl">Asistencia de la puerta:
+                {{$door->guests()->whereNotNull('attendance_door_id')->count()}} de {{$door->guests()->count()}}</span>
+            <div class="shadow-md w-full bg-gray-200 h-9 mb-3 flex">
+                <div class="bg-green-500 text-xs leading-none text-center text-white h-full py-2 font-bold text-lg z-10"
+                    style="width: {{round(($door->guests()->whereNotNull('attendance_door_id')->count()/$door->guests()->count())*100)}}%">
+                    {{round(($door->guests()->whereNotNull('attendance_door_id')->count()/$door->guests()->count())*100)}}%
+                </div>
+            </div>
+            <span class="font-bold text-xl">Asistencia general:
+                {{$door->location->event->guests()->whereNotNull('attendance_door_id')->count()}} de
+                {{$door->location->event->guests()->count()}}</span>
+            <div class=" shadow-md w-full bg-gray-200 h-9 rounded">
+                <div class="bg-green-500 text-xs leading-none text-center text-white h-full rounded py-2 font-bold text-lg"
+                    style="width: {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%">
+                    {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
