@@ -121,9 +121,9 @@
   },
   plugins: {
     datalabels: {
-      formatter: (value, ctx) => {
+      formatter: (value, ctxa) => {
 
-        let sum = ctx.dataset._meta[0].total;
+        let sum = ctxa.dataset._meta[0].total;
         let percentage = (value * 100 / sum).toFixed(2) + "%";
         return percentage;
 
