@@ -115,6 +115,25 @@
     @endforeach
 
     var ctxa = document.getElementById("myCharta");
+    var options = {
+  tooltips: {
+    enabled: true
+  },
+  plugins: {
+    datalabels: {
+      formatter: (value, ctx) => {
+
+        let sum = ctx.dataset._meta[0].total;
+        let percentage = (value * 100 / sum).toFixed(2) + "%";
+        return percentage;
+
+
+      },
+      color: '#fff',
+    }
+  }
+};
+
     var myCharta = new Chart(ctxa, {
     type: 'doughnut',
     data: {
@@ -131,7 +150,8 @@
                 'rgba(125, 125, 125, 1)'
             ],
             borderWidth: 1
-        }]
+        }],
+        options: options
     },
 });
 
