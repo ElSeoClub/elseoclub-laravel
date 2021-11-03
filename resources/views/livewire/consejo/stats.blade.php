@@ -94,7 +94,7 @@
         var {{$consulta->short_name}} = new Chart(ctx{{$consulta->short_name}}, {
         type: 'doughnut',
         data: {            
-            labels: ["Si", "No", "No votó"],
+            labels: ['Si {{round(($event->consultas()->where('name',$consulta->name)->sum('si')/$event->guests()->count())*100,0)}}%', 'No {{round($event->consultas()->where('name',$consulta->name)->sum('no')/$event->guests()->count()*100,0)}}%', 'No votó {{round($event->consultas()->where('name',$consulta->name)->sum('nulo')/$event->guests()->count()*100,0)}}%'],
             datasets: [{
                 label: '# of Votes',
                 data: [{{$event->consultas()->where('name',$consulta->name)->sum('si')}},{{$event->consultas()->where('name',$consulta->name)->sum('no')}},{{$event->consultas()->where('name',$consulta->name)->sum('nulo')}}],
