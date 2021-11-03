@@ -90,7 +90,7 @@
     </div>
     <script>
         @foreach ($event->consultas()->get()->unique('name') as $consulta)
-    var ctx{{$consulta->short_name}} = document.getElementById("{{$consulta->short_name}}");
+        var ctx{{$consulta->short_name}} = document.getElementById("{{$consulta->short_name}}");
         var {{$consulta->short_name}} = new Chart(ctx{{$consulta->short_name}}, {
         type: 'doughnut',
         data: {            
@@ -111,6 +111,18 @@
                 borderWidth: 1
             }]
         },
+        options: {
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 26,
+                        weight: 'bold'
+                    }
+                }
+            }
+        }
+        }
     });
     @endforeach
     
@@ -133,6 +145,18 @@
                 borderWidth: 1
             }]
         },
+        options: {
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 26,
+                        weight: 'bold'
+                    }
+                }
+            }
+        }
+    }
     });
 
 function go(){
