@@ -1,5 +1,5 @@
 <x-general-layout>
-    <x-slot name="title">Legitimaciones</x-slot>
+    <x-slot name="title">Consejo</x-slot>
     <x-layout.general.breadcrumbs>
         <x-layout.general.breadcrumb-option name="Consejos" arrow="true" :route="route('legitimation.index')" />
         <x-layout.general.breadcrumb-option name="{{$event->name}}" arrow="true"
