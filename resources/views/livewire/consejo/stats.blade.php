@@ -117,7 +117,7 @@
 
     var ctxa = document.getElementById("myCharta");
     var myCharta = new Chart(ctxa, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             labels: ["Asistió {{round(($event->guests()->whereNotNull('attendance_door_id')->count()/($event->guests()->whereNotNull('attendance_door_id')->count()+$event->guests()->whereNull('attendance_door_id')->count()))*100,0)}}%", "No Asistió {{round(($event->guests()->whereNull('attendance_door_id')->count()/($event->guests()->whereNotNull('attendance_door_id')->count()+$event->guests()->whereNull('attendance_door_id')->count()))*100,0)}}%"],
             datasets: [{
