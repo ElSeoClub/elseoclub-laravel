@@ -11,10 +11,10 @@
                 @if (Auth::user()->hasPermission($location->name))
                 <tr class="hover:bg-gray-100">
                     <td class="px-5 py-1 font-bold text-lg">{{$location->name}}</td>
-                    <td class="px-5 py-1 font-bold text-lg">{{$location->guests()->count()}}</td>
-                    <td class="px-5 py-1 font-bold text-lg"><input type="text" id="e_{{$key}}"
+                    <td class="px-5 py-1 font-bold text-lg text-center">{{$location->guests()->count()}}</td>
+                    <td class="px-5 py-1 font-bold text-lg text-center"><input type="text" id="e_{{$key}}"
                             value="{{$location->boletas}}" onkeyup="addData(myChart)"
-                            class="py-1 asist outline-none border-none">
+                            class="py-1 asist outline-none border-none text-center">
                     </td>
                 </tr>
                 @endif
