@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-2 gap-5">
     <x-card title="Sedes del evento" px="0" py="0">
         <x-table>
             <x-slot name="thead">
