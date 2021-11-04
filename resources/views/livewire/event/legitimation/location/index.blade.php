@@ -13,7 +13,7 @@
                     <td class="px-5 py-1">{{$location->name}}</td>
                     <td class="px-5 py-1">{{$location->guests()->count()}}</td>
                     <td class="px-5 py-1"><input type="text" wire:keyup="save({{$location->id}},event.target.value)"
-                            value="{{$location->boletas}}"></td>
+                            value="{{$location->boletas}}" class="py-1"></td>
                 </tr>
                 @endif
 
