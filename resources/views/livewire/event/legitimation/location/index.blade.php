@@ -10,9 +10,9 @@
                 @foreach ($locations as $key => $location)
                 @if (Auth::user()->hasPermission($location->name))
                 <tr class="hover:bg-gray-100">
-                    <td class="px-5 py-1 font-bold text-lg">{{$location->name}}</td>
-                    <td class="px-5 py-1 font-bold text-lg">{{$location->guests()->count()}}</td>
-                    <td class="px-5 py-1 font-bold text-lg"><input type="text"
+                    <td class="px-5 font-bold text-lg">{{$location->name}}</td>
+                    <td class="px-5 font-bold text-lg">{{$location->guests()->count()}}</td>
+                    <td class="px-5 font-bold text-lg"><input type="text"
                             wire:keyup="save({{$location->id}},event.target.value)" value="{{$location->boletas}}"
                             class="py-1"></td>
                 </tr>
@@ -35,7 +35,7 @@ const myChart = new Chart(ctx, {
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
-                'rgba(75, 192, 192, 1)',
+                'rgba(46, 171, 50, 1)',
             ],
             borderColor: [
                 'rgba(75, 192, 192, 1)',
@@ -47,7 +47,10 @@ const myChart = new Chart(ctx, {
         indexAxis: 'y',
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                min: 0,
+                max: 100,
+                weight: 'bold'
             }
         }
     }
