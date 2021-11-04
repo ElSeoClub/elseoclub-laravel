@@ -36,7 +36,7 @@
             </div>
         </div>
         <x-slot name="footer">
-            <x-button icon="fas fa-plus" color="blue" click="save">Añadir consulta</x-button>
+            <x-button icon="fas fa-plus" color="blue" click="save">Guardar datos</x-button>
         </x-slot>
     </x-card>
 </div>
