@@ -10,9 +10,9 @@
                 @foreach ($locations as $key => $location)
                 @if (Auth::user()->hasPermission($location->name))
                 <tr class="hover:bg-gray-100">
-                    <td class="px-5 font-bold text-lg">{{$location->name}}</td>
-                    <td class="px-5 font-bold text-lg">{{$location->guests()->count()}}</td>
-                    <td class="px-5 font-bold text-lg"><input type="text"
+                    <td class="px-5 py-1 font-bold text-lg">{{$location->name}}</td>
+                    <td class="px-5 py-1 font-bold text-lg">{{$location->guests()->count()}}</td>
+                    <td class="px-5 py-1 font-bold text-lg"><input type="text"
                             wire:keyup="save({{$location->id}},event.target.value)" value="{{$location->boletas}}"
                             class="py-1"></td>
                 </tr>
@@ -23,40 +23,64 @@
         </x-table>
     </div>
     <div class="col-span-2">
-        <x-card title="Asistencia" px="0" py="0">
+        <x-card title="" px="0" py="0">
             <canvas id="myChart" width="400" height="400"></canvas>
-            <script>
-                const ctx = document.getElementById('myChart').getContext('2d');
+        </x-card>
+        <x-card title="" px="5" py="3">
+            <div class="font-bold text-3xl">
+                Asistencia Nacional: 30 de 762
+            </div>
+        </x-card>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(46, 171, 50, 1)',
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        scales: {
-            y: {
-                beginAtZero: true,
-                min: 0,
-                max: 100,
+type: 'bar',
+data: {
+labels: [''],
+datasets: [{
+    label: 'Porcentaje de Asistencia 90%',
+    data: [90],
+    backgroundColor: [
+        'rgba(46, 171, 50, 1)',
+    ],
+    borderColor: [
+        'rgba(75, 192, 192, 1)',
+    ],
+    borderWidth: 1
+}]
+},
+options: {
+indexAxis: 'y',
+scales: {
+    x: {
+        beginAtZero: true,
+        min: 0,
+        max: 100,
+        weight: 'bold',
+        ticks: {
+        // forces step size to be 50 units
+        stepSize: 10,
+        font: {
+            size: 20,
+            weight: 'bold'
+        }
+        }
+    }
+},
+plugins: {
+    legend: {
+        labels: {
+            // This more specific font property overrides the global property
+            font: {
+                size: 32,
                 weight: 'bold'
             }
         }
     }
+}
+}
 });
-            </script>
-
-        </x-card>
-    </div>
+    </script>
 </div>
