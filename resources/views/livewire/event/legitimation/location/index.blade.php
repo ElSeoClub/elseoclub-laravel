@@ -23,7 +23,7 @@
             </x-table>
         </x-card>
     </div>
-    <div class="col-span-3">
+    <div class="col-span-2">
         <x-card title="Asistencia" px="0" py="0">
             <canvas id="myChart" width="400" height="400"></canvas>
             <script>
