@@ -2,9 +2,9 @@
     <div class="col-span-3">
         <x-table>
             <x-slot name="thead">
-                <th class="text-left px-5 py-1">Nombre</th>
-                <th class="text-left px-5 py-1"># de invitados</th>
-                <th class="text-left px-5 py-1"># asistentes</th>
+                <th class="text-left px-5 py-1 font-bold text-lg">Nombre</th>
+                <th class="text-left px-5 py-1 font-bold text-lg"># de invitados</th>
+                <th class="text-left px-5 py-1 font-bold text-lg"># asistentes</th>
             </x-slot>
             <x-slot name="tbody">
                 @foreach ($locations as $key => $location)
@@ -13,7 +13,9 @@
                     <td class="px-5 py-1 font-bold text-lg">{{$location->name}}</td>
                     <td class="px-5 py-1 font-bold text-lg">{{$location->guests()->count()}}</td>
                     <td class="px-5 py-1 font-bold text-lg"><input type="text" id="e_{{$key}}"
-                            value="{{$location->boletas}}" onkeyup="addData(myChart)" class="py-1 asist"></td>
+                            value="{{$location->boletas}}" onkeyup="addData(myChart)"
+                            class="py-1 asist outline-none border-none">
+                    </td>
                 </tr>
                 @endif
 
