@@ -12,9 +12,8 @@
                 <tr class="hover:bg-gray-100">
                     <td class="px-5 py-1 font-bold text-lg">{{$location->name}}</td>
                     <td class="px-5 py-1 font-bold text-lg">{{$location->guests()->count()}}</td>
-                    <td class="px-5 py-1 font-bold text-lg"><input type="text"
-                            wire:keyup="save({{$location->id}},event.target.value)" value="{{$location->boletas}}"
-                            class="py-1"></td>
+                    <td class="px-5 py-1 font-bold text-lg"><input type="text" id="e_{{$key}}"
+                            value="{{$location->boletas}}" onkeyup="addData(myChart)" class="py-1 asist"></td>
                 </tr>
                 @endif
 
@@ -28,59 +27,86 @@
         </x-card>
         <x-card title="" px="5" py="3">
             <div class="font-bold text-3xl">
-                Asistencia Nacional: 30 de 762
+                Asistencia Nacional: <span id="tot">0</span> de
+                {{$event->guests()->count()}}
             </div>
         </x-card>
     </div>
 
     <script>
+        const total = {{$event->guests()->count()}};
         const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-type: 'bar',
-data: {
-labels: [''],
-datasets: [{
-    label: 'Porcentaje de Asistencia 90%',
-    data: [90],
-    backgroundColor: [
-        'rgba(46, 171, 50, 1)',
-    ],
-    borderColor: [
-        'rgba(75, 192, 192, 1)',
-    ],
-    borderWidth: 1
-}]
-},
-options: {
-indexAxis: 'y',
-scales: {
-    x: {
-        beginAtZero: true,
-        min: 0,
-        max: 100,
-        weight: 'bold',
-        ticks: {
-        // forces step size to be 50 units
-        stepSize: 10,
-        font: {
-            size: 20,
-            weight: 'bold'
-        }
-        }
-    }
-},
-plugins: {
-    legend: {
-        labels: {
-            // This more specific font property overrides the global property
-            font: {
-                size: 32,
-                weight: 'bold'
+        const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: [''],
+        datasets: [{
+            label: 'Porcentaje de Asistencia 0%',
+            data: [0],
+            backgroundColor: [
+                'rgba(46, 171, 50, 1)',
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)',
+            ],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        indexAxis: 'y',
+        scales: {
+            x: {
+                beginAtZero: true,
+                min: 0,
+                max: 100,
+                weight: 'bold',
+                ticks: {
+                // forces step size to be 50 units
+                stepSize: 10,
+                font: {
+                    size: 20,
+                    weight: 'bold'
+                }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 32,
+                        weight: 'bold'
+                    }
+                }
             }
         }
-    }
-}
-}
-});
+        }
+        });
+
+        function roundToX(num, X) {    
+            return +(Math.round(num + "e+"+X)  + "e-"+X);
+        }
+
+        function addData() {
+            asist = document.getElementsByClassName('asist');
+            data = [0];
+
+            for(n = 0; n < asist.length; n++){
+                data[0] += parseInt(asist[n].value) || 0;
+            }
+
+            tot = data[0];
+            document.getElementById('tot').innerHTML = tot;
+
+            data[0] = roundToX((data[0]/total)*100,2);
+
+            myChart.data.datasets.forEach((dataset) => {
+                dataset.label = 'Porcentaje de Asistencia '+data[0]+'%',
+                dataset.data = data;
+            });
+            myChart.update();
+        }
+        addData();
     </script>
 </div>
