@@ -22,12 +22,14 @@
                 <td class="text-left whitespace-nowrap pt-3 px-6">
                     <div class="shadow-md w-full bg-gray-200 h-6 mb-3 flex">
                         <div class="bg-green-500 text-xs leading-none text-center text-white h-full py-1 font-bold text-base z-10"
-                            style="width: {{round(($door->guests()->where('attendance_door_id',$door->id)->count()/$door->guests()->count())*100,0)}}%">
-                            {{round(($door->guests()->where('attendance_door_id',$door->id)->count()/$door->guests()->count())*100,0)+round(($door->guests()->whereNotNull('attendance_door_id')->where('attendance_door_id','!=',$door->id)->count()/$door->guests()->count())*100,0)}}%
+                            style="width: {{$door->guests()->count() > 0 ? round(($door->guests()->where('attendance_door_id',$door->id)->count()/$door->guests()->count())*100,0):'0'}}%">
+                            {{$door->guests()->count() > 0 ?
+                            (round(($door->guests()->where('attendance_door_id',$door->id)->count()/$door->guests()->count())*100,0)+round(($door->guests()->whereNotNull('attendance_door_id')->where('attendance_door_id','!=',$door->id)->count()/$door->guests()->count())*100,0))
+                            :'0'}}%
 
                         </div>
                         <div class="bg-green-700 text-xs leading-none text-center text-white h-full py-1 font-bold text-base"
-                            style="width: {{round(($door->guests()->whereNotNull('attendance_door_id')->where('attendance_door_id','!=',$door->id)->count()/$door->guests()->count())*100,0)}}%">
+                            style="width: {{$door->guests()->count() > 0 ? (round(($door->guests()->whereNotNull('attendance_door_id')->where('attendance_door_id','!=',$door->id)->count()/$door->guests()->count())*100,0)):'0'}}%">
                         </div>
                     </div>
                 </td>
