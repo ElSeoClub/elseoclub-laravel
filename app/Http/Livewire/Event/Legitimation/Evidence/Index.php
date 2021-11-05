@@ -8,9 +8,9 @@ use App\Models\Event;
 
 class Index extends Component
 {
-    use WithFileUploads;
 
     public $event;
+    public $search;
 
     public function mount(Event $event)
     {
@@ -19,6 +19,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.event.legitimation.evidence.index');
+        $locations = $this->event->locations()->where('name', 'like', "%$this->search%")->get();
+        return view('livewire.event.legitimation.evidence.index', compact('locations'));
     }
 }

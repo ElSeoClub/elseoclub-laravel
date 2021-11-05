@@ -1,10 +1,16 @@
 <div>
-    @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator'))
-    <x-button class="mb-5" color="yellow" icon="fas fa-plus"
-        :href="route('legitimation.evidence.required',['event' => $event->id, 'location' => 'global'])">
-        Solicitar nueva evidencia a todos</x-button>
-    @endif
-    @foreach ($event->locations as $location)
+
+    <div class="grid grid-cols-2">
+        <div>
+            @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator'))
+            <x-button class="mb-5" color="yellow" icon="fas fa-plus"
+                :href="route('legitimation.evidence.required',['event' => $event->id, 'location' => 'global'])">
+                Solicitar nueva evidencia a todos</x-button>
+            @endif
+        </div>
+        <x-search></x-search>
+    </div>
+    @foreach ($locations as $location)
     <x-card title="Evidencias la de sede {{$location->name}}" px="0" py="0">
         <div class="w-full overflow-x-auto">
             <x-table>
