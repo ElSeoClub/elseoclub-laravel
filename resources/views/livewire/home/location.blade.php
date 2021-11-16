@@ -1,15 +1,14 @@
 <div class="p-2">
     @if ($location)
     <div class="text-left">
-        <p class="text-xl">Trabajador: <span class="text-yellow-600 font-bold">NOMBRE DEL TRABAJADOR</span></p>
-        <p class="text-xl">Centro de votación: <span class="text-yellow-600 font-bold">NOMBRE DEL CENTRO</span></p>
-        <p class="text-xl">Dirección: <span class="text-yellow-600 font-bold">DIRECCIÓN DEL CENTRO</span></p>
-        <p class="text-xl">Referencias: <span class="text-yellow-600 font-bold">REFERENCIAS DEL CENTRO</span></p>
-        <p class="text-xl">Fecha de la votación: <span class="text-yellow-600 font-bold">27/08/2021</span></p>
-        <p class="text-xl">Horario de votación: <span class="text-yellow-600 font-bold">08:00 AM a 04:00 PM</span></p>
+        <p class="text-xl">Trabajador: <span class="text-yellow-600 font-bold">Ri***** Ba***** Hu*****</span></p>
+        <p class="text-xl">Dirección: <span class="text-yellow-600 font-bold">CALZADA VENTURA PUENTE, num. ext. 1653, CP
+                58290, colonia Electricistas, municipio Morelia, Michoacán de Ocampo</span></p>
+        <p class="text-xl">Fecha de la votación: <span class="text-yellow-600 font-bold">01/12/2021</span></p>
+        <p class="text-xl">Horario de votación: <span class="text-yellow-600 font-bold">08:00 AM a 6:00 PM</span></p>
     </div>
     <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.7081442885105!2d-100.79266188524582!3d20.518187186277157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842cb07d66088c6f%3A0x972b9fe58f4d0232!2sReal%20Inn%20Celaya!5e0!3m2!1ses!2smx!4v1629933212042!5m2!1ses!2smx"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2233.733801701219!2d-101.18162927925826!3d19.683759922144123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842d0de640844f1b%3A0x1eb87cbe588da7b4!2sCalz.%20Ventura%20Puente%201653%2C%20Electricistas%2C%2058290%20Morelia%2C%20Mich.!5e0!3m2!1ses!2smx!4v1637079701440!5m2!1ses!2smx"
         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     @else
     <h1 class="text-3xl">Proxima legitimación:</h1>
