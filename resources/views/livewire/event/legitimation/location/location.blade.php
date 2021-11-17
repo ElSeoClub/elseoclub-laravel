@@ -58,5 +58,8 @@
                 <x-input type="numeric" model="location.schedule"></x-input>
             </div>
         </div>
+        <x-slot name="footer">
+            <x-button icon="fas fa-save" color="blue" click="save">Guardar cambios</x-button>
+        </x-slot>
     </x-card>
 </div>
