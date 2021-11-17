@@ -35,6 +35,7 @@ class Location extends Component
             $this->location->convocatoria = $convocatoria_path;
         }
         $this->location->save();
+        $this->emit('alert', 'La sede fue actualizada exitosamente.');
     }
 
     public function render()
