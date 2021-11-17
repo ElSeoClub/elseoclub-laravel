@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Home;
 use Livewire\Component;
 use App\Models\Event;
 use App\Models\User;
+use App\Models\Location as ModelLocation;
 
 class Location extends Component
 {
@@ -13,6 +14,7 @@ class Location extends Component
     public $username;
     public $event;
     public $message;
+    public $user_location;
 
     public function display_location()
     {
@@ -22,7 +24,10 @@ class Location extends Component
         $this->message = '';
         if (!$this->user) {
             $this->location = false;
+            $this->user_location = null;
             $this->message = 'El trabajador <span class="font-bold text-red-600">' . $this->username . '</span> no se encuentró en el padrón.';
+        } else {
+            $this->user_location = ModelLocation::find($this->event->guests()->where('user_id', $this->user->id)->first()->pivot->location_id);
         }
     }
 
