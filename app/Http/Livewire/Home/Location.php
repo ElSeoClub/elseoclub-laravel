@@ -19,7 +19,7 @@ class Location extends Component
     public function display_location()
     {
         $this->location = true;
-        $this->event = Event::find(1);
+        $this->event = Event::find(11);
         $this->user = User::where('username', $this->username)->first();
         $this->message = '';
         if (!$this->user) {
