@@ -19,6 +19,11 @@
                         </label>
                         <x-jet-input-error for="convocatoria" class="mt-5"></x-jet-input-error>
                     </div>
+                    @if ($convocatoria)
+                    <div class="text-left w-full mt-5">
+                        {{$convocatoria->getClientOriginalName()}}
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
@@ -59,7 +64,14 @@
             </div>
         </div>
         <x-slot name="footer">
-            <x-button icon="fas fa-save" color="blue" click="save">Guardar cambios</x-button>
+            <div wire:loading wire:target="convocatoria">
+                Espera un momento, estamos subiendo el documento.
+            </div>
+            @if ($convocatoria)
+            <div wire:loading.remove wire:target="convocatoria">
+                <x-button icon="fas fa-save" color="blue" click="save">Guardar cambios</x-button>
+            </div>
+            @endif
         </x-slot>
     </x-card>
 </div>
