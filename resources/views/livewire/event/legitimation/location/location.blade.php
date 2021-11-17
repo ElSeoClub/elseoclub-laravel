@@ -71,6 +71,10 @@
             <div wire:loading.remove wire:target="convocatoria">
                 <x-button icon="fas fa-save" color="blue" click="save">Guardar cambios</x-button>
             </div>
+            @else
+            <div wire:loading.remove wire:target="convocatoria">
+                <x-button icon="fas fa-save" color="blue" click="save">Guardar cambios</x-button>
+            </div>
             @endif
         </x-slot>
     </x-card>
