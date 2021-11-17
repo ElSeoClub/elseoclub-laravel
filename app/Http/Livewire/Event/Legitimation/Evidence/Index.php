@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Event\Legitimation\Evidence;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 
 class Index extends Component
 {
@@ -19,7 +20,7 @@ class Index extends Component
 
     public function render()
     {
-        $locations = $this->event->locations()->where('name', 'like', "%$this->search%")->get();
+        $locations = $this->event->locations()->where('name', 'like', "%$this->search%")->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
         return view('livewire.event.legitimation.evidence.index', compact('locations'));
     }
 }
