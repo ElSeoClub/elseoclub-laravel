@@ -41,7 +41,7 @@
         </x-slot>
         @endif
     </x-card>
-    @foreach ($event->locations as $location)
+    @foreach ($event->locations()->orderBy('name','ASC')->get() as $location)
     <x-card icon="fas fa-print" title="Expediente de la sede {{$location->name}}" px="0" py="0">
         <x-table>
             <x-slot name="thead">
