@@ -8,7 +8,11 @@
         <x-slot name="tbody">
             @foreach ($locations as $key => $location)
             <tr class="hover:bg-gray-100">
-                <td class="px-5 py-3">{{$location->name}}</td>
+                <td class="px-5 py-3">
+                    <x-a
+                        :href="route('legitimation.locations.location',['event' => $event->id,'location'=>$location->id])">
+                        {{$location->name}}</x-a>
+                </td>
                 <td class="px-5 py-3">{{$location->guests()->count()}}</td>
                 <td class="px-5 py-3"><input type="text" wire:keyup="save({{$location->id}},event.target.value)"
                         value="{{$location->boletas}}"></td>

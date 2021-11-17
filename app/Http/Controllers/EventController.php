@@ -37,6 +37,10 @@ class EventController extends Controller
     {
         return view('event.legitimation.locations', compact('event'));
     }
+    public function legitimationLocation(Event $event, Location $location)
+    {
+        return view('event.legitimation.locations.location', compact('event', 'location'));
+    }
 
     public function legitimationConfiguration(Event $event)
     {
@@ -141,6 +145,12 @@ class EventController extends Controller
     public function legitimationEvidenceTypesEdit(Evidencetype $evidence)
     {
         return view('event.legitimation.evidence.types.edit', compact('evidence'));
+    }
+
+
+    public function statistics(Event $event)
+    {
+        return view('event.legitimation.statistics', compact('event'));
     }
 
 

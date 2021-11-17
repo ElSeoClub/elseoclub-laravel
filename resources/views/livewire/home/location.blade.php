@@ -22,6 +22,9 @@
             value="{{old('username')}}" class="block w-full p-4 text-lg rounded-sm bg-black" required autofocus
             autocomplete="off" wire:model.defer="username">
     </div>
+    <div class="pb-2 pt-4">
+        {!!$message!!}
+    </div>
     <div class="px-4 pb-2 pt-4">
         <button type="button" wire:click="display_location()"
             class="uppercase block w-full p-4 text-lg rounded-full bg-red-500 hover:bg-red-600 focus:outline-none">Revisar

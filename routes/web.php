@@ -39,6 +39,7 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     Route::get('/legitimaciones/asistencia/puerta/{door}', [EventController::class, 'legitimationAttendanceScreen'])->name('legitimation.attendance.screen');
     Route::get('/legitimaciones/padron/{event}', [EventController::class, 'legitimationGuests'])->name('legitimation.guests');
     Route::get('/legitimaciones/sedes/{event}', [EventController::class, 'legitimationLocations'])->name('legitimation.locations');
+    Route::get('/legitimaciones/sedes/{event}/{location}', [EventController::class, 'legitimationLocation'])->name('legitimation.locations.location');
     Route::get('/legitimaciones/configuracion/{event}', [EventController::class, 'legitimationConfiguration'])->name('legitimation.configuration');
     Route::get('/legitimaciones/asistencia/{event}', [EventController::class, 'legitimationAttendance'])->name('legitimation.attendance');
     Route::middleware(['permission:Jurídico'])->group(function () {
@@ -65,5 +66,7 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
         Route::get('/legitimaciones/archivo/{event}/{location}', [EventController::class, 'legitimationArchiveUpload'])->name('legitimation.archive.upload');
     });
 
+
+    Route::get('/legitimaciones/estadisticas/{event}', [EventController::class, 'statistics'])->name('legitimation.statistics');
     Route::get('/legitimaciones/{event}', [EventController::class, 'legitimation'])->name('legitimation.show');
 });
