@@ -11,7 +11,7 @@
         <x-search></x-search>
     </div>
     @foreach ($locations as $location)
-    <x-card title="Evidencias la de sede {{$location->name}}" px="0" py="0">
+    <x-card title="Evidencias de la sede {{$location->name}}" px="0" py="0">
         <div class="w-full overflow-x-auto">
             <x-table>
                 <x-slot name="thead">
