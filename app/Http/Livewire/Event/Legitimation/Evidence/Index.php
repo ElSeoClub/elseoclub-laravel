@@ -19,7 +19,7 @@ class Index extends Component
 
     public function render()
     {
-        $locations = $this->event->locations()->where('name', 'like', "%$this->search%")->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
+        $locations = $this->event->locations()->where('name', 'like', "%$this->search%")->get();
         return view('livewire.event.legitimation.evidence.index', compact('locations'));
     }
 }
