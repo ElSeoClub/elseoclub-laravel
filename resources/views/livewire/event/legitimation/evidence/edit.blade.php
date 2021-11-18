@@ -102,6 +102,7 @@
             <div class="col-span-8 pl-4 mb-3 pt-3">
                 {{$evidence->comments}}
             </div>
+            @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator'))
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
                 <p class="font-bold">Cambiar estado</p>
                 <p class="text-sm">Autoriza o rechaza la evidencia segun sea el caso</p>
@@ -113,6 +114,7 @@
                     <option value="rechazada">Rechazar evidencia</option>
                 </select>
             </div>
+            @endif
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
                 <p class="font-bold">Subir nuevamente la evidencia</p>
                 <p class="text-sm">Da click en el boton "Subir evidencia" y elige el documento que deseas subir como
