@@ -103,6 +103,17 @@
                 {{$evidence->comments}}
             </div>
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
+                <p class="font-bold">Cambiar estado</p>
+                <p class="text-sm">Autoriza o rechaza la evidencia segun sea el caso</p>
+            </div>
+            <div class="col-span-8 pl-4 mb-3 pt-3">
+                <select wire:change="updateStatus(event.target.value)">
+                    <option value="" selected disabled>Elige una opción</option>
+                    <option value="validado">Autorizar evidencia</option>
+                    <option value="rechazada">Rechazar evidencia</option>
+                </select>
+            </div>
+            <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
                 <p class="font-bold">Subir nuevamente la evidencia</p>
                 <p class="text-sm">Da click en el boton "Subir evidencia" y elige el documento que deseas subir como
                     evidencia de la Legitimación</p>
