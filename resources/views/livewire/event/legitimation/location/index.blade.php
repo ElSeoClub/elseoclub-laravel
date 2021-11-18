@@ -16,7 +16,7 @@
                 <td class="px-5 py-3">{{$location->guests()->count()}}</td>
                 <td class="px-5 py-3">{{$location->boletas}}</td>
                 <td class="px-5 py-3">{{$location->schedule}}</td>
-                <td class="px-5 py-3">{{$location->direccion}}</td>
+                <td class="px-5 py-3">{{$location->description}}</td>
                 <td class="px-5 py-3">{{$location->georeferences != NULL ? 'SI':'NO'}}</td>
                 <td class="px-5 py-3">{{$location->convocatoria != NULL ? 'SI':'NO'}}</td>
             </tr>
