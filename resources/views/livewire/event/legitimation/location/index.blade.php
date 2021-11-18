@@ -4,6 +4,10 @@
             <th class="text-left px-5 py-3">Nombre</th>
             <th class="text-left px-5 py-3"># de invitados</th>
             <th class="text-left px-5 py-3"># de Boletas</th>
+            <th class="text-left px-5 py-3">Hora</th>
+            <th class="text-left px-5 py-3">Calle</th>
+            <th class="text-left px-5 py-3">Georeferencias</th>
+            <th class="text-left px-5 py-3">Convocatoria</th>
         </x-slot>
         <x-slot name="tbody">
             @foreach ($locations as $key => $location)
