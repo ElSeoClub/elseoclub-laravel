@@ -23,9 +23,13 @@
                     <th class="px-5 py-3 text-left">Fecha subida</th>
                     <th class="px-5 py-3 text-left">Estado</th>
                     <th class="px-5 py-3 text-left">Enviada a CFCRL</th>
+                    @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator'))
+                    <th class="px-5 py-3 text-left"></th>
+                    @endif
                 </x-slot>
                 <x-slot name="tbody">
-                    @foreach ($location->evidences()->orderBy('limit_date')->get() as $evidence)
+                    @foreach ($location->evidences()->where('status', '!=', 'eliminada')->orderBy('limit_date')->get()
+                    as $evidence)
                     <tr class="hover:bg-gray-100 text-base">
                         <td class="pl-5">
                             @if ($evidence->status == 'pendiente' || $evidence->status == "rechazada" ||
@@ -59,6 +63,12 @@
                         <td class="px-5 py-2">
                             {{$evidence->sended}}
                         </td>
+                        @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator'))
+                        <td class="px-5 py-2">
+                            <i class="fas fa-trash text-red-600 cursor-pointer hover:text-red-800"
+                                wire:click="delete({{$evidence->id}})"></i>
+                        </td>
+                        @endif
                     </tr>
                     @endforeach
                 </x-slot>
