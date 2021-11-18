@@ -14,8 +14,11 @@
                         {{$location->name}}</x-a>
                 </td>
                 <td class="px-5 py-3">{{$location->guests()->count()}}</td>
-                <td class="px-5 py-3"><input type="text" wire:keyup="save({{$location->id}},event.target.value)"
-                        value="{{$location->boletas}}"></td>
+                <td class="px-5 py-3">{{$location->boletas}}</td>
+                <td class="px-5 py-3">{{$location->schedule}}</td>
+                <td class="px-5 py-3">{{$location->direccion}}</td>
+                <td class="px-5 py-3">{{$location->georeferences != NULL ? 'SI':'NO'}}</td>
+                <td class="px-5 py-3">{{$location->convocatoria != NULL ? 'SI':'NO'}}</td>
             </tr>
             @endforeach
         </x-slot>
