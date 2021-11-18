@@ -15,7 +15,9 @@
             <div class="col-span-8 pl-4 mb-3 pt-3">
                 <span
                     class="bg-{{$evidence->status == 'pendiente' ? 'gray': ($evidence->status == 'en revisión' ? 'yellow':($evidence->status == 'rechazada' ? 'red':'green'))}}-500 text-white font-bold rounded px-1">
-                    {{$evidence->status == 'pendiente' ? 'Evidencia pendiente de subir': ($evidence->status == 'en revisión' ? 'Evidencia en proceso de revisión de jurídico':($evidence->status == 'rechazada' ? 'Evidencia rechazada por jurídico':'Evidencia validada por jurídico'))}}
+                    {{$evidence->status == 'pendiente' ? 'Evidencia pendiente de subir': ($evidence->status == 'en
+                    revisión' ? 'Evidencia en proceso de revisión de jurídico':($evidence->status == 'rechazada' ?
+                    'Evidencia rechazada por jurídico':'Evidencia validada por jurídico'))}}
                 </span>
             </div>
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
@@ -137,6 +139,17 @@
             @endif
             @if ($evidence->status == 'validada' && (Auth::user()->hasPermission('Jurídico') ||
             Auth::user()->hasPermission('Administrator')))
+            <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
+                <p class="font-bold">Cambiar estado</p>
+                <p class="text-sm">Rechazar o marcar evidencia como pendiente de revisar</p>
+            </div>
+            <div class="col-span-8 pl-4 mb-3 pt-3">
+                <select wire:change="updateStatus(event.target.value)">
+                    <option value="" selected disabled>Elige una opción</option>
+                    <option value="rechazada">Rechazar evidencia</option>
+                    <option value="en revisión">En revisión</option>
+                </select>
+            </div>
             @if ($evidence->sended == 'no')
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
                 <p class="font-bold">Marcar como enviada al CFCRL</p>

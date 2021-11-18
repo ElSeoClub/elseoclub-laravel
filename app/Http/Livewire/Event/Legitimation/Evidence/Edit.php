@@ -49,14 +49,18 @@ class Edit extends Component
         if (request()->user()->hasPermission('Jurídico') || request()->user()->hasPermission('Administrator')) {
             $this->status = $status;
             $this->validate([
-                'status' => 'required|in:validado,rechazada'
+                'status' => 'required|in:validado,rechazada,en revisión'
             ]);
             if ($this->status == 'rechazada')
                 $this->emit('alert_message', ['title' => 'Escribe el motivo de rechazo', 'word' => 'el motivo de rechazo', 'emitTo' => 'event.legitimation.evidence.edit', 'callback' => 'saveStatus', 'id' => $this->evidence->id]);
-            else {
+            else if ($this->status == 'validado') {
                 $this->evidence->status = 'validada';
                 $this->evidence->save();
                 $this->emit('alert', 'La evidencia fue autorizada exitosamente');
+            } else if ($this->status == 'en revisión') {
+                $this->evidence->status = 'en revisión';
+                $this->evidence->save();
+                $this->emit('alert', 'La evidencia fue marcada como pendiente de revisión exitosamente');
             }
         }
     }
