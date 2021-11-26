@@ -42,18 +42,20 @@ class Guests extends Component
 
         foreach ($data as $i => $user) {
             if ($i > 0) {
-                $db_user = User::where('username', $user[0])->first();
-                $exists_sede = $this->event->locations()->where('name', $user[2])->exists();
-                if (!$exists_sede) {
-                    $exists_door = false;
-                } else {
-                    $exists_door = $this->event->locations()->where('name', $user[2])->first()->doors()->where('name', $user[3])->exists();
-                }
-                if ($db_user) {
-                    array_push($this->users_data, ['db' => $db_user, 'username' => $user[0], 'name' => $user[1], 'new' => false, 'sede' => $user[2], 'new_sede' => $exists_sede, 'door' => $user[3], 'new_door' => $exists_door]);
-                } else {
-                    $db_user = new User();
-                    array_push($this->users_data, ['db' => $db_user, 'username' => $user[0], 'name' => $user[1], 'new' => true, 'sede' => $user[2], 'new_sede' => $exists_sede, 'door' => $user[3], 'new_door' => $exists_door]);
+                if (isset($user[2])) {
+                    $db_user = User::where('username', $user[0])->first();
+                    $exists_sede = $this->event->locations()->where('name', $user[2])->exists();
+                    if (!$exists_sede) {
+                        $exists_door = false;
+                    } else {
+                        $exists_door = $this->event->locations()->where('name', $user[2])->first()->doors()->where('name', $user[3])->exists();
+                    }
+                    if ($db_user) {
+                        array_push($this->users_data, ['db' => $db_user, 'username' => $user[0], 'name' => $user[1], 'new' => false, 'sede' => $user[2], 'new_sede' => $exists_sede, 'door' => $user[3], 'new_door' => $exists_door]);
+                    } else {
+                        $db_user = new User();
+                        array_push($this->users_data, ['db' => $db_user, 'username' => $user[0], 'name' => $user[1], 'new' => true, 'sede' => $user[2], 'new_sede' => $exists_sede, 'door' => $user[3], 'new_door' => $exists_door]);
+                    }
                 }
             }
         }
