@@ -42,7 +42,7 @@ class Guests extends Component
 
         foreach ($data as $i => $user) {
             if ($i > 0) {
-                if (isset($user[2])) {
+                if (isset($user[2]) && isset($user[3])) {
                     $db_user = User::where('username', $user[0])->first();
                     $exists_sede = $this->event->locations()->where('name', $user[2])->exists();
                     if (!$exists_sede) {
