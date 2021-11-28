@@ -59,6 +59,7 @@ class Guests extends Component
                 }
             }
         }
+        shuffle($this->users_data);
         $this->view = 'update';
     }
 
@@ -85,11 +86,10 @@ class Guests extends Component
                     'email' => $user['username'] . '@suterm.digital',
                     'password' => Hash::make(Str::random(40))
                 ]);
-            } else {
-                $new_user = User::find($user['db']['id']);
-                $new_user->name = $user['name'];
-                $new_user->save();
             }
+            $new_user = User::find($user['db']['id']);
+            $new_user->name = $user['name'];
+            $new_user->save();
             if ($this->event->guests()->where('user_id', $new_user->id)->exists()) {
                 $current_user = $this->event->guests()->where('user_id', $new_user->id)->first();
                 $current_user->pivot->location_id = $sede->id;
