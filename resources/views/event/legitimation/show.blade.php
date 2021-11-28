@@ -23,23 +23,23 @@
                     Gestionar sedes</x-button>
             </div>
         </x-card-image>
-        {{-- <x-card-image image="{{asset('svg/teamwork.svg')}}">
-        <div class="font-bold text-2xl">Equipo de trabajo</div>
-        <div>&nbsp;</div>
-        <div class="mt-20 w-full">
-            <x-button href="{{route('legitimation.teamwork.index', ['event' => $event])}}" color="blue" class="w-full">
-                Gestionar equipo de trabajo</x-button>
-        </div>
-        </x-card-image> --}}
+        <x-card-image image="{{asset('svg/stats.svg')}}">
+            <div class="font-bold text-2xl">Seguimiento de las sedes</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.statistics', ['event' => $event])}}" color="blue" class="w-full">
+                    Ver seguimiento</x-button>
+            </div>
+        </x-card-image>
         @endif
         {{-- <x-card-image image="{{asset('svg/stats.svg')}}">
-        <div class="font-bold text-2xl">Estadísticas</div>
-        <div>Asistencia global
-            0 de
-            0</div>
-        <div class="mt-20 w-full">
-            <x-button href="#" color="blue" class="w-full">Ver estadísticas</x-button>
-        </div>
+            <div class="font-bold text-2xl">Estadísticas</div>
+            <div>Asistencia global
+                0 de
+                0</div>
+            <div class="mt-20 w-full">
+                <x-button href="#" color="blue" class="w-full">Ver estadísticas</x-button>
+            </div>
         </x-card-image>
         <x-card-image image="{{asset('svg/seo-report.svg')}}">
             <div class="font-bold text-2xl">Reportes</div>

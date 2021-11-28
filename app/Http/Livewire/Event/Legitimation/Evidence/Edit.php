@@ -22,6 +22,10 @@ class Edit extends Component
         'saveSended'
     ];
 
+    public $rules = [
+        'evidence.name' => ''
+    ];
+
     public function mount(Event $event, Evidence $evidence)
     {
         $this->event = $event;

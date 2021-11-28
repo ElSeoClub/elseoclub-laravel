@@ -21,6 +21,7 @@ class Table extends Component
     {
         $event->status = 'deleted';
         $event->save();
+
         $this->emit('alert', 'Evento eliminado exitosamente.');
     }
 

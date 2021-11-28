@@ -6,7 +6,9 @@
                 <p class="text-sm">Es el nombre de la evidencia</p>
             </div>
             <div class="col-span-8 pl-4 mb-3 pt-3">
-                <p>{{$evidence->name}}</p>
+                <p>
+                    <x-input type="text" label="Nombre" model="evidence.name"></x-input>
+                </p>
             </div>
             <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
                 <p class="font-bold">Estado</p>

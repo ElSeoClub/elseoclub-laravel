@@ -11,4 +11,5 @@
     <div class="m-6">
         @livewire('event.legitimation.attendance.screen', ['door' => $door])
     </div>
+
 </x-attendance-layout>
