@@ -41,7 +41,7 @@
         </x-slot>
         @endif
     </x-card>
-    @foreach ($event->locations()->orderBy(DB::raw('ABS(name)'),'ASC')->get() as $location)
+    @foreach ($locations as $location)
     <x-card icon="fas fa-print" title="Expediente de la sede {{$location->name}}" px="0" py="0">
         <x-table>
             <x-slot name="thead">
