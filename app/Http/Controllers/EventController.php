@@ -77,6 +77,17 @@ class EventController extends Controller
         return view('event.legitimation.votting.location', compact('event', 'location'));
     }
 
+
+    public function legitimationVottingSeccion(Event $event)
+    {
+        return view('event.legitimation.votting.seccion', compact('event'));
+    }
+
+    public function legitimationVottingSeccionLocation(Event $event, Location $location, Door $door)
+    {
+        return view('event.legitimation.votting.seccionlocation', compact('event', 'location', 'door'));
+    }
+
     public function legitimationVottingJuridico(Event $event)
     {
         return view('event.legitimation.votting.juridico', compact('event'));

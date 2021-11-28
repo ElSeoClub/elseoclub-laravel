@@ -49,6 +49,8 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     });
     Route::get('/legitimaciones/votacion/{event}', [EventController::class, 'legitimationVotting'])->name('legitimation.votting');
     Route::get('/legitimaciones/votacion/{event}/{location}', [EventController::class, 'legitimationVottingLocation'])->name('legitimation.votting.location');
+    Route::get('/legitimaciones/seccion/{event}', [EventController::class, 'legitimationVottingSeccion'])->name('legitimation.vottingseccion');
+    Route::get('/legitimaciones/seccion/{event}/{location}/{door}', [EventController::class, 'legitimationVottingSeccionLocation'])->name('legitimation.votting.locationseccion');
     Route::get('/legitimaciones/equipo-de-trabajo/{event}', [EventController::class, 'legitimationTeamwork'])->name('legitimation.teamwork.index');
 
     Route::get('/legitimaciones/evidencia/{event}', [EventController::class, 'legitimationEvidence'])->name('legitimation.evidence.index');

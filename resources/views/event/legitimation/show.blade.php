@@ -56,8 +56,18 @@
                     Gestionar asistencia</x-button>
             </div>
         </x-card-image>
+        <x-card-image image="{{asset('svg/vote1.svg')}}">
+            <div class="font-bold text-2xl">Computo de resultados por sección</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.vottingseccion',['event' => $event])}}" color="blue"
+                    class="w-full">
+                    Gestionar
+                    votaciones</x-button>
+            </div>
+        </x-card-image>
         <x-card-image image="{{asset('svg/voting.svg')}}">
-            <div class="font-bold text-2xl">Computo de resultados parciales</div>
+            <div class="font-bold text-2xl">Computo de resultados por sede</div>
             <div>&nbsp;</div>
             <div class="mt-20 w-full">
                 <x-button href="{{route('legitimation.votting',['event' => $event])}}" color="blue" class="w-full">
