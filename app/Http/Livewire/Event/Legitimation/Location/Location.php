@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Event\Legitimation\Location;
 
 use App\Models\Event;
 use App\Models\Location as ModelsLocation;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,6 +16,7 @@ class Location extends Component
     public $convocatoria;
     public $event;
     public $location;
+    public $user;
 
     protected $rules = [
         'location.boletas' => 'required|numeric',
@@ -38,8 +41,22 @@ class Location extends Component
         $this->emit('alert', 'La sede fue actualizada exitosamente.');
     }
 
+    public function add_user(User $user)
+    {
+        $this->location->users()->attach($user->id);
+    }
+
+    public function remove_user(User $user)
+    {
+        $this->location->users()->detach($user->id);
+    }
+
     public function render()
     {
-        return view('livewire.event.legitimation.location.location');
+        $search = User::whereDoesntHave('locations', function (Builder $query) {
+            $query->where('location_id', $this->location->id);
+        })->where('username', 'like', "%$this->user%")->paginate(10);
+        $users = $this->location->fresh()->users;
+        return view('livewire.event.legitimation.location.location', compact('search', 'users'));
     }
 }

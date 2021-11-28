@@ -23,6 +23,11 @@ class Location extends Component
 
     public function mount(Event $event, DBLocation $location)
     {
+        if (auth()->user()->permission->name != "Administrator" && auth()->user()->permission->name != "Jurídico Global") {
+            if (!auth()->user()->locations()->find($location->id)) {
+                abort(404);
+            }
+        }
         $this->location = $location;
         $this->event = $event;
     }

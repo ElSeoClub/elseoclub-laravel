@@ -74,6 +74,11 @@ class Screen extends Component
 
     public function mount(Door $door)
     {
+        if (auth()->user()->permission->name != "Administrator" && auth()->user()->permission->name != "Jurídico Global") {
+            if (!auth()->user()->locations()->find($door->location_id)) {
+                abort(404);
+            }
+        }
         $this->door = $door;
     }
 

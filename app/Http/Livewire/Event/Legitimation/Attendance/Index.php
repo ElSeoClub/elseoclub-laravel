@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Event\Legitimation;
+namespace App\Http\Livewire\Event\Legitimation\Attendance;
 
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
-
-class Votting extends Component
+class Index extends Component
 {
     public $event;
 
-    public function mount($event)
+    public function mount(Event $event)
     {
         $this->event = $event;
     }
@@ -24,6 +24,6 @@ class Votting extends Component
                 $query->where('user_id', auth()->user()->id);
             })->get();
         }
-        return view('livewire.event.legitimation.votting', compact('user_locations'));
+        return view('livewire.event.legitimation.attendance.index', compact('user_locations'));
     }
 }

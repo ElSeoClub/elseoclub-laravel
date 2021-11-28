@@ -22,7 +22,19 @@ class PermissionTableSeeder extends Seeder
 
         $permission = new Permission();
 
+        $permission->name = 'Jurídico Global';
+        $permission->description = 'Personal encargado de revisar la evidencia de los eventos.';
+        $permission->save();
+
+        $permission = new Permission();
+
         $permission->name = 'Jurídico';
+        $permission->description = 'Personal encargado de revisar la evidencia de los eventos.';
+        $permission->save();
+
+        $permission = new Permission();
+
+        $permission->name = 'Enlace Siconecta';
         $permission->description = 'Personal encargado de revisar la evidencia de los eventos.';
         $permission->save();
 

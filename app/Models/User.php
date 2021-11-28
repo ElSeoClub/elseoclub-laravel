@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -116,6 +116,11 @@ class User extends Authenticatable
     public function location()
     {
         return Location::find($this->pivot->location_id);
+    }
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class);
     }
 
     public function door()

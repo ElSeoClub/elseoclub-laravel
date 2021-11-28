@@ -62,6 +62,63 @@
             <div class="col-span-8 pl-4 mb-3">
                 <x-input type="numeric" model="location.schedule"></x-input>
             </div>
+
+            <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
+                <p class="font-bold">{{__('Gestores de la sede')}}</p>
+                <p class="text-sm">
+                    {{__("Es la lista de personas que pueden interactuar con la sede")}}
+                </p>
+            </div>
+            <div class="col-span-8 pl-4 mb-3">
+                <x-input type="numeric" model="location.schedule" label="Usuario" model="user"></x-input>
+                <div class="grid grid-cols-2 gap-5">
+                    <div>
+                        @foreach ($search as $user)
+                        <div class="flex justify-between py-3 px-3 hover:bg-gray-100">
+
+                            <div class="flex">
+                                <img src="{{Storage::url($user->profile_photo_path)}}" class="w-12 h-12">
+                                <div class="grid grid-cols-1 px-3">
+                                    <span>{{strtoupper($user->name)}}</span>
+                                    <div>
+                                        <span
+                                            class="bg-blue-600 font-bold text-white px-1 rounded text-sm">{{$user->permission->name
+                                            ??
+                                            'Sin
+                                            permisos'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="pt-3"><i
+                                    class="fa fa-arrow-right text-gray-600 hover:text-gray-900 cursor-pointer"
+                                    wire:click="add_user({{$user->id}})"></i></span>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div>
+                        @foreach ($users as $user)
+                        <div class="flex justify-between py-3 px-3 hover:bg-gray-100">
+
+                            <div class="flex">
+                                <img src="{{Storage::url($user->profile_photo_path)}}" class="w-12 h-12">
+                                <div class="grid grid-cols-1 px-3">
+                                    <span>{{strtoupper($user->name)}}</span>
+                                    <div>
+                                        <span
+                                            class="bg-blue-600 font-bold text-white px-1 rounded text-sm">{{$user->permission->name
+                                            ??
+                                            'Sin
+                                            permisos'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="pt-3"><i class="fa fa-times text-gray-600 hover:text-red-600 cursor-pointer"
+                                    wire:click="remove_user({{$user->id}})"></i></span>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
         <x-slot name="footer">
             <div wire:loading wire:target="convocatoria">

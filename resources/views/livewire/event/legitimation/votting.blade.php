@@ -11,7 +11,7 @@
         <th class="text-left p-3">Boletas anuladas</th>
     </x-slot>
     <x-slot name="tbody">
-        @foreach ($event->locations as $location)
+        @foreach ($user_locations as $location)
         <tr>
             <td class="p-3">
                 <x-a

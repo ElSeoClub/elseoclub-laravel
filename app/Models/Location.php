@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Door;
 use App\Models\Event;
+use App\Models\User;
 use App\Models\Event\Archive;
 use App\Models\Event\Evidence;
 
@@ -38,5 +39,10 @@ class Location extends Model
     public function guests()
     {
         return $this->belongsToMany(User::class, 'guests', 'location_id')->withPivot(['event_id', 'door_id', 'attendance_location_id', 'attendance_door_id', 'manager_id']);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }
