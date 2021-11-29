@@ -21,7 +21,8 @@
     <div style="text-align: center; font-weight:bold; padding: 15px 0 15px 0">SINDICATO ÚNICO DE TRABAJADORES
         ELECTRICISTAS DE LA REPÚBLICA
         MEXICANA</div>
-    <div style="background:red; text-align:center; font-weight:bold; color:white; padding: 5px 0 5px 0">CEDULA DE
+    <div style="background:rgb(255, 237, 237); text-align:center; font-weight:bold; color:white; padding: 5px 0 5px 0">
+        CEDULA DE
         IDENTIFICACIÓN PARA
         TRABAJADOR TEMPORAL
         PARA LA
