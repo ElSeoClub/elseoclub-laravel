@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Event\Legitimation\Location;
 
 use App\Models\Location;
 use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Index extends Component
@@ -14,7 +15,7 @@ class Index extends Component
     public function mount(Event $event)
     {
         $this->event = $event;
-        $this->locations = $event->locations;
+        $this->locations = $event->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
     }
 
     public function save(Location $location, $boletas)
