@@ -59,12 +59,6 @@ class Guests extends Component
                 }
             }
         }
-        $this->view = 'update';
-    }
-
-    public function save()
-    {
-        dd('herte');
         foreach ($this->users_data as $user) {
             if ($user['new_sede'] && !$this->event->locations()->where('name', $user['sede'])->exists()) {
                 $this->event->locations()->create([
@@ -100,7 +94,11 @@ class Guests extends Component
                 $this->event->guests()->attach($new_user->id, array('location_id' => $sede->id, 'door_id' => $door->id));
             }
         }
+        $this->view = 'update';
+    }
 
+    public function save()
+    {
         return redirect(route('legitimation.guests', ['event' => $this->event]));
     }
 
