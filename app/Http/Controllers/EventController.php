@@ -211,7 +211,6 @@ class EventController extends Controller
         }
 
         $users = $door->guests()->whereNotNull('curp')->get();
-        dd($users);
 
         $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'defaultFont' => 'sans-serif'])->loadView('event.legitimation.tester', compact('users'));
 
