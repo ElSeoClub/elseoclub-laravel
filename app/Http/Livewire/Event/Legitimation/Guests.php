@@ -60,13 +60,13 @@ class Guests extends Component
             }
         }
         foreach ($this->users_data as $user) {
-            if ($user['new_sede'] && !$this->event->locations()->where('name', $user['sede'])->exists()) {
+            if (!$user['new_sede'] && !$this->event->locations()->where('name', $user['sede'])->exists()) {
                 $this->event->locations()->create([
                     'name' => $user['sede']
                 ]);
             }
             $sede = $this->event->locations()->where('name', $user['sede'])->first();
-            if ($user['new_door'] && !$sede->doors()->where('name', $user['door'])->exists()) {
+            if (!$user['new_door'] && !$sede->doors()->where('name', $user['door'])->exists()) {
                 $sede->doors()->create([
                     'name' => $user['door']
                 ]);
