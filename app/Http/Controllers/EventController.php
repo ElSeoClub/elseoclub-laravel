@@ -9,7 +9,7 @@ use App\Models\Event\Evidence;
 use App\Models\Event\Evidencetype;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-use Image;
+use PDF;
 
 class EventController extends Controller
 {
@@ -199,5 +199,16 @@ class EventController extends Controller
                 }
             }
         }
+    }
+
+
+    public function tester()
+    {
+        $users = User::paginate(10);
+
+        return view('event.legitimation.tester', compact('users'));
+        $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'defaultFont' => 'sans-serif'])->loadView('event.legitimation.tester', compact('users'));
+
+        return $pdf->download('invoice.pdf');
     }
 }

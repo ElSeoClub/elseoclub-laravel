@@ -71,4 +71,5 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
 
     Route::get('/legitimaciones/estadisticas/{event}', [EventController::class, 'statistics'])->name('legitimation.statistics');
     Route::get('/legitimaciones/{event}', [EventController::class, 'legitimation'])->name('legitimation.show');
+    Route::get('/tester', [EventController::class, 'tester'])->name('legitimation.tester');
 });
