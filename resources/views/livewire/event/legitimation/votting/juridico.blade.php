@@ -6,9 +6,9 @@
         <th class="text-left p-3">Voto emitidos</th>
         <th class="text-left p-3">Voto si</th>
         <th class="text-left p-3">Voto no</th>
-        <th class="text-left p-3">Votos Validos</th>
+        <th class="text-left p-3">Votos validos</th>
         <th class="text-left p-3">Voto nulo</th>
-        <th class="text-left p-3">Votos Cancelados</th>
+        <th class="text-left p-3">Boletas inutilizadas</th>
     </x-slot>
     <x-slot name="tbody">
         @foreach ($event->locations as $location)

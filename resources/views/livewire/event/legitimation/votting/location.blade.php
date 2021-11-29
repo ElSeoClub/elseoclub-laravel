@@ -21,7 +21,8 @@
         <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
             <p class="font-bold">{{__('Votos EMITIDOS')}}</p>
             <p class="text-sm">
-                {{__("Es la suma de todos los votos depositados en las urnas y que fuerón efectivamente emitidos por los trabajadores.")}}
+                {{__("Es la suma de todos los votos depositados en las urnas y que fuerón efectivamente emitidos por los
+                trabajadores.")}}
             </p>
         </div>
         <div class="col-span-8 pl-4 mb-3 pt-3">
@@ -64,7 +65,7 @@
             <x-input type="number" label="Nulos" min="0" model="location.nulos" defer="true"></x-input>
         </div>
         <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
-            <p class="font-bold">{{__('Votos ANULADOS')}}</p>
+            <p class="font-bold">{{__('Boletas inutilizadas')}}</p>
             <p class="text-sm">
                 {{__("Son las boletas que no fueron utilizadas al final del evento.")}}
             </p>
