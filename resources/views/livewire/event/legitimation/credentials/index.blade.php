@@ -1,7 +1,7 @@
 <x-table>
     <x-slot name="thead">
         <th class="text-left p-3">Sede</th>
-        <th></th>
+        <th class="w-12"></th>
     </x-slot>
     <x-slot name="tbody">
         @foreach ($user_locations as $location)
