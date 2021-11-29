@@ -104,7 +104,7 @@ class Guests extends Component
 
     public function render()
     {
-        $user_list = $this->event->guests()->where('username', 'like', "%$this->search%")->paginate(20);
+        $user_list = $this->event->guests()->where('username', 'like', "%$this->search%")->orwhere('name', 'like', "%$this->search%")->paginate(20);
         return view('livewire.event.legitimation.guests', compact('user_list'));
     }
 }
