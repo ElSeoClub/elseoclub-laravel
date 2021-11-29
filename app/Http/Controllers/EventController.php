@@ -208,6 +208,6 @@ class EventController extends Controller
 
         $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'defaultFont' => 'sans-serif'])->loadView('event.legitimation.tester', compact('users'));
 
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('temporales.pdf');
     }
 }

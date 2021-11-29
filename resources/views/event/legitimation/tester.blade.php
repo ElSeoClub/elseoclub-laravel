@@ -68,7 +68,7 @@
             </td>
             <td rowspan="2">
                 <img
-                    src="data:image/svg+xml;base64, {!!base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string'))!!}">
+                    src="data:image/svg+xml;base64, {!!base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($user->qr??$user->username))!!}">
             </td>
         </tr>
         <tr>
