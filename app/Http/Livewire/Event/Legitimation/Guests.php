@@ -77,6 +77,7 @@ class Guests extends Component
                 $new_user->create([
                     'username' => $user['username'],
                     'name' => $user['name'],
+                    'posicion' => 0,
                     'email' => $user['username'] . '@suterm.digital',
                     'password' => Hash::make(Str::random(40))
                 ]);
