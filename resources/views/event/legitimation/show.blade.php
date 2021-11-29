@@ -23,6 +23,9 @@
                     Gestionar sedes</x-button>
             </div>
         </x-card-image>
+        @endif
+
+        @if (Auth::user()->hasPermission('Enlace Siconecta'))
         <x-card-image image="{{asset('svg/stats.svg')}}">
             <div class="font-bold text-2xl">Seguimiento de las sedes</div>
             <div>&nbsp;</div>
