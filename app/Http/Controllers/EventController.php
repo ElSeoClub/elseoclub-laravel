@@ -202,12 +202,24 @@ class EventController extends Controller
     }
 
 
-    public function tester()
+    public function tester(Location $location, Door $door)
     {
-        $users = User::paginate(10);
+        if (auth()->user()->permission->name != "Administrator" && auth()->user()->permission->name != "Jurídico Global") {
+            if (!auth()->user()->locations()->find($door->location_id)) {
+                abort(404);
+            }
+        }
+
+        $users = $door->guests()->whereNotNull('curp')->get();
+        dd($users);
 
         $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'defaultFont' => 'sans-serif'])->loadView('event.legitimation.tester', compact('users'));
 
         return $pdf->download('temporales.pdf');
+    }
+
+    public function credentials(Event $event)
+    {
+        return view('event.legitimation.credentials.index', compact('event'));
     }
 }

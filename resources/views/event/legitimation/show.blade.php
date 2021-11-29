@@ -104,5 +104,14 @@
                     expediente</x-button>
             </div>
         </x-card-image>
+        <x-card-image image="{{asset('svg/qr.svg')}}">
+            <div class="font-bold text-2xl">Cédula de identificación de temporales</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button :href="route('legitimation.credentials.index',compact('event'))" color="blue" class="w-full">
+                    Ver
+                    cédulas</x-button>
+            </div>
+        </x-card-image>
     </div>
 </x-general-layout>

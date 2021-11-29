@@ -68,8 +68,9 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
         Route::get('/legitimaciones/archivo/{event}/{location}', [EventController::class, 'legitimationArchiveUpload'])->name('legitimation.archive.upload');
     });
 
+    Route::get('/legitimaciones/credenciales/{event}', [EventController::class, 'credentials'])->name('legitimation.credentials.index');
 
     Route::get('/legitimaciones/estadisticas/{event}', [EventController::class, 'statistics'])->name('legitimation.statistics');
     Route::get('/legitimaciones/{event}', [EventController::class, 'legitimation'])->name('legitimation.show');
-    Route::get('/tester', [EventController::class, 'tester'])->name('legitimation.tester');
+    Route::get('/tester/{location}/{door}', [EventController::class, 'tester'])->name('legitimation.tester');
 });
