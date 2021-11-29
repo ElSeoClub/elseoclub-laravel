@@ -14,7 +14,7 @@ class Index extends Component
     public $event;
     public $search;
 
-    public $listeners = ['acceptLlegada'];
+    public $listeners = ['acceptLlegada', 'acceptApertura', 'acceptCierre', 'acceptConteo'];
 
     public function mount(Event $event)
     {
@@ -36,21 +36,44 @@ class Index extends Component
 
     public function apertura(Location $location)
     {
-        $location->status = 1;
+        $this->emit('alert_date', ['title' => '¿A qué hora se inicio el acceso a los votantes?', 'word' => 'si', 'emitTo' => 'event.legitimation.statistics.index', 'callback' => 'acceptApertura', 'id' => $location->id]);
+    }
+
+    public function acceptApertura($data)
+    {
+        $location = Location::find($data[1]);
+        $location->apertura = $data[0];
         $location->save();
+        $this->emit('alert', 'La hora de apertura de la sede fue actualizada exitosamente.');
     }
 
     public function cierre(Location $location)
     {
-        $location->status = 2;
+        $this->emit('alert_date', ['title' => '¿A qué cerró la sede para acceso a los votantes?', 'word' => 'si', 'emitTo' => 'event.legitimation.statistics.index', 'callback' => 'acceptCierre', 'id' => $location->id]);
+    }
+
+    public function acceptCierre($data)
+    {
+        $location = Location::find($data[1]);
+        $location->cierre = $data[0];
         $location->save();
+        $this->emit('alert', 'La hora de llegada del cierre fue actualizada exitosamente.');
     }
 
     public function conteo(Location $location)
     {
-        $location->status = 3;
-        $location->save();
+        $this->emit('alert_date', ['title' => '¿A qué hora llego el verificador?', 'word' => 'si', 'emitTo' => 'event.legitimation.statistics.index', 'callback' => 'acceptConteo', 'id' => $location->id]);
     }
+
+    public function acceptConteo($data)
+    {
+        $location = Location::find($data[1]);
+        $location->conteo = $data[0];
+        $location->save();
+        $this->emit('alert', 'La hora de llegada del verificador fue actualizada exitosamente.');
+    }
+
+
 
     public function render(Location $location)
     {

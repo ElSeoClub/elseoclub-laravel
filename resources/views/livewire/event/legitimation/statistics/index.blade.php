@@ -17,12 +17,12 @@
             <div class="flex justify-between">
                 <div class="py-2">
                     <i
-                        class="fas fa-{{$location->status >= 1 ? 'check':'times'}} text-{{$location->status >= 1 ? 'green':'gray'}}-600">
+                        class="fas fa-{{$location->apertura != null ? 'check':'times'}} text-{{$location->apertura != null ? 'green':'gray'}}-600">
                     </i>
                     Inicio de votaciones
                 </div>
 
-                @if ($location->status == null)
+                @if ($location->apertura == null)
                 <div style="width:153px">
                     <x-button class="w-full" click="apertura({{$location->id}})">Registrar Inicio</x-button>
                 </div>
@@ -31,10 +31,10 @@
             <div class="flex justify-between">
                 <div class="py-2">
                     <i
-                        class="fas fa-{{$location->status >= 2 ? 'check':'times'}} text-{{$location->status >= 2 ? 'green':'gray'}}-600">
+                        class="fas fa-{{$location->cierre != null  ? 'check':'times'}} text-{{$location->cierre != null ? 'green':'gray'}}-600">
                     </i> Cierre de votaciones
                 </div>
-                @if ($location->status == 1)
+                @if ($location->cierre == null && $location->apertura != null)
                 <div style="width:153px">
                     <x-button class="w-full" click="cierre({{$location->id}})">Registrar cierre</x-button>
                 </div>
@@ -43,10 +43,10 @@
             <div class="flex justify-between">
                 <div class="py-2">
                     <i
-                        class="fas fa-{{$location->status >= 3 ? 'check':'times'}} text-{{$location->status >= 3 ? 'green':'gray'}}-600">
+                        class="fas fa-{{$location->conteo != null  ? 'check':'times'}} text-{{$location->conteo != null  ? 'green':'gray'}}-600">
                     </i> Inició conteo de votos
                 </div>
-                @if ($location->status == 2)
+                @if ($location->conteo == null && $location->apertura != null && $location->cierre != null)
                 <div style="width:153px">
                     <x-button class="w-full" click="conteo({{$location->id}})">Iniciar conteo</x-button>
                 </div>
