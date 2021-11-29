@@ -12,10 +12,10 @@
     @foreach ($users as $user)
     <div style="height:100px margin-top:20px">
         <div style="float:left;">
-            <img src="http://elseoclub-laravel.test/img/logo-suterm.png" style="width:130px">
+            <img src="{{env('APP_URL')}}/img/logo-suterm.png" style="width:130px">
         </div>
         <div style="float:right;">
-            <img src="http://elseoclub-laravel.test/img/logo-legitimacion.png" style="width:260px">
+            <img src="{{env('APP_URL')}}/img/logo-legitimacion.png" style="width:260px">
         </div>
     </div>
     <div style="text-align: center; font-weight:bold; padding: 15px 0 15px 0">SINDICATO ÚNICO DE TRABAJADORES
