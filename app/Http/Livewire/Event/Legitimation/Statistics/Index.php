@@ -14,6 +14,8 @@ class Index extends Component
     public $event;
     public $search;
 
+    public $listeners = ['acceptLlegada'];
+
     public function mount(Event $event)
     {
         $this->event = $event;
@@ -21,8 +23,15 @@ class Index extends Component
 
     public function llegada(Location $location)
     {
-        $location->llegada_verificador = Carbon::now();
+        $this->emit('alert_date', ['title' => '¿A qué hora llego el verificador?', 'word' => 'si', 'emitTo' => 'event.legitimation.statistics.index', 'callback' => 'acceptLlegada', 'id' => $location->id]);
+    }
+
+    public function acceptLlegada($data)
+    {
+        $location = Location::find($data[1]);
+        $location->llegada_verificador = $data[0];
         $location->save();
+        $this->emit('alert', 'La hora de llegada del verificador fue actualizada exitosamente.');
     }
 
     public function apertura(Location $location)
