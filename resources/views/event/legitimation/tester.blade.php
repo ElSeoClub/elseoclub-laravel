@@ -45,7 +45,7 @@
                 </div>
             </td>
             <td style="padding-top:20px; padding-left: 70px"><img
-                    src="http://elseoclub-laravel.test/{{Storage::url($user->profile_photo_path)}}"
+                    src="{{env('APP_URL')}}/{{Storage::url($user->profile_photo_path)}}"
                     style="width:70px; height:70px"></td>
         </tr>
     </table>
