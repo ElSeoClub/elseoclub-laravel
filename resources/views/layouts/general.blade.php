@@ -34,7 +34,7 @@
         </main>
     </div>
     @livewireScripts
-    <script src="{{ asset('js/sweetalerts.js') }}"></script>
+    <script src="{{ asset('js/sweetalerts.js') }}?v=11"></script>
 </body>
 
 </html>
