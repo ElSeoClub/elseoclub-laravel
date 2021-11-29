@@ -58,7 +58,7 @@
                     style="background:rgb(255, 237, 237); border: 1px solid red; margin-top:20px;border-radius: 15px; padding:10px 5px float:left; width:400px">
                     <table style="width:100%">
                         <tr>
-                            <td style="text-align: center; text-transform:uppercase">{{$user->name}}</td>
+                            <td style="text-align: center; text-transform:uppercase">{{$user->curp}}</td>
                         </tr>
                         <tr>
                             <td style="text-align: center">CURP (Clave única de registro de población)</td>
