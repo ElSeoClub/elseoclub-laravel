@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Event\Legitimation\Statistics;
 use App\Models\Location;
 use App\Models\Event;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
 class Index extends Component
