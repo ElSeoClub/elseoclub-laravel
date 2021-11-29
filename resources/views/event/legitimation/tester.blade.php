@@ -10,7 +10,7 @@
 
 <body>
     @foreach ($users as $user)
-    <div style="height:100px">
+    <div style="height:100px margin-top:20px">
         <div style="float:left;">
             <img src="http://elseoclub-laravel.test/img/logo-suterm.png" style="width:130px">
         </div>
@@ -68,7 +68,7 @@
             </td>
             <td rowspan="2">
                 <img
-                    src="data:image/svg;base64, {!!base64_encode(QrCode::format('png')->size(200)->errorCorrection('H')->generate('string'))!!}">
+                    src="data:image/svg+xml;base64, {!!base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string'))!!}">
             </td>
         </tr>
         <tr>
@@ -95,7 +95,8 @@
         sindicalizado arriba citado en el proceso de Legitimación del Contrato Colectivo de Trabajo CFE-SUTERM, acorde
         al Protocolo de Legitimación emitido por la el Centro Federal de Conciliación y Registro Laboral.
     </div>
-    <div style="font-size:12px;font-style: italic; font-weight:bold">Este documento se expide exclusivamente para los
+    <div style="font-size:12px;font-style: italic; font-weight:bold; margin-bottom:400px">Este documento se expide
+        exclusivamente para los
         fines
         mencionados,
         cuya vigencia se

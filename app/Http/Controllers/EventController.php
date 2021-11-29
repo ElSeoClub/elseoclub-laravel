@@ -206,7 +206,6 @@ class EventController extends Controller
     {
         $users = User::paginate(10);
 
-        return view('event.legitimation.tester', compact('users'));
         $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'defaultFont' => 'sans-serif'])->loadView('event.legitimation.tester', compact('users'));
 
         return $pdf->download('invoice.pdf');
