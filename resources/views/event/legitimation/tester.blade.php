@@ -21,7 +21,8 @@
     <div style="text-align: center; font-weight:bold; padding: 15px 0 15px 0">SINDICATO ÚNICO DE TRABAJADORES
         ELECTRICISTAS DE LA REPÚBLICA
         MEXICANA</div>
-    <div style="background:rgb(255, 237, 237); text-align:center; font-weight:bold; color:white; padding: 5px 0 5px 0">
+    <div
+        style="background:rgb(255, 237, 237);border: 1px solid red; text-align:center; font-weight:bold; color:black; padding: 5px 0 5px 0">
         CEDULA DE
         IDENTIFICACIÓN PARA
         TRABAJADOR TEMPORAL
@@ -59,7 +60,8 @@
                     style="background:rgb(255, 237, 237); border: 1px solid red; margin-top:20px;border-radius: 15px; padding:10px 5px float:left; width:400px">
                     <table style="width:100%">
                         <tr>
-                            <td style="text-align: center; text-transform:uppercase">{{$user->curp}}</td>
+                            <td style="text-align: center; text-transform:uppercase; font-weight:bold">{{$user->curp}}
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: center">CURP (Clave única de registro de población)</td>
