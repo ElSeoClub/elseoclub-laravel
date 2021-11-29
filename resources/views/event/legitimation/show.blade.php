@@ -25,7 +25,7 @@
         </x-card-image>
         @endif
 
-        @if (Auth::user()->hasPermission('Enlace Siconecta'))
+        @if (Auth::user()->hasPermission('Enlace Siconecta') || Auth::user()->hasPermission('Administrator'))
         <x-card-image image="{{asset('svg/stats.svg')}}">
             <div class="font-bold text-2xl">Seguimiento de las sedes</div>
             <div>&nbsp;</div>
