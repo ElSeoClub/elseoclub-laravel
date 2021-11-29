@@ -95,7 +95,8 @@
 
     <div style="font-size:12px; margin-top:10px">
         El presente documento se expide con la finalidad de garantizar la participación del trabajador(a) temporal
-        sindicalizado arriba citado en el proceso de Legitimación del Contrato Colectivo de Trabajo CFE-SUTERM, acorde
+        sindicalizado arriba citado en el proceso de Legitimación del Contrato Colectivo de Trabajo CFE-SUTERM con
+        número de expediente CC-7/1984-XXII-RM(1)01-V-1984, acorde
         al Protocolo de Legitimación emitido por la el Centro Federal de Conciliación y Registro Laboral.
     </div>
     <div style="font-size:12px;font-style: italic; font-weight:bold; margin-bottom:400px">Este documento se expide
