@@ -32,7 +32,7 @@
             <h1 class="mt-2 text-2xl font-bold">{{$title}}</h1>
             {{ $slot }}
         </main>
-    </div>
+    </div>{{ now()->toDateTimeString() }}
     @livewireScripts
     <script src="{{ asset('js/sweetalerts.js') }}"></script>
 </body>
