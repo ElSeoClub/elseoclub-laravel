@@ -8,7 +8,7 @@
         <th class="text-left p-3">Votos no</th>
         <th class="text-left p-3">Votos Validos</th>
         <th class="text-left p-3">Voto nulo</th>
-        <th class="text-left p-3">Boletas anuladas</th>
+        <th class="text-left p-3">Boletas inutilizadas</th>
     </x-slot>
     <x-slot name="tbody">
         @foreach ($user_locations as $location)

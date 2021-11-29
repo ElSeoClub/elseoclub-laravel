@@ -10,7 +10,7 @@
                 <th class="px-5 py-3 text-center">Votos NO</th>
                 <th class="px-5 py-3 text-center">Votos Validos</th>
                 <th class="px-5 py-3 text-center">Votos Nulos</th>
-                <th class="px-5 py-3 text-center">Boletas Anuladas</th>
+                <th class="px-5 py-3 text-center">Boletas Inutilizadas</th>
             </x-slot>
             <x-slot name="tbody">
                 @foreach ($event->locations as $location)
