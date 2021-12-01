@@ -9,6 +9,7 @@ use Livewire\Component;
 class Index extends Component
 {
     public $event;
+    public $view = 'status';
 
     public function mount(Event $event)
     {

@@ -2,35 +2,35 @@
     <div class="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4 mb-5">
         <!-- SMALL CARD ROUNDED -->
         <div
-            class="bg-gray-100 border-gray-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200 dark:hover:bg-gray-600 hover:border-gray-700 | transition-colors duration-500">
+            class="bg-gray-{{$view == 'status' ? '200':'100'}} border-gray-{{$view == 'status' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/status.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Estado de las sedes</p>
             </div>
         </div>
         <div
-            class="bg-gray-100 border-gray-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200 dark:hover:bg-gray-600 hover:border-gray-700 | transition-colors duration-500">
+            class="bg-gray-{{$view == 'attendance' ? '200':'100'}} border-gray-{{$view == 'attendance' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/attendant-list.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Asistencia de las sedes</p>
             </div>
         </div>
         <div
-            class="bg-gray-100 border-gray-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200 dark:hover:bg-gray-600 hover:border-gray-700 | transition-colors duration-500">
+            class="bg-gray-{{$view == 'attendance2' ? '200':'100'}} border-gray-{{$view == 'attendance2' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/organization.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Asistencia por coordinación</p>
             </div>
         </div>
         <div
-            class="bg-gray-100 border-gray-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200 dark:hover:bg-gray-600 hover:border-gray-700 | transition-colors duration-500">
+            class="bg-gray-{{$view == 'count' ? '200':'100'}} border-gray-{{$view == 'count' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/results.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Preliminar de votaciones por sede</p>
             </div>
         </div>
         <div
-            class="bg-gray-100 border-gray-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200 dark:hover:bg-gray-600 hover:border-gray-700 | transition-colors duration-500">
+            class="bg-gray-{{$view == 'count2' ? '200':'100'}} border-gray-{{$view == 'count2' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/results.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Preliminar de votaciones por sección
@@ -39,6 +39,7 @@
         </div>
     </div>
 
+    @if ($view = 'status')
     <div>
         <x-card icon="fab fa-searchengin" title="Llegada del verificador por sede">
             <div class="flex gap-5 flex-wrap">
@@ -84,4 +85,6 @@
             </div>
         </x-card>
     </div>
+    @endif
+
 </div>
