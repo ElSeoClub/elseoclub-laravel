@@ -26,12 +26,25 @@
         @endif
 
         @if (Auth::user()->hasPermission('Enlace Siconecta') || Auth::user()->hasPermission('Administrator'))
-        <x-card-image image="{{asset('svg/stats.svg')}}">
+        <x-card-image image="{{asset('svg/steps.svg')}}">
             <div class="font-bold text-2xl">Seguimiento de las sedes</div>
             <div>&nbsp;</div>
             <div class="mt-20 w-full">
                 <x-button href="{{route('legitimation.statistics', ['event' => $event])}}" color="blue" class="w-full">
                     Ver seguimiento</x-button>
+            </div>
+        </x-card-image>
+        @endif
+
+        @if (Auth::user()->hasPermission('Enlace Siconecta') || Auth::user()->hasPermission('Administrator') ||
+        Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Jurídico Global'))
+        <x-card-image image="{{asset('svg/statistics.svg')}}">
+            <div class="font-bold text-2xl">Estadísticas y reportes</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.reports.index', ['event' => $event])}}" color="blue"
+                    class="w-full">
+                    Ver estadísticas</x-button>
             </div>
         </x-card-image>
         @endif

@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,4 +74,5 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     Route::get('/legitimaciones/estadisticas/{event}', [EventController::class, 'statistics'])->name('legitimation.statistics');
     Route::get('/legitimaciones/{event}', [EventController::class, 'legitimation'])->name('legitimation.show');
     Route::get('/tester/{location}/{door}', [EventController::class, 'tester'])->name('legitimation.tester');
+    Route::get('/reportes/{event}', [ReportController::class, 'index'])->name('legitimation.reports.index');
 });
