@@ -64,7 +64,7 @@
             </div>
         </x-card>
 
-        <x-card icon="fas fa-stop" title="Inicio del centro de votación">
+        <x-card icon="fas fa-stop" title="Cierre del centro de votación">
             <div class="flex gap-5 flex-wrap">
                 @foreach ($locations as $location)
                 <div
