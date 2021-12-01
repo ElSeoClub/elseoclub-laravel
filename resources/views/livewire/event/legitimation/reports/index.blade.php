@@ -186,7 +186,7 @@
         </div>
     </x-card>
     @elseif($view == 'count')
-    <x-card icon="fab fa-searchengin" title="Asistencia por sede">
+    <x-card icon="fab fa-searchengin" title="Preliminar de votaciones por sede">
         @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator') ||
         Auth::user()->hasPermission('Jurídico Global'))
 
