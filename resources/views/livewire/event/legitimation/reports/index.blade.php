@@ -202,6 +202,8 @@
                     rounded-full
                     text-gray-600
                     bg-gray-200
+                    w-40
+                    text-center
                   ">
                             {{$coordination->name}}
                         </span>
