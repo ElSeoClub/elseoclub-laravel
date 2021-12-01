@@ -9,7 +9,7 @@
     </div>
 </x-card>
 
-<x-card icon="fab fa-searchengin" title="Inicio del proceso de votación">
+<x-card icon="fas fa-play" title="Inicio del proceso de votación">
     <div class="flex gap-5 flex-wrap">
         @foreach ($locations as $location)
         <div
@@ -20,7 +20,7 @@
     </div>
 </x-card>
 
-<x-card icon="fab fa-searchengin" title="Inicio del centro de votación">
+<x-card icon="fas fa-stop" title="Inicio del centro de votación">
     <div class="flex gap-5 flex-wrap">
         @foreach ($locations as $location)
         <div
@@ -31,7 +31,7 @@
     </div>
 </x-card>
 
-<x-card icon="fab fa-searchengin" title="Inicio de conteo de votos">
+<x-card icon="fas fa-stopwatch-20" title="Inicio de conteo de votos">
     <div class="flex gap-5 flex-wrap">
         @foreach ($locations as $location)
         <div
