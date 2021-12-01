@@ -1,5 +1,5 @@
 <x-card>
-    <div class="flex gap-5">
+    <div class="flex gap-5 flex-wrap">
         @foreach ($event->locations as $location)
         <div
             class="w-12 h-12 text-center bg-gray-400 rounded-full flex content-center flex-wrap justify-center font-bold text-xl">
