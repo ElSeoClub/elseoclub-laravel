@@ -501,6 +501,94 @@
             @endforeach
         </div>
     </x-card>
+    <x-card icon="fab fa-searchengin" title="Preliminar de votaciones por coordinación">
+        <div class="grid grid-cols-3 gap-5">
+            @foreach ($locations as $location)
+            @foreach ($location->doors as $door)
+            <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
+                <div class="flex mb-2 items-center justify-between">
+                    <div>
+                        <span class="
+                    text-xs
+                    font-semibold
+                    inline-block
+                    py-1
+                    px-2
+                    uppercase
+                    rounded-full
+                    font-bold
+                    w-40
+                    text-center
+                    bg-{{$door->si == 0 && $door->no == 0 ? 'gray-200 text-gray-600' : ($door->si > ($door->no + $door->nulos) ? 'green-600 text-white':'red-500 text-white')}}
+                  ">
+                            {{$door->name}}
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-base font-bold inline-block text-gray-600">
+                            Si
+                            {{round(($door->si+$door->no+$door->nulos)
+                            > 0 ?
+                            ($door->si/($door->no+$door->si+$door->nulos))*100:0,0)
+                            ?? 0}}%
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            No
+                            {{round(($door->si+$door->no+$door->nulos)
+                            > 0 ?
+                            ($door->no/($door->si+$door->no+$door->nulos))*100:0,0)
+                            ?? 0}}%
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            Nulo
+                            {{round(($door->si+$door->no+$door->nulos)
+                            > 0 ?
+                            ($door->nulos/($door->si+$door->no+$door->nulos))*100:0,0)
+                            ?? 0}}%
+                        </span>
+                    </div>
+                </div>
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                    <div style="width: {{round(($door->si+$door->no+$door->nulos) > 0 ?
+                        ($door->si/($door->si+$door->no+$door->nulos))*100:0,0) ?? 0}}%" class="
+                  shadow-none
+                  flex flex-col
+                  text-center
+                  whitespace-nowrap
+                  text-white
+                  justify-center
+                  bg-green-500
+                "></div>
+                    <div style="width: {{round(($door->si+$door->no+$door->nulos) > 0 ?
+                        ($door->no/($door->si+$door->no+$door->nulos))*100:0,0) ?? 0}}%" class="
+              shadow-none
+              flex flex-col
+              text-center
+              whitespace-nowrap
+              text-white
+              justify-center
+              bg-red-500
+            "></div>
+                    <div style="width: {{round(($door->si+$door->no+$door->nulos) > 0 ?
+                ($door->nulos/($door->si+$door->no+$door->nulos))*100:0,0) ?? 0}}%" class="
+      shadow-none
+      flex flex-col
+      text-center
+      whitespace-nowrap
+      text-white
+      justify-center
+      bg-gray-400
+    "></div>
+                </div>
+            </div>
+            @endforeach
+            @endforeach
+        </div>
+    </x-card>
     @endif
 
 </div>
