@@ -19,6 +19,7 @@ class Index extends Component
 
     public function render()
     {
+        abort(404);
         if (auth()->user()->permission->name == "Administrator" || auth()->user()->permission->name == "Jurídico Global") {
             $user_locations = $this->event->locations()->get();
         } else {
