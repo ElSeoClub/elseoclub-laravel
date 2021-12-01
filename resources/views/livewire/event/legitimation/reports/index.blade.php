@@ -1,4 +1,4 @@
-<div class="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4 mb-5" wire:poll.5000ms="locations">
+<div class="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4 mb-5" wire:poll.5000ms>
     <!-- SMALL CARD ROUNDED -->
     <div
         class="bg-gray-100 border-gray-600 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200 dark:hover:bg-gray-600 hover:border-gray-700 | transition-colors duration-500">
