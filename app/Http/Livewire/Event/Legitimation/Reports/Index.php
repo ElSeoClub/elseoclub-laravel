@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Event\Legitimation\Reports;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Index extends Component
@@ -16,6 +17,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.event.legitimation.reports.index');
+        $locations = $this->event->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
+        return view('livewire.event.legitimation.reports.index', compact('locations'));
     }
 }
