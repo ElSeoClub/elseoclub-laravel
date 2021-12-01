@@ -501,7 +501,7 @@
             @endforeach
         </div>
     </x-card>
-    <x-card icon="fab fa-searchengin" title="Preliminar de votaciones por coordinación">
+    <x-card icon="fab fa-searchengin" title="Preliminar de votaciones por sección">
         <div class="grid grid-cols-3 gap-5">
             @foreach ($locations as $location)
             @foreach ($location->doors as $door)
