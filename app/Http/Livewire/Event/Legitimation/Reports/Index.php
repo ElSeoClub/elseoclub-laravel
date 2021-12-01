@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Event\Legitimation\Reports;
 
 use App\Models\Event;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -24,11 +25,11 @@ class Index extends Component
     public function render()
     {
         if (auth()->user()->permission->name == "Administrator" || auth()->user()->permission->name == "Jurídico Global") {
-            $locations = $this->event->fresh()->locations()->get();
+            $locations = $this->event->fresh()->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
         } else {
             $locations = $this->event->fresh()->locations()->whereHas('users', function (Builder $query) {
                 $query->where('user_id', auth()->user()->id);
-            })->get();
+            })->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
         }
         return view('livewire.event.legitimation.reports.index', compact('locations'));
     }
