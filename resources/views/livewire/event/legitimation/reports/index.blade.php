@@ -1,5 +1,5 @@
 <div wire:poll.30000ms>
-    <div class="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4 mb-5">
+    <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4 mb-5">
         <!-- SMALL CARD ROUNDED -->
         <div wire:click="display('status')"
             class="bg-{{$view == 'status' ? 'red-50':'gray-100'}} border-{{$view == 'status' ? 'red-900':'gray-600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
@@ -33,7 +33,8 @@
             class="bg-{{$view == 'count2' ? 'red-50':'gray-100'}} border-{{$view == 'count2' ? 'red-900':'gray-600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/results.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
-                <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Preliminar de votaciones por sección
+                <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Preliminar de votaciones por
+                    coordinación
                 </p>
             </div>
         </div>
@@ -186,6 +187,9 @@
     </x-card>
     @elseif($view == 'count')
     <x-card icon="fab fa-searchengin" title="Asistencia por sede">
+        @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator') ||
+        Auth::user()->hasPermission('Jurídico Global'))
+
         <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
             <div class="flex mb-2 items-center justify-between">
                 <div>
@@ -272,6 +276,7 @@
 "></div>
             </div>
         </div>
+        @endif
         <div class="grid grid-cols-3 gap-5">
             @foreach ($locations as $location)
             <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
