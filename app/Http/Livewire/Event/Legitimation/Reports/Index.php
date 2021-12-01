@@ -9,15 +9,21 @@ use Livewire\Component;
 class Index extends Component
 {
     public $event;
+    public $locations;
 
     public function mount(Event $event)
     {
         $this->event = $event;
+        $this->locations = $this->event->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
+    }
+
+    public function locations()
+    {
+        $this->locations = $this->event->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
     }
 
     public function render()
     {
-        $locations = $this->event->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
-        return view('livewire.event.legitimation.reports.index', compact('locations'));
+        return view('livewire.event.legitimation.reports.index');
     }
 }
