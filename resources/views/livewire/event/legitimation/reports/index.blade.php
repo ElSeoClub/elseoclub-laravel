@@ -89,7 +89,7 @@
     <x-card icon="fab fa-searchengin" title="Asistencia por sede">
         <div class="grid grid-cols-3 gap-5">
             @foreach ($locations as $location)
-            <div class="relative pt-1">
+            <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
                 <div class="flex mb-2 items-center justify-between">
                     <div>
                         <span class="
