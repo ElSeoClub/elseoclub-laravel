@@ -188,7 +188,7 @@
     @elseif($view == 'attendance2')
     <x-card icon="fab fa-searchengin" title="Asistencia por coordinación">
         <div class="grid grid-cols-3 gap-5">
-            @foreach ($locations as $location)
+            @foreach ($coordinations as $coordination)
             <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
                 <div class="flex mb-2 items-center justify-between">
                     <div>
@@ -203,19 +203,19 @@
                     text-gray-600
                     bg-gray-200
                   ">
-                            Sede {{$location->name}}
+                            {{$coordination->name}}
                         </span>
                     </div>
                     <div class="text-left">
                         <span class="text-xs font-semibold inline-block text-gray-600">
-                            {{$location->guests()->whereNotNull('attendance_door_id')->count()}} de
-                            {{$location->boletas}}
+                            {{$coordination->count_pending_guests()}} de
+                            {{$coordination->count_guests()}}
                         </span>
                     </div>
                     <div class="text-right">
                         <span class="text-xs font-semibold inline-block text-gray-600">
-                            {{$location->guests()->count() > 0
-                            ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->boletas)*100,0)
+                            {{$coordination->count_guests() > 0
+                            ?round(($coordination->count_pending_guests()/$coordination->count_guests())*100,0)
                             : '0'}}%
 
 
@@ -223,7 +223,7 @@
                     </div>
                 </div>
                 <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                    <div style="width: {{$location->guests()->count() > 0 ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->boletas)*100,0) : '0'}}%"
+                    <div style="width: {{$coordination->count_guests() > 0 ?round(($coordination->count_pending_guests()/$coordination->count_guests())*100,0) : '0'}}%"
                         class="
                   shadow-none
                   flex flex-col

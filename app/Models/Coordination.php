@@ -15,4 +15,26 @@ class Coordination extends Model
     {
         return $this->hasMany(Door::class);
     }
+
+    public function count_guests()
+    {
+
+        $doors = $this->doors;
+        $count = 0;
+        foreach ($doors as $door) {
+            $count += $door->guests()->count();
+        }
+        return $count;
+    }
+
+    public function count_pending_guests()
+    {
+
+        $doors = $this->doors;
+        $count = 0;
+        foreach ($doors as $door) {
+            $count += $door->guests()->whereNotNull('attendance_door_id')->count();
+        }
+        return $count;
+    }
 }

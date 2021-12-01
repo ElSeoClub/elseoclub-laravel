@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Event\Legitimation\Reports;
 
+use App\Models\Coordination;
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,7 @@ use Livewire\Component;
 class Index extends Component
 {
     public $event;
+    public $coordinations;
     public $view = 'status';
 
     public function display($view)
@@ -20,6 +22,7 @@ class Index extends Component
     public function mount(Event $event)
     {
         $this->event = $event;
+        $this->coordinations = Coordination::get();
     }
 
     public function render()
