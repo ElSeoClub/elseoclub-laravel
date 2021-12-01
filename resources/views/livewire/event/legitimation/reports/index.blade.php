@@ -87,6 +87,52 @@
     </div>
     @elseif($view == 'attendance')
     <x-card icon="fab fa-searchengin" title="Asistencia por sede">
+        <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
+            <div class="flex mb-2 items-center justify-between">
+                <div>
+                    <span class="
+                text-xs
+                font-semibold
+                inline-block
+                py-1
+                px-2
+                uppercase
+                rounded-full
+                text-gray-600
+                bg-gray-200
+              ">
+                        GLOBAL
+                    </span>
+                </div>
+                <div class="text-left">
+                    <span class="text-xs font-semibold inline-block text-gray-600">
+                        {{$event->guests()->whereNotNull('attendance_door_id')->count()}} de
+                        {{$event->guests()->count()}}
+                    </span>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs font-semibold inline-block text-gray-600">
+                        {{$event->guests()->count() > 0
+                        ?round(($event->guests()->whereNotNull('attendance_door_id')->count()/$event->guests()->count())*100,0)
+                        : '0'}}%
+
+
+                    </span>
+                </div>
+            </div>
+            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                <div style="width: {{$event->guests()->count() > 0 ?round(($event->guests()->whereNotNull('attendance_door_id')->count()/$event->guests()->count())*100,0) : '0'}}%"
+                    class="
+              shadow-none
+              flex flex-col
+              text-center
+              whitespace-nowrap
+              text-white
+              justify-center
+              bg-green-500
+            "></div>
+            </div>
+        </div>
         <div class="grid grid-cols-3 gap-5">
             @foreach ($locations as $location)
             <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
