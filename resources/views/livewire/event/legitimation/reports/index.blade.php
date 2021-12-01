@@ -138,6 +138,67 @@
             @endforeach
         </div>
     </x-card>
+    @elseif($view == 'count')
+    <x-card icon="fab fa-searchengin" title="Asistencia por sede">
+        <div class="grid grid-cols-3 gap-5">
+            @foreach ($locations as $location)
+            <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
+                <div class="flex mb-2 items-center justify-between">
+                    <div>
+                        <span class="
+                    text-xs
+                    font-semibold
+                    inline-block
+                    py-1
+                    px-2
+                    uppercase
+                    rounded-full
+                    font-bold
+                    bg-{{$location->si == 0 && $location->no == 0 ? 'gray-200 text-gray-600' : ($location->si > ($location->no + $location->nulos) ? 'green-600 text-gray-600':'red-500 text-white')}}
+                  ">
+                            Sede {{$location->name}}
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            Si {{round(($location->si+$location->no+$location->nulos) > 0 ?
+                            ($location->si/($location->si+$location->no+$location->nulos))*100:0,0) ?? 0}}%
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            No {{round(($location->si+$location->no+$location->nulos) > 0 ?
+                            ($location->no/($location->si+$location->no+$location->nulos))*100:0,0) ?? 0}}%
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            Nulo {{round(($location->si+$location->no+$location->nulos) > 0 ?
+                            ($location->nulos/($location->si+$location->no+$location->nulos))*100:0,0) ?? 0}}%
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            No votó {{$location->anulados}}
+                        </span>
+                    </div>
+                </div>
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                    <div style="width: {{$location->guests()->count() > 0 ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->guests()->count())*100,0) : '0'}}%"
+                        class="
+                  shadow-none
+                  flex flex-col
+                  text-center
+                  whitespace-nowrap
+                  text-white
+                  justify-center
+                  bg-green-500
+                "></div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </x-card>
     @endif
 
 </div>
