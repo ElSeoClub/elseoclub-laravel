@@ -77,7 +77,6 @@ class Index extends Component
 
     public function render(Location $location)
     {
-        abort(404);
         if (auth()->user()->permission->name == "Administrator" || auth()->user()->permission->name == "Jurídico Global") {
             $locations = $this->event->locations()->where('name', 'like', "%$this->search%")->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
         } else {
