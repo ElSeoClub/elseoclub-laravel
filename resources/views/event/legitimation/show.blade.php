@@ -8,7 +8,7 @@
         class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-red-100 bg-red-700 border border-red-700 mb-5 py-3">
         <div class="text-xl max-w-full flex-initial font-bold text-center">
             NADIE PODRÁ INICIAR CONTEO DE VOTOS, HASTA QUE SE LES COMUNIQUE POR PARTE DEL EQUIPO JURÍDICO QUE ESTARÁ
-            CONECTADO CON EL CENTRO, PARA DAR LA INDICACIÓN DE INICIO DEL eSCRUTINIO DE BOLETAS.</div>
+            CONECTADO CON EL CENTRO, PARA DAR LA INDICACIÓN DE INICIO DEL ESCRUTINIO DE BOLETAS.</div>
 
     </div>
     <div class="grid grid-cols-2 gap-5 mb-5">
