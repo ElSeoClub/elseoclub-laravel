@@ -411,6 +411,96 @@
             @endforeach
         </div>
     </x-card>
+    @elseif($view == 'count2')
+    <x-card icon="fab fa-searchengin" title="Preliminar de votaciones por coordinación">
+        <div class="grid grid-cols-3 gap-5">
+            @foreach ($coordinations as $coordination)
+            <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
+                <div class="flex mb-2 items-center justify-between">
+                    <div>
+                        <span class="
+                    text-xs
+                    font-semibold
+                    inline-block
+                    py-1
+                    px-2
+                    uppercase
+                    rounded-full
+                    font-bold
+                    w-40
+                    text-center
+                    bg-{{$coordination->doors()->sum('si') == 0 && $coordination->doors()->sum('no') == 0 ? 'gray-200 text-gray-600' : ($coordination->doors()->sum('si') > ($coordination->doors()->sum('no') + $coordination->doors()->sum('nulos')) ? 'green-600 text-white':'red-500 text-white')}}
+                  ">
+                            {{$coordination->name}}
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-base font-bold inline-block text-gray-600">
+                            Si
+                            {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos'))
+                            > 0 ?
+                            ($coordination->doors()->sum('si')/($coordination->doors()->sum('no')+$coordination->doors()->sum('si')+$coordination->doors()->sum('nulos')))*100:0,0)
+                            ?? 0}}%
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            No
+                            {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos'))
+                            > 0 ?
+                            ($coordination->doors()->sum('no')/($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')))*100:0,0)
+                            ?? 0}}%
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            Nulo
+                            {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos'))
+                            > 0 ?
+                            ($coordination->doors()->sum('nulos')/($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')))*100:0,0)
+                            ?? 0}}%
+                        </span>
+                    </div>
+                </div>
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                    <div style="width: {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')) > 0 ?
+                        ($coordination->doors()->sum('si')/($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')))*100:0,0) ?? 0}}%"
+                        class="
+                  shadow-none
+                  flex flex-col
+                  text-center
+                  whitespace-nowrap
+                  text-white
+                  justify-center
+                  bg-green-500
+                "></div>
+                    <div style="width: {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')) > 0 ?
+                        ($coordination->doors()->sum('no')/($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')))*100:0,0) ?? 0}}%"
+                        class="
+              shadow-none
+              flex flex-col
+              text-center
+              whitespace-nowrap
+              text-white
+              justify-center
+              bg-red-500
+            "></div>
+                    <div style="width: {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')) > 0 ?
+                ($coordination->doors()->sum('nulos')/($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos')))*100:0,0) ?? 0}}%"
+                        class="
+      shadow-none
+      flex flex-col
+      text-center
+      whitespace-nowrap
+      text-white
+      justify-center
+      bg-gray-400
+    "></div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </x-card>
     @endif
 
 </div>
