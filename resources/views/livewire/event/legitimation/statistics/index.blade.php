@@ -1,7 +1,7 @@
-<div>
+<div wire:poll.30000ms>
 
     <x-search></x-search>
-    <div class="grid grid-cols-3 gap-3" wire:poll.30000ms>
+    <div class="grid grid-cols-3 gap-3" wire:poll.5000ms>
         @foreach ($locations as $location)
         <x-card title="{{$location->name}}">
             <div class="flex justify-between">
