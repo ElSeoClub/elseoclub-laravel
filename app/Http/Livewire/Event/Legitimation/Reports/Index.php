@@ -19,7 +19,7 @@ class Index extends Component
 
     public function locations()
     {
-        $this->locations = $this->event->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
+        $this->locations = $this->event->fresh()->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
     }
 
     public function render()
