@@ -1,36 +1,36 @@
 <div wire:poll.30000ms>
     <div class="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4 mb-5">
         <!-- SMALL CARD ROUNDED -->
-        <div
-            class="bg-gray-{{$view == 'status' ? '200':'100'}} border-gray-{{$view == 'status' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
+        <div wire:click="display('status')"
+            class="bg-{{$view == 'status' ? 'red-50':'gray-100'}} border-{{$view == 'status' ? 'red-900':'gray-600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/status.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Estado de las sedes</p>
             </div>
         </div>
-        <div
-            class="bg-gray-{{$view == 'attendance' ? '200':'100'}} border-gray-{{$view == 'attendance' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
+        <div wire:click="display('attendance')"
+            class="bg-{{$view == 'attendance' ? 'red-50':'gray-100'}} border-{{$view == 'attendance' ? 'red-900':'gray-600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/attendant-list.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Asistencia de las sedes</p>
             </div>
         </div>
-        <div
-            class="bg-gray-{{$view == 'attendance2' ? '200':'100'}} border-gray-{{$view == 'attendance2' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
+        <div wire:click="display('attendance2')"
+            class="bg-{{$view == 'attendance2' ? 'red-50':'gray-100'}} border-{{$view == 'attendance2' ? 'red-900':'gray-600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/organization.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Asistencia por coordinación</p>
             </div>
         </div>
-        <div
-            class="bg-gray-{{$view == 'count' ? '200':'100'}} border-gray-{{$view == 'count' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
+        <div wire:click="display('count')"
+            class="bg-{{$view == 'count' ? 'red-50':'gray-100'}} border-{{$view == 'count' ? 'red-900':'gray-600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/results.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Preliminar de votaciones por sede</p>
             </div>
         </div>
-        <div
-            class="bg-gray-{{$view == 'count2' ? '200':'100'}} border-gray-{{$view == 'count2' ? '900':'600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
+        <div wire:click="display('count2')"
+            class="bg-{{$view == 'count2' ? 'red-50':'gray-100'}} border-{{$view == 'count2' ? 'red-900':'gray-600'}} bg-opacity-95 border-opacity-60 | p-4 border-solid rounded-3xl border-2 | flex justify-around cursor-pointer | hover:bg-gray-200  hover:border-gray-700 | transition-colors duration-500">
             <img class="w-16 h-16 object-cover" src="{{asset('svg/results.svg')}}" alt="" />
             <div class="flex flex-col justify-center">
                 <p class="text-gray-900 dark:text-gray-300 font-semibold text-xl">Preliminar de votaciones por sección
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    @if ($view = 'status')
+    @if ($view == 'status')
     <div>
         <x-card icon="fab fa-searchengin" title="Llegada del verificador por sede">
             <div class="flex gap-5 flex-wrap">
@@ -85,6 +85,8 @@
             </div>
         </x-card>
     </div>
+    @elseif($view == 'attendance')
+    x
     @endif
 
 </div>
