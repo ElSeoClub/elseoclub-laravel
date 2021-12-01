@@ -24,9 +24,9 @@ class Index extends Component
     public function render()
     {
         if (auth()->user()->permission->name == "Administrator" || auth()->user()->permission->name == "Jurídico Global") {
-            $user_locations = $this->event->fresh()->locations()->get();
+            $locations = $this->event->fresh()->locations()->get();
         } else {
-            $user_locations = $this->event->fresh()->locations()->whereHas('users', function (Builder $query) {
+            $locations = $this->event->fresh()->locations()->whereHas('users', function (Builder $query) {
                 $query->where('user_id', auth()->user()->id);
             })->get();
         }
