@@ -154,7 +154,7 @@
                     uppercase
                     rounded-full
                     font-bold
-                    bg-{{$location->si == 0 && $location->no == 0 ? 'gray-200 text-gray-600' : ($location->si > ($location->no + $location->nulos) ? 'green-600 text-gray-600':'red-500 text-white')}}
+                    bg-{{$location->si == 0 && $location->no == 0 ? 'gray-200 text-gray-600' : ($location->si > ($location->no + $location->nulos) ? 'green-600 text-white':'red-500 text-white')}}
                   ">
                             Sede {{$location->name}}
                         </span>

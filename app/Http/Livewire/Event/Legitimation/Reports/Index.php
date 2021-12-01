@@ -23,7 +23,13 @@ class Index extends Component
 
     public function render()
     {
-        $locations = $this->event->fresh()->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get();
+        if (auth()->user()->permission->name == "Administrator" || auth()->user()->permission->name == "Jurídico Global") {
+            $user_locations = $this->event->fresh()->locations()->get();
+        } else {
+            $user_locations = $this->event->fresh()->locations()->whereHas('users', function (Builder $query) {
+                $query->where('user_id', auth()->user()->id);
+            })->get();
+        }
         return view('livewire.event.legitimation.reports.index', compact('locations'));
     }
 }
