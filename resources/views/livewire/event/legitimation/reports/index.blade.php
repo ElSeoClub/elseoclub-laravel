@@ -1,4 +1,4 @@
-<x-card>
+<x-card icon="fab fa-searchengin" title="Llegada del verificador">
     <div class="flex gap-5 flex-wrap">
         @foreach ($locations as $location)
         <div
