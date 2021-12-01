@@ -186,6 +186,92 @@
     </x-card>
     @elseif($view == 'count')
     <x-card icon="fab fa-searchengin" title="Asistencia por sede">
+        <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
+            <div class="flex mb-2 items-center justify-between">
+                <div>
+                    <span class="
+                text-xs
+                font-semibold
+                inline-block
+                py-1
+                px-2
+                uppercase
+                rounded-full
+                font-bold
+                bg-{{$event->locations()->sum('si') == 0 && $event->locations()->sum('no') == 0 ? 'gray-200 text-gray-600' : ($event->locations()->sum('si') > ($event->locations()->sum('no') + $event->locations()->sum('nulos')) ? 'green-600 text-white':'red-500 text-white')}}
+              ">
+                        GLOBAL
+                    </span>
+                </div>
+                <div class="text-left">
+                    <span class="text-base font-bold inline-block text-gray-600">
+                        Si
+                        {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos'))
+                        > 0 ?
+                        ($event->locations()->sum('si')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0)
+                        ?? 0}}%
+                    </span>
+                </div>
+                <div class="text-left">
+                    <span class="text-xs font-semibold inline-block text-gray-600">
+                        No
+                        {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos'))
+                        > 0 ?
+                        ($event->locations()->sum('no')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0)
+                        ?? 0}}%
+                    </span>
+                </div>
+                <div class="text-left">
+                    <span class="text-xs font-semibold inline-block text-gray-600">
+                        Nulo
+                        {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos'))
+                        > 0 ?
+                        ($event->locations()->sum('nulos')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0)
+                        ?? 0}}%
+                    </span>
+                </div>
+                <div class="text-left">
+                    <span class="text-xs font-semibold inline-block text-gray-600">
+                        No votó {{$event->locations()->sum('anulados')}}
+                    </span>
+                </div>
+            </div>
+            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                <div style="width: {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')) > 0 ?
+                    ($event->locations()->sum('si')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0) ?? 0}}%"
+                    class="
+              shadow-none
+              flex flex-col
+              text-center
+              whitespace-nowrap
+              text-white
+              justify-center
+              bg-green-500
+            "></div>
+                <div style="width: {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')) > 0 ?
+                    ($event->locations()->sum('no')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0) ?? 0}}%"
+                    class="
+          shadow-none
+          flex flex-col
+          text-center
+          whitespace-nowrap
+          text-white
+          justify-center
+          bg-red-500
+        "></div>
+                <div style="width: {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')) > 0 ?
+            ($event->locations()->sum('nulos')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0) ?? 0}}%"
+                    class="
+  shadow-none
+  flex flex-col
+  text-center
+  whitespace-nowrap
+  text-white
+  justify-center
+  bg-gray-400
+"></div>
+            </div>
+        </div>
         <div class="grid grid-cols-3 gap-5">
             @foreach ($locations as $location)
             <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
@@ -206,7 +292,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-xs font-semibold inline-block text-gray-600">
+                        <span class="text-base font-bold inline-block text-gray-600">
                             Si {{round(($location->si+$location->no+$location->nulos) > 0 ?
                             ($location->si/($location->si+$location->no+$location->nulos))*100:0,0) ?? 0}}%
                         </span>
@@ -230,8 +316,8 @@
                     </div>
                 </div>
                 <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                    <div style="width: {{$location->guests()->count() > 0 ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->guests()->count())*100,0) : '0'}}%"
-                        class="
+                    <div style="width: {{round(($location->si+$location->no+$location->nulos) > 0 ?
+                        ($location->si/($location->si+$location->no+$location->nulos))*100:0,0) ?? 0}}%" class="
                   shadow-none
                   flex flex-col
                   text-center
@@ -240,6 +326,26 @@
                   justify-center
                   bg-green-500
                 "></div>
+                    <div style="width: {{round(($location->si+$location->no+$location->nulos) > 0 ?
+                        ($location->no/($location->si+$location->no+$location->nulos))*100:0,0) ?? 0}}%" class="
+              shadow-none
+              flex flex-col
+              text-center
+              whitespace-nowrap
+              text-white
+              justify-center
+              bg-red-500
+            "></div>
+                    <div style="width: {{round(($location->si+$location->no+$location->nulos) > 0 ?
+                ($location->nulos/($location->si+$location->no+$location->nulos))*100:0,0) ?? 0}}%" class="
+      shadow-none
+      flex flex-col
+      text-center
+      whitespace-nowrap
+      text-white
+      justify-center
+      bg-gray-400
+    "></div>
                 </div>
             </div>
             @endforeach
