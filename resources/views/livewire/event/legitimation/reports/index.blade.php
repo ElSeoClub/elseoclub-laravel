@@ -107,7 +107,7 @@
                 <div class="text-left">
                     <span class="text-xs font-semibold inline-block text-gray-600">
                         {{$event->guests()->whereNotNull('attendance_door_id')->count()}} de
-                        {{$event->guests()->count()}}
+                        72220
                     </span>
                 </div>
                 <div class="text-right">
@@ -155,13 +155,13 @@
                     <div class="text-left">
                         <span class="text-xs font-semibold inline-block text-gray-600">
                             {{$location->guests()->whereNotNull('attendance_door_id')->count()}} de
-                            {{$location->guests()->count()}}
+                            {{$location->boletas}}
                         </span>
                     </div>
                     <div class="text-right">
                         <span class="text-xs font-semibold inline-block text-gray-600">
                             {{$location->guests()->count() > 0
-                            ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->guests()->count())*100,0)
+                            ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->boletas)*100,0)
                             : '0'}}%
 
 
@@ -169,7 +169,7 @@
                     </div>
                 </div>
                 <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                    <div style="width: {{$location->guests()->count() > 0 ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->guests()->count())*100,0) : '0'}}%"
+                    <div style="width: {{$location->guests()->count() > 0 ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->boletas)*100,0) : '0'}}%"
                         class="
                   shadow-none
                   flex flex-col
