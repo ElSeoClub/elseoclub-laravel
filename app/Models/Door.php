@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Location;
+use App\Models\Coordination;
 
 class Door extends Model
 {
@@ -25,5 +26,10 @@ class Door extends Model
     public function guests()
     {
         return $this->belongsToMany(User::class, 'guests', 'door_id', 'user_id');
+    }
+
+    public function coordination()
+    {
+        return $this->belongsTo(Coordination::class);
     }
 }

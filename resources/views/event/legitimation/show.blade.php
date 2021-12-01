@@ -17,10 +17,18 @@
         </x-card-image>
         <x-card-image image="{{asset('svg/map.svg')}}">
             <div class="font-bold text-2xl">Sedes del evento</div>
-            <div>0 Sedes</div>
+            <div>&nbsp;</div>
             <div class="mt-20 w-full">
                 <x-button href="{{route('legitimation.locations', ['event' => $event])}}" color="blue" class="w-full">
                     Gestionar sedes</x-button>
+            </div>
+        </x-card-image>
+        <x-card-image image="{{asset('svg/open-door.svg')}}">
+            <div class="font-bold text-2xl">Puertas del evento</div>
+            <div>&nbsp;</div>
+            <div class="mt-20 w-full">
+                <x-button href="{{route('legitimation.doors.index', ['event' => $event])}}" color="blue" class="w-full">
+                    Gestionar puertas</x-button>
             </div>
         </x-card-image>
         @endif

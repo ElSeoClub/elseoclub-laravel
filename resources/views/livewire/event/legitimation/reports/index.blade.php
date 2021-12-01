@@ -185,6 +185,59 @@
             @endforeach
         </div>
     </x-card>
+    @elseif($view == 'attendance2')
+    <x-card icon="fab fa-searchengin" title="Asistencia por coordinación">
+        <div class="grid grid-cols-3 gap-5">
+            @foreach ($locations as $location)
+            <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
+                <div class="flex mb-2 items-center justify-between">
+                    <div>
+                        <span class="
+                    text-xs
+                    font-semibold
+                    inline-block
+                    py-1
+                    px-2
+                    uppercase
+                    rounded-full
+                    text-gray-600
+                    bg-gray-200
+                  ">
+                            Sede {{$location->name}}
+                        </span>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            {{$location->guests()->whereNotNull('attendance_door_id')->count()}} de
+                            {{$location->boletas}}
+                        </span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-semibold inline-block text-gray-600">
+                            {{$location->guests()->count() > 0
+                            ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->boletas)*100,0)
+                            : '0'}}%
+
+
+                        </span>
+                    </div>
+                </div>
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                    <div style="width: {{$location->guests()->count() > 0 ?round(($location->guests()->whereNotNull('attendance_door_id')->count()/$location->boletas)*100,0) : '0'}}%"
+                        class="
+                  shadow-none
+                  flex flex-col
+                  text-center
+                  whitespace-nowrap
+                  text-white
+                  justify-center
+                  bg-green-500
+                "></div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </x-card>
     @elseif($view == 'count')
     <x-card icon="fab fa-searchengin" title="Preliminar de votaciones por sede">
         @if (Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Administrator') ||
@@ -213,7 +266,7 @@
                         {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos'))
                         > 0 ?
                         ($event->locations()->sum('si')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0)
-                        ?? 0}}%
+                        ?? 0}}% ({{$event->locations()->sum('si')}})
                     </span>
                 </div>
                 <div class="text-left">
@@ -222,7 +275,7 @@
                         {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos'))
                         > 0 ?
                         ($event->locations()->sum('no')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0)
-                        ?? 0}}%
+                        ?? 0}}% ({{$event->locations()->sum('no')}})
                     </span>
                 </div>
                 <div class="text-left">
@@ -231,7 +284,7 @@
                         {{round(($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos'))
                         > 0 ?
                         ($event->locations()->sum('nulos')/($event->locations()->sum('si')+$event->locations()->sum('no')+$event->locations()->sum('nulos')))*100:0,0)
-                        ?? 0}}%
+                        ?? 0}}% ({{$event->locations()->sum('nulos')}})
                     </span>
                 </div>
                 <div class="text-left">
