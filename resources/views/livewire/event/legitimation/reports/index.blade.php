@@ -1,4 +1,4 @@
-<div wire:poll.5000ms>
+<div wire:poll.30000ms>
     <div class="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-4 mb-5">
         <!-- SMALL CARD ROUNDED -->
         <div
