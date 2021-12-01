@@ -204,6 +204,7 @@ class EventController extends Controller
 
     public function tester(Location $location, Door $door)
     {
+        abort(404);
         if (auth()->user()->permission->name != "Administrator" && auth()->user()->permission->name != "Jurídico Global") {
             if (!auth()->user()->locations()->find($door->location_id)) {
                 abort(404);
