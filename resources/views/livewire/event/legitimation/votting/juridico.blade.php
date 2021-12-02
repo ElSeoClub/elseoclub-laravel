@@ -20,6 +20,7 @@
             </td>
             <td class="p-3">{{$location->boletas}}</td>
             <td class="p-3">{{$location->guests()->count()}}</td>
+            <td class=" p-3">{{($location->juridico_derecho)}}</td>
             <td class=" p-3">{{($location->juridico_emitidos)}}</td>
             <td class=" p-3">{{($location->juridico_si)}}</td>
             <td class=" p-3">{{($location->juridico_no)}}</td>
