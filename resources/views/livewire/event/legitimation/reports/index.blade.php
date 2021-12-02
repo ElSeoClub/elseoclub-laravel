@@ -525,7 +525,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-base font-bold inline-block text-gray-600">
+                        <span class="text-lg font-bold inline-block text-gray-600">
                             Si
                             {{round(($door->si+$door->no+$door->nulos)
                             > 0 ?
@@ -534,7 +534,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-base font-semibold inline-block text-gray-600">
+                        <span class="text-lg font-semibold inline-block text-gray-600">
                             No
                             {{round(($door->si+$door->no+$door->nulos)
                             > 0 ?
@@ -543,7 +543,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-base font-semibold inline-block text-gray-600">
+                        <span class="text-lg font-semibold inline-block text-gray-600">
                             Nulo
                             {{round(($door->si+$door->no+$door->nulos)
                             > 0 ?
