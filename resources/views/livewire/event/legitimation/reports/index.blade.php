@@ -504,7 +504,7 @@
     <x-card icon="fab fa-searchengin" title="Preliminar de votaciones por sección">
         <div class="grid grid-cols-3 gap-5">
             @foreach ($locations as $location)
-            @foreach ($location->doors()->where('coordination_id', 10)->get() as $door)
+            @foreach ($location->doors()->where('coordination_id', 11)->get() as $door)
             <div class="relative pt-1 hover:border-gray-400 border-white border border-solid p-1 rounded">
                 <div class="flex mb-2 items-center justify-between">
                     <div>
