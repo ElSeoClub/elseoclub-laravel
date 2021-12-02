@@ -74,6 +74,6 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     Route::get('/legitimaciones/estadisticas/{event}', [EventController::class, 'statistics'])->name('legitimation.statistics');
     Route::get('/legitimaciones/{event}', [EventController::class, 'legitimation'])->name('legitimation.show');
     Route::get('/tester/{location}/{door}', [EventController::class, 'tester'])->name('legitimation.tester');
-    Route::get('/reportes/{event}', [ReportController::class, 'index'])->name('legitimation.reports.index');
+    Route::middleware(['permission:Administrator'])->get('/reportes/{event}', [ReportController::class, 'index'])->name('legitimation.reports.index');
     Route::get('/puertas/{event}', [ReportController::class, 'doors'])->name('legitimation.doors.index');
 });
