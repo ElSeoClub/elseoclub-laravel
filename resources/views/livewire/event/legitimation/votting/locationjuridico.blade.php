@@ -19,6 +19,15 @@
             {{$location->guests()->count()}}
         </div>
         <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
+            <p class="font-bold">{{__('Con derecho a voto')}}</p>
+            <p class="text-sm">
+                {{__("Es el total de trabajadores que estan en el padrón.")}}
+            </p>
+        </div>
+        <div class="col-span-8 pl-4 mb-3 pt-3">
+            <x-input type="number" label="Emitidos" min="0" model="location.juridico_derecho" defer="true"></x-input>
+        </div>
+        <div class="col-span-4 text-right pt-3 border-r pr-4 mb-3">
             <p class="font-bold">{{__('Votos Emitidos')}}</p>
             <p class="text-sm">
                 {{__("Es la suma de todos los votos depositados en las urnas y que fuerón efectivamente emitidos por los
