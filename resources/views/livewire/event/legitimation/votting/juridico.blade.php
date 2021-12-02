@@ -11,7 +11,7 @@
         <th class="text-left p-3">Boletas inutilizadas</th>
     </x-slot>
     <x-slot name="tbody">
-        @foreach ($event->locations as $location)
+        @foreach ($event->locations()->orderBy(DB::raw('ABS(name)'), 'ASC')->get() as $location)
         <tr>
             <td class="p-3">
                 <x-a
