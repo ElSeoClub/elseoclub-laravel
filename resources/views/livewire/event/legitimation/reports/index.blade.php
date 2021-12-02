@@ -419,7 +419,7 @@
                 <div class="flex mb-2 items-center justify-between">
                     <div>
                         <span class="
-                    text-xs
+                    text-xl
                     font-semibold
                     inline-block
                     py-1
@@ -435,7 +435,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-base font-bold inline-block text-gray-600">
+                        <span class="text-xl font-bold inline-block text-gray-600">
                             Si
                             {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos'))
                             > 0 ?
@@ -444,7 +444,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-xs font-semibold inline-block text-gray-600">
+                        <span class="text-xl font-semibold inline-block text-gray-600">
                             No
                             {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos'))
                             > 0 ?
@@ -453,7 +453,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-xs font-semibold inline-block text-gray-600">
+                        <span class="text-xl font-semibold inline-block text-gray-600">
                             Nulo
                             {{round(($coordination->doors()->sum('si')+$coordination->doors()->sum('no')+$coordination->doors()->sum('nulos'))
                             > 0 ?
