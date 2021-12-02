@@ -521,7 +521,7 @@
                     text-center
                     bg-{{$door->si == 0 && $door->no == 0 ? 'gray-200 text-gray-600' : ($door->si > ($door->no + $door->nulos) ? 'green-600 text-white':'red-500 text-white')}}
                   ">
-                            {{$door->name}}
+                            Sección {{$door->name}}
                         </span>
                     </div>
                     <div class="text-left">
@@ -534,7 +534,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-xs font-semibold inline-block text-gray-600">
+                        <span class="text-base font-semibold inline-block text-gray-600">
                             No
                             {{round(($door->si+$door->no+$door->nulos)
                             > 0 ?
@@ -543,7 +543,7 @@
                         </span>
                     </div>
                     <div class="text-left">
-                        <span class="text-xs font-semibold inline-block text-gray-600">
+                        <span class="text-base font-semibold inline-block text-gray-600">
                             Nulo
                             {{round(($door->si+$door->no+$door->nulos)
                             > 0 ?
