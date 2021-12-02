@@ -85,8 +85,8 @@
                         <i class="fas fa-check text-green-600 text-lg"></i>
                         @endif
                     </td>
-                    <td class="pr-5 py-3 text-center">{{$location->boletas}}</td>
-                    <td class="pr-5 py-3 text-center">{{$location->guests()->count()}}</td>
+                    <td class="pr-5 py-3 text-center">{{$event->locations()->sum('boletas')}}</td>
+                    <td class="pr-5 py-3 text-center">{{$event->locations()->sum('juridico_derecho')}}</td>
                     <td
                         class="px-5 py-3 text-center {{($event->locations()->sum('emitidos') - $event->locations()->sum('juridico_emitidos')) == 0 ? 'text-green-600':'text-red-600'}}">
                         {{$event->locations()->sum('emitidos')}} / {{$event->locations()->sum('juridico_emitidos')}}
