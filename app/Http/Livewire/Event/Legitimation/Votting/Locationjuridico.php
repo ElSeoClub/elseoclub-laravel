@@ -19,7 +19,8 @@ class Locationjuridico extends Component
         'location.juridico_no' => '',
         'location.juridico_validos' => '',
         'location.juridico_nulos' => '',
-        'location.juridico_anulados' => ''
+        'location.juridico_anulados' => '',
+        'location.juridico_derecho' => '',
     ];
 
     public function mount(Event $event, DBLocation $location)
@@ -37,7 +38,8 @@ class Locationjuridico extends Component
             'location.juridico_no' => 'required|numeric|min:0',
             'location.juridico_validos' => 'required|numeric|min:0',
             'location.juridico_nulos' => 'required|numeric|min:0',
-            'location.juridico_anulados' => 'required|numeric|min:0'
+            'location.juridico_anulados' => 'required|numeric|min:0',
+            'location.juridico_derecho' => 'required|numeric|min:0',
         ]);
         $this->location->save();
         $this->emit('alert', 'El resultado parcial fue guardado exitosamente.');

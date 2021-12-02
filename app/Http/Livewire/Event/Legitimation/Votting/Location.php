@@ -18,7 +18,8 @@ class Location extends Component
         'location.no' => '',
         'location.validos' => '',
         'location.nulos' => '',
-        'location.anulados' => ''
+        'location.anulados' => '',
+        'location.derecho' => ''
     ];
 
     public function mount(Event $event, DBLocation $location)
@@ -41,7 +42,8 @@ class Location extends Component
             'location.no' => 'required|numeric|min:0',
             'location.validos' => 'required|numeric|min:0',
             'location.nulos' => 'required|numeric|min:0',
-            'location.anulados' => 'required|numeric|min:0'
+            'location.anulados' => 'required|numeric|min:0',
+            'location.derecho' => 'required|numeric|min:0'
         ]);
         $this->location->save();
         $this->emit('alert', 'El resultado parcial fue guardado exitosamente.');
