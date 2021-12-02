@@ -427,7 +427,7 @@
                     uppercase
                     rounded-full
                     font-bold
-                    w-40
+                    w-48
                     text-center
                     bg-{{$coordination->doors()->sum('si') == 0 && $coordination->doors()->sum('no') == 0 ? 'gray-200 text-gray-600' : ($coordination->doors()->sum('si') > ($coordination->doors()->sum('no') + $coordination->doors()->sum('nulos')) ? 'green-600 text-white':'red-500 text-white')}}
                   ">
