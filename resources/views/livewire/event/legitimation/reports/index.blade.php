@@ -509,7 +509,7 @@
                 <div class="flex mb-2 items-center justify-between">
                     <div>
                         <span class="
-                    text-xs
+                    text-lg
                     font-semibold
                     inline-block
                     py-1
