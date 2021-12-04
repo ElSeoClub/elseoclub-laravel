@@ -103,7 +103,7 @@
                         {{$event->locations()->sum('validos')}} / {{$event->locations()->sum('juridico_validos')}}</td>
                     <td
                         class="px-5 py-3 text-center {{($event->locations()->sum('validos') - $event->locations()->sum('juridico_validos')) == 0 ? 'text-green-600':'text-red-600'}}">
-                        {{$event->locations()->sum('si')+$event->locations()->sum('no');</td>
+                        {{$event->locations()->sum('si')+$event->locations()->sum('no')}}</td>
                     <td
                         class="px-5 py-3 text-center {{($event->locations()->sum('nulos') - $event->locations()->sum('juridico_nulos')) == 0 ? 'text-green-600':'text-red-600'}}">
                         {{$event->locations()->sum('nulos')}} / {{$event->locations()->sum('juridico_nulos')}}</td>
