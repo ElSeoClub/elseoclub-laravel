@@ -46,7 +46,7 @@
                         {{$location->validos}} / {{$location->juridico_validos}}</td>
                     <td
                         class="px-5 py-3 text-center {{($location->validos - $location->juridico_validos) == 0 ? 'text-green-600':'text-red-600'}}">
-                        {{$location->juridico_si + $location->juridico_no}}</td>
+                        {{($location->juridico_si + $location->juridico_no) - $location->juridico_validos}}</td>
                     <td
                         class="px-5 py-3 text-center {{($location->nulos - $location->juridico_nulos) == 0 ? 'text-green-600':'text-red-600'}}">
                         {{$location->nulos}} / {{$location->juridico_nulos}}</td>
