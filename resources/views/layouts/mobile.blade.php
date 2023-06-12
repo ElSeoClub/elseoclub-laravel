@@ -45,7 +45,7 @@
             <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home4') border-red-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-red-400 @endif"><img src="{{asset('svg/menu.png')}}" width="26" alt=""></a>
         </div>
     </div>
-    <main class="h-[calc(100vh-7rem)] overflow-y-auto  z-0 ">
+    <main class="overflow-y-auto  z-0 ">
         {{ $slot }}
     </main>
     
