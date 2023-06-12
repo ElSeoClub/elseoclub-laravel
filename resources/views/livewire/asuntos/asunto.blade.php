@@ -122,7 +122,7 @@
                     </x-slot>
                 @endif
             </x-card>
-            @elseif($view = 'archivos')
+        @elseif($view == 'archivos')
             <div class="bg-white p-6">
               
                 <input
@@ -135,6 +135,12 @@
                 <img src="https://picsum.photos/200/300" class="w-full">
                 <img src="https://picsum.photos/200/300" class="w-full">
                 <img src="https://picsum.photos/200/300" class="w-full">
+            </div>
+            
+        @elseif($view == 'dinero')
+            <div class="p-5">
+            Costo por la demanda
+            <input type="number" class="text-sm w-full">
             </div>
         @endif
         
