@@ -130,7 +130,8 @@
                         type="file"
                         id="formFile" />
             </div>
-            <div class="grid grid-cols-2 gap-3">
+            <div class="grid grid-cols-2 gap-3 p-5">
+                <img src="https://picsum.photos/200/300" class="w-full">
                 <img src="https://picsum.photos/200/300" class="w-full">
                 <img src="https://picsum.photos/200/300" class="w-full">
                 <img src="https://picsum.photos/200/300" class="w-full">
