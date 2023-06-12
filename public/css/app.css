@@ -1137,6 +1137,9 @@ select {
 .bottom-\[96px\] {
 	bottom: 96px;
 }
+.bottom-\[80px\] {
+	bottom: 80px;
+}
 .z-0 {
 	z-index: 0;
 }
@@ -1381,6 +1384,9 @@ select {
 }
 .h-\[32px\] {
 	height: 32px;
+}
+.h-\[calc\(100vh-7rem-80px\)\] {
+	height: calc(100vh - 7rem - 80px);
 }
 .max-h-full {
 	max-height: 100%;
