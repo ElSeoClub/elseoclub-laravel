@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/', [HomeController::class, 'subjects'])->name('home.subjects');
-    Route::get('/', [HomeController::class, 'calendar'])->name('home.calendar');
+    Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/asuntos', [HomeController::class, 'subjects'])->name('home.subjects');
+    Route::get('/calendario', [HomeController::class, 'calendar'])->name('home.calendar');
     Route::middleware(['changepassword'])->group(function () {
         Route::middleware(['permission:Administrator'])->group(function () {
             Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');

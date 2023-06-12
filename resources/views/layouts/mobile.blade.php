@@ -39,7 +39,15 @@
     <!-- Page Content -->
     <main class="h-[calc(100vh-7rem)] overflow-y-auto  z-0">
         {{ $slot }}
-    
+    </main>
+    <div class="w-full bg-white absolute bottom-0 h-14 flex justify-center  border-t z-10">
+        <div class="w-full flex items-center justify-between max-w-[480px] mx-auto">
+            <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/home.png" width="26" alt=""></a>
+            <a href="{{route('home.subjects')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'subjects') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/judgement.png" width="26" alt=""></a>
+            <a href="{{route('home.calendar')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'calendars') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/calendar.png" width="26" alt=""> <div class="px-1 bg-red-600 absolute text-xs rounded-full font-bold text-white top-2 right-5">12</div></a>
+            <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home4') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/menu.png" width="26" alt=""></a>
+        </div>
+    </div>
 </div>
 
 @stack('modals')

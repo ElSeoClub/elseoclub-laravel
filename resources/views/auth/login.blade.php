@@ -30,7 +30,7 @@
             <div class="w-full py-6 z-20">
                 <h1 class="my-6">
                     <img class="m-auto" src="{{asset('svg/suterm.png')}}" />
-                    <img class="m-auto h-12 mt-2" src="{{asset('svg/logo_name.svg')}}" />
+                    <img class="m-auto h-12 mt-2" src="{{asset('svg/logo_name.svg.png')}}" />
                 </h1>
                 <form method="post" action="{{route('login')}}" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                     @csrf

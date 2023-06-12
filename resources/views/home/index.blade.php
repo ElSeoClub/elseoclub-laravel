@@ -1,4 +1,4 @@
-<x-login-layout>
+<x-mobile-layout>
     <section class="min-h-screen flex items-stretch text-white">
         <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center z-0"
             style="background-image: url({{asset('img/login_background.jpg')}});">
@@ -36,4 +36,4 @@
             </div>
         </div>
     </section>
-</x-login-layout>
+</x-mobile-layout>
