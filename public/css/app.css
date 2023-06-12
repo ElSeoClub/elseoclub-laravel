@@ -1134,6 +1134,9 @@ select {
 .bottom-\[64px\] {
 	bottom: 64px;
 }
+.bottom-\[96px\] {
+	bottom: 96px;
+}
 .z-0 {
 	z-index: 0;
 }
