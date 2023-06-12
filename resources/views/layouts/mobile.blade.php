@@ -23,7 +23,7 @@
     <script src="{{ asset('vendor/sweetalert2/sweetalert2.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased overflow-y-hidden">
+<body class="font-sans antialiased overflow-y-hidden" style="min-height: -webkit-fill-available;">
 <div class="max-h-screen min-h-screen bg-gray-100 relative">
     <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50 text-2xl font-bold">{{ $title }}</div>
     
