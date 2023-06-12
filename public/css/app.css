@@ -1586,6 +1586,9 @@ select {
 	   -moz-user-select: none;
 	        user-select: none;
 }
+.resize {
+	resize: both;
+}
 .list-inside {
 	list-style-position: inside;
 }
