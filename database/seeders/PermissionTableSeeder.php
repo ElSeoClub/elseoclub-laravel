@@ -22,8 +22,26 @@ class PermissionTableSeeder extends Seeder
 
         $permission = new Permission();
 
-        $permission->name = 'Only view';
-        $permission->description = 'You can only view the site, without the ability to edit anything.';
+        $permission->name = 'Jurídico Global';
+        $permission->description = 'Personal encargado de revisar la evidencia de los eventos.';
+        $permission->save();
+
+        $permission = new Permission();
+
+        $permission->name = 'Jurídico';
+        $permission->description = 'Personal encargado de revisar la evidencia de los eventos.';
+        $permission->save();
+
+        $permission = new Permission();
+
+        $permission->name = 'Enlace Siconecta';
+        $permission->description = 'Personal encargado de revisar la evidencia de los eventos.';
+        $permission->save();
+
+        $permission = new Permission();
+
+        $permission->name = 'Organización';
+        $permission->description = 'Personal encargado de registro de asistencia, llenado de actas parciales y subir evidencia.';
         $permission->save();
     }
 }

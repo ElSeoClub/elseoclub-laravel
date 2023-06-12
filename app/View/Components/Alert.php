@@ -6,8 +6,15 @@ use Illuminate\View\Component;
 
 class Alert extends Component
 {
-    public function __construct(public $name = '', public $icon = 'fas fa-check', public $color = 'green')
+    public $name;
+    public $icon;
+    public $color;
+
+    public function __construct($name = '', $icon = 'fas fa-check', $color = 'green')
     {
+        $this->name = $name;
+        $this->icon = $icon;
+        $this->color = $color;
     }
 
     public function render()

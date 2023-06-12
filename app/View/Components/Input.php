@@ -11,6 +11,7 @@ class Input extends Component
     public $defer;
     public $type;
     public $value;
+
     public function __construct($type, $value = '', $label = '', $model = null, $defer = false)
     {
         $this->value = $value;

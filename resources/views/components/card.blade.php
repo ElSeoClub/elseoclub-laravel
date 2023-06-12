@@ -8,7 +8,7 @@
             </div>
         </div>
         @endif
-        <div class="px-5 py-3 text-gray-600">
+        <div class="px-{{$px}} py-{{$py}} text-gray-600">
             {{$slot}}
         </div>
 

@@ -39,7 +39,62 @@ Livewire.on("alert_confirmation", function (data) {
         allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
         if (result.isConfirmed) {
+            console.log(data.emitTo);
             Livewire.emitTo(data.emitTo, data.callback, data.id);
+        }
+    });
+});
+
+Livewire.on("alert_date", function (data) {
+    timeElapsed = Date.now();
+    timeElapsed.toLocaleString("en-US", { timeZone: "America/Mexico_City" });
+    today = new Date(timeElapsed);
+    today =
+        today.toISOString().split(".")[0].split(":")[0] +
+        ":" +
+        today.toISOString().split(".")[0].split(":")[1];
+    Swal.fire({
+        title: data.title,
+        html: "<input id='xy' type='datetime-local' value='" + today + "'>",
+        inputAttributes: {
+            autocapitalize: "on",
+        },
+        inputLabel: "Escribe la palabra " + data.word + " para confirmar.",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log(data.emitTo);
+            Livewire.emitTo(data.emitTo, data.callback, [
+                document.getElementById("xy").value,
+                data.id,
+            ]);
+        }
+    });
+});
+
+Livewire.on("alert_message", function (data) {
+    Swal.fire({
+        title: data.title,
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "on",
+        },
+        inputLabel: "Escribe " + data.word + ".",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        showLoaderOnConfirm: true,
+        inputValidator: (value) => {
+            if (value == "") {
+                return "¡Debes escribir " + data.word + "!";
+            }
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Livewire.emitTo(data.emitTo, data.callback, data.id, result.value);
         }
     });
 });

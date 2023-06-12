@@ -12,8 +12,9 @@ class Button extends Component
     public $icon;
     public $href;
     public $class;
+    public $target;
 
-    public function __construct($type = 'button', $click = null, $color = 'gray', $icon = null, $href = null, $class = '')
+    public function __construct($type = 'button', $click = null, $color = 'gray', $icon = null, $href = null, $class = '', $target = '')
     {
         $this->type = $type;
         $this->click = $click;
@@ -21,6 +22,7 @@ class Button extends Component
         $this->icon = $icon;
         $this->href = $href;
         $this->class = $class;
+        $this->target = $target;
     }
 
     public function render()

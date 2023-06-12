@@ -14,7 +14,7 @@ class ChangePassword extends Component
 
     protected $rules = [
         'oldPassword' => 'required',
-        'newPassword' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|max:255',
+        'newPassword' => 'required|min:5|max:255',
         'newConfirmPassword' => 'required|same:newPassword'
     ];
 
@@ -24,7 +24,7 @@ class ChangePassword extends Component
         $this->validate();
         if ($user->currentPasswordIsValid($this->oldPassword)) {
             $user->updatePassword($this->oldPassword, $this->newPassword);
-            return redirect(route('index'));
+            return redirect(route('legitimation.index'));
         } else {
             $this->emit('alert', ['La contraseña actual es incorrecta.', 'error']);
         }
