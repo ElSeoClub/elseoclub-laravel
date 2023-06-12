@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AsuntosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    Route::get('/asuntos', [HomeController::class, 'subjects'])->name('home.subjects');
+    Route::get('/asuntos', [AsuntosController::class, 'index'])->name('asuntos.index');
+    Route::get('/asuntos/crear', [AsuntosController::class, 'crear'])->name('asuntos.crear');
+    Route::get('/asuntos/{asunto}', [AsuntosController::class, 'asunto'])->name('asuntos.asunto');
     Route::get('/calendario', [HomeController::class, 'calendar'])->name('home.calendar');
     Route::middleware(['changepassword'])->group(function () {
         Route::middleware(['permission:Administrator'])->group(function () {

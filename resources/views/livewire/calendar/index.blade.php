@@ -1,0 +1,11 @@
+<div>
+    <ul class="w-full flex flex-col divide-gray-400 divide-y bg-white rounded shadow">
+        @foreach($actuaciones as $actuacion)
+            <li class="flex gap-5 px-5 py-2">
+                <div><img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}" width="32" height="32" class="rounded-full w-[32px] h-[32px]"></div>
+                <div>{{$actuacion->fecha}}</div>
+                <div class>{{$actuacion->comentarios_apertura}}</div>
+            </li>
+        @endforeach
+    </ul>
+</div>

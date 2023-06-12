@@ -25,7 +25,7 @@
 
 <body class="font-sans antialiased overflow-y-hidden">
 <div class="max-h-screen min-h-screen bg-gray-100 relative">
-    <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50">{{ $title }}</div>
+    <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50 text-2xl font-bold">{{ $title }}</div>
     
     {{--            <!-- Page Heading -->--}}
     {{--            @if (isset($header))--}}
@@ -37,15 +37,15 @@
     {{--            @endif--}}
     
     <!-- Page Content -->
-    <main class="h-[calc(100vh-7rem)] overflow-y-auto  z-0">
+    <main class="h-[calc(100vh-7rem)] overflow-y-auto  z-0 ">
         {{ $slot }}
     </main>
     <div class="w-full bg-white absolute bottom-0 h-14 flex justify-center  border-t z-10">
         <div class="w-full flex items-center justify-between max-w-[480px] mx-auto">
-            <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/home.png" width="26" alt=""></a>
-            <a href="{{route('home.subjects')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'subjects') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/judgement.png" width="26" alt=""></a>
-            <a href="{{route('home.calendar')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'calendars') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/calendar.png" width="26" alt=""> <div class="px-1 bg-red-600 absolute text-xs rounded-full font-bold text-white top-2 right-5">12</div></a>
-            <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home4') border-orange-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-orange-600 @endif"><img src="svg/menu.png" width="26" alt=""></a>
+            <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home') border-red-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-red-400 @endif"><img src="{{asset('svg/home.png')}}" width="26" alt=""></a>
+            <a href="{{route('asuntos.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'asuntos') border-red-400 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-red-400 @endif"><img src="{{asset('svg/judgement.png')}}" width="26" alt=""></a>
+            <a href="{{route('home.calendar')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'calendars') border-red-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-red-400 @endif"><img src="{{asset('svg/calendar.png')}}" width="26" alt=""> <div class="px-1 bg-red-600 absolute text-xs rounded-full font-bold text-white top-2 right-5">12</div></a>
+            <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home4') border-red-600 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-red-400 @endif"><img src="{{asset('svg/menu.png')}}" width="26" alt=""></a>
         </div>
     </div>
 </div>
