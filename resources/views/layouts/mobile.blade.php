@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="height: -webkit-fill-available;">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -23,7 +23,7 @@
     <script src="{{ asset('vendor/sweetalert2/sweetalert2.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased overflow-y-hidden" style="min-height: 100vh;min-height: -webkit-fill-available;">
+<body class="font-sans antialiased ">
 <div class="max-h-screen min-h-screen bg-gray-100 relative">
     <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50 text-2xl font-bold">{{ $title }}</div>
     
@@ -37,7 +37,7 @@
     {{--            @endif--}}
     
     <!-- Page Content -->
-    <main class="h-[calc(100vh-7rem-80px)] overflow-y-auto  z-0 ">
+    <main class="h-[calc(100vh-7rem)] overflow-y-auto  z-0 ">
         {{ $slot }}
     </main>
     <div class="w-full bg-white absolute bottom-0 h-14 flex justify-center  border-t z-10">
@@ -53,5 +53,14 @@
 @stack('modals')
 
 @livewireScripts
+
+<script>
+    const appHeight = () => {
+        const doc = document.documentElement
+        doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+    }
+    window.addEventListener('resize', appHeight)
+    appHeight()
+</script>
 </body>
 </html>
