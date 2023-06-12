@@ -1185,6 +1185,9 @@ select {
 .m-6 {
 	margin: 1.5rem;
 }
+.m-0 {
+	margin: 0px;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
@@ -1947,6 +1950,9 @@ select {
 .bg-cover {
 	background-size: cover;
 }
+.bg-clip-padding {
+	background-clip: padding-box;
+}
 .bg-center {
 	background-position: center;
 }
@@ -2057,6 +2063,10 @@ select {
 .py-0 {
 	padding-top: 0px;
 	padding-bottom: 0px;
+}
+.py-\[0\.32rem\] {
+	padding-top: 0.32rem;
+	padding-bottom: 0.32rem;
 }
 .pt-6 {
 	padding-top: 1.5rem;
@@ -2189,6 +2199,9 @@ select {
 }
 .font-light {
 	font-weight: 300;
+}
+.font-normal {
+	font-weight: 400;
 }
 .uppercase {
 	text-transform: uppercase;
