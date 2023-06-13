@@ -133,8 +133,13 @@
             <div class="grid grid-cols-2 gap-3 p-5">
                 @foreach($asunto->archivos as $archivo)
                     @if($archivo->extension == 'pdf')
-                        <a href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border">
+                        <a href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between">
                             <img src="{{asset('svg/pdf-file.png')}}" class="w-full">
+                            <div class="text-sm text-center">{{$archivo->name}}</div>
+                        </a>
+                    @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
+                        <a href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between">
+                            <img src="{{asset('storage/'.$archivo->path)}}" class="w-full">
                             <div class="text-sm text-center">{{$archivo->name}}</div>
                         </a>
                     @endif
