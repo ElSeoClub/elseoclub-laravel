@@ -3,12 +3,19 @@
 namespace App\Http\Livewire\Asuntos;
 
 use App\Models\Actuacion;
+use App\Models\Archivo;
 use Livewire\Component;
 use App\Models\Asunto as DbAsunto;
+use Livewire\WithFileUploads;
 
 class Asunto extends Component
 {
+    use WithFileUploads;
+
     public $asunto;
+
+    public $file;
+    public $fileName;
 
     public $view = 'info';
     public $actuacion;
@@ -51,6 +58,23 @@ class Asunto extends Component
         $this->actuacion->status = 1;
         $this->actuacion->comentarios_cierre = $this->comentariosCierre;
         $this->actuacion->save();
+    }
+
+    public function storeFile(){
+        $this->validate([
+            'file'     => 'required',
+            'fileName' => 'required'
+        ]);
+        if ($this->file) {
+            $file = $this->file->store('archivo', ['disk' => 'public']);
+        }
+        $ext = explode('.', $file);
+        $this->asunto->archivos()->create([
+            'name' => $this->fileName,
+            'extension' => end($ext),
+            'path' => $file,
+        ]);
+
     }
 
     public function render()

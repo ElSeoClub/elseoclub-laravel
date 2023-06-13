@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo extends Model
+class AsuntoMeta extends Model
 {
     use HasFactory;
 
-    public function metas(){
-        return $this->hasMany(TipoMeta::class);
-    }
+    protected $fillable = ['meta_key', 'meta_value'];
 }

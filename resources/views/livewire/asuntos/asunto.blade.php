@@ -124,17 +124,21 @@
             </x-card>
         @elseif($view == 'archivos')
             <div class="bg-white p-6">
-              
-                <input
-                        class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                        type="file"
-                        id="formFile" />
+                <input type="text" wire:model.defer="fileName">
+                <x-jet-input-error for="fileName"></x-jet-input-error>
+                    <input class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+                           type="file" wire:model="file" />
+                <x-button click="storeFile()">Go</x-button>
             </div>
             <div class="grid grid-cols-2 gap-3 p-5">
-                <img src="https://picsum.photos/200/300" class="w-full">
-                <img src="https://picsum.photos/200/300" class="w-full">
-                <img src="https://picsum.photos/200/300" class="w-full">
-                <img src="https://picsum.photos/200/300" class="w-full">
+                @foreach($asunto->archivos as $archivo)
+                    @if($archivo->extension == 'pdf')
+                        <a href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border">
+                            <img src="{{asset('svg/pdf-file.png')}}" class="w-full">
+                            <div class="text-sm text-center">{{$archivo->name}}</div>
+                        </a>
+                    @endif
+                @endforeach
             </div>
             
         @elseif($view == 'dinero')

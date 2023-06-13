@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo extends Model
+class TipoMeta extends Model
 {
     use HasFactory;
 
-    public function metas(){
-        return $this->hasMany(TipoMeta::class);
+    public function tipo(){
+        return $this->belongsTo(Tipo::class);
     }
 }

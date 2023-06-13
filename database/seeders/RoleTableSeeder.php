@@ -20,6 +20,16 @@ class RoleTableSeeder extends Seeder
         $role->save();
 
         $role = new Role();
+        $role->name = 'adminjuridico';
+        $role->description = 'Administrador juridico.';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'abogado';
+        $role->description = 'Administrador juridico.';
+        $role->save();
+
+        $role = new Role();
         $role->name = 'visitor';
         $role->description = 'Perfil de visitante sin permisos de ningún tipo.';
         $role->save();
