@@ -74,17 +74,12 @@ class Asunto extends Component
             $this->filePath = $this->file->store('archivo', ['disk' => 'public']);
         }
         $ext = explode('.', $this->filePath);
-        $ext = end($this->fileExtension);
+        $ext = end($ext);
         $this->asunto->archivos()->create([
-            'name' => $this->fileName,
-            'extension' => $this->fileExtension,
-            'path' => $this->filePath,
-        ]);
-        dd([
             'name' => $this->fileName,
             'extension' => $ext,
             'path' => $this->filePath,
-        ]);
+        ]);|
     }
 
     public function render()
