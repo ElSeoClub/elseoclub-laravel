@@ -4,13 +4,13 @@
         <div class="bg-white shadow rounded w-full p-3">
             <div class="text-sm font-bold">{{auth()->user()->name}}</div>
             <div class="flex gap-2 items-center">
-                <textarea wire:model.defer="comentarios" class="w-full"></textarea>
+                <textarea wire:model.defer="comentarios" class="w-full" wire:keydown.enter="add()" wire:loading.remove></textarea>
+                <textarea wire:model.defer="comentarios" class="w-full" wire:loading></textarea>
                 <div wire:click="add()" class="cursor-pointer hover:text-blue-600 " wire:loading.remove><i class="fas fa-paper-plane"></i></div>
                 <div  class="cursor-pointer hover:text-blue-600 cursor-not-allowed" wire:loading><i class="fas fa-paper-plane"></i></div>
             </div>
         </div>
     </div>
-    
     @foreach($pinmensajes as $mensaje)
         <div x-data="{ open: false }">
             <div class="flex gap-3 items-center p-3">
@@ -43,7 +43,8 @@
                 <div class="bg-white shadow rounded w-full p-3">
                     <div class="text-sm font-bold">{{auth()->user()->name}}</div>
                     <div class="flex gap-2 items-center">
-                        <textarea wire:model.defer="comentarios" class="w-full"></textarea>
+                        <textarea wire:model.defer="comentarios" class="w-full" wire:keydown.enter="add({{$mensaje->id}})" wire:loading.remove @keydown.enter="open = false">x</textarea>
+                        <textarea wire:model.defer="comentarios" class="w-full" wire:loading></textarea>
                         <div wire:click="add({{$mensaje->id}})" class="cursor-pointer hover:text-blue-600 " wire:loading.remove  x-on:click="open = false"><i class="fas fa-paper-plane"></i></div>
                         <div class="cursor-pointer hover:text-blue-600 cursor-not-allowed" wire:loading><i class="fas fa-paper-plane"></i></div>
                     </div>
@@ -105,7 +106,8 @@
                 <div class="bg-white shadow rounded w-full p-3">
                     <div class="text-sm font-bold">{{auth()->user()->name}}</div>
                     <div class="flex gap-2 items-center">
-                        <textarea wire:model.defer="comentarios" class="w-full"></textarea>
+                        <textarea wire:model.defer="comentarios" class="w-full" wire:keydown.enter="add({{$mensaje->id}})" wire:loading.remove @keydown.enter="open = false">x</textarea>
+                        <textarea wire:model.defer="comentarios" class="w-full" wire:loading></textarea>
                         <div wire:click="add({{$mensaje->id}})" class="cursor-pointer hover:text-blue-600 " wire:loading.remove  x-on:click="open = false"><i class="fas fa-paper-plane"></i></div>
                         <div class="cursor-pointer hover:text-blue-600 cursor-not-allowed" wire:loading><i class="fas fa-paper-plane"></i></div>
                     </div>
