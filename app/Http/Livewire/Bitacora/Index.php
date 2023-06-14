@@ -38,10 +38,12 @@ class Index extends Component
     public function pin(Bitacora $bitacora){
         $bitacora->pin = 1;
         $bitacora->save();
+        $this->comentarios = null;
     }
     public function unpin(Bitacora $bitacora){
         $bitacora->pin = 0;
         $bitacora->save();
+        $this->comentarios = null;
     }
 
     public function render()
