@@ -39,7 +39,7 @@
                     <div class="text-sm font-bold">{{auth()->user()->name}}</div>
                     <div class="flex gap-2 items-center">
                         <textarea wire:model.defer="comentarios" class="w-full"></textarea>
-                        <div wire:click="add({{$mensaje->id}})" class="cursor-pointer hover:text-blue-600 " wire:loading.remove><i class="fas fa-paper-plane"></i></div>
+                        <div wire:click="add({{$mensaje->id}})" class="cursor-pointer hover:text-blue-600 " wire:loading.remove  x-on:click="open = false"><i class="fas fa-paper-plane"></i></div>
                         <div class="cursor-pointer hover:text-blue-600 cursor-not-allowed" wire:loading><i class="fas fa-paper-plane"></i></div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                                 <div class="font-bold text-sm"> {{$child->created_at->format('g:i A')}}</div>
                             </div>
                             <div class="flex gap-3 justify-between">
-                                <div class="flex-grow">{{$mensaje->comentarios}}</div>
+                                <div class="flex-grow">{{$child->comentarios}}</div>
                             </div>
                         </div>
                     </div>
