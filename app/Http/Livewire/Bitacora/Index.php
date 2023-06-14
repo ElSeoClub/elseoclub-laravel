@@ -35,9 +35,19 @@ class Index extends Component
         $this->comentarios = null;
     }
 
+    public function pin(Bitacora $bitacora){
+        $bitacora->pin = 1;
+        $bitacora->save();
+    }
+    public function unpin(Bitacora $bitacora){
+        $bitacora->pin = 0;
+        $bitacora->save();
+    }
+
     public function render()
     {
-        $mensajes = Bitacora::where('user_id',Auth::user()->id)->whereNull('bitacora_id')->orderBy('created_at','desc')->with('childs')->get();
-        return view('livewire.bitacora.index',compact('mensajes'));
+        $pinmensajes = Bitacora::where('user_id',Auth::user()->id)->whereNull('bitacora_id')->where('pin',1)->orderBy('created_at','desc')->with('childs')->get();
+        $mensajes = Bitacora::where('user_id',Auth::user()->id)->whereNull('bitacora_id')->where('pin',0)->orderBy('created_at','desc')->with('childs')->get();
+        return view('livewire.bitacora.index',compact('mensajes','pinmensajes'));
     }
 }
