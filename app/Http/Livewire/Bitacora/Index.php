@@ -15,16 +15,29 @@ class Index extends Component
         'comentarios' => 'required'
     ];
 
-    public function add(){
-        $bitacora = Bitacora::create([
-            'user_id' => Auth::user()->id,
-            'comentarios' => $this->comentarios
+    public function add($parent = null){
+        $this->validate([
+            'comentarios' => 'required'
         ]);
+        if($parent){
+            $bitacora = Bitacora::create([
+                'user_id' => Auth::user()->id,
+                'bitacora_id' => $parent,
+                'comentarios' => $this->comentarios
+
+            ]);
+        }else{
+            $bitacora = Bitacora::create([
+                'user_id' => Auth::user()->id,
+                'comentarios' => $this->comentarios
+            ]);
+        }
+        $this->comentarios = null;
     }
 
     public function render()
     {
-        $mensajes = Bitacora::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+        $mensajes = Bitacora::where('user_id',Auth::user()->id)->whereNull('bitacora_id')->orderBy('created_at','desc')->with('childs')->get();
         return view('livewire.bitacora.index',compact('mensajes'));
     }
 }

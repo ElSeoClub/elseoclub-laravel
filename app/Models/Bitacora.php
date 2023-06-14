@@ -9,9 +9,13 @@ class Bitacora extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'comentarios', 'pin'];
+    protected $fillable = ['user_id', 'bitacora_id', 'comentarios', 'pin'];
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function childs(){
+        return $this->hasMany(Bitacora::class);
     }
 }

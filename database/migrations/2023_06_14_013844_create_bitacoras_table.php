@@ -16,10 +16,12 @@ class CreateBitacorasTable extends Migration
         Schema::create('bitacoras', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('bitacora_id')->nullable();
             $table->text('comentarios');
             $table->integer('pin')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('bitacora_id')->references('id')->on('bitacoras');
         });
     }
 
