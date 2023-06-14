@@ -22,6 +22,7 @@ class Asunto extends Component
     public $actuationDate;
     public $actuationComment;
     public $comentariosCierre;
+    public $filePath;
 
     protected $rules = [
         'actuationDate'    => '',
@@ -70,19 +71,27 @@ class Asunto extends Component
             'fileName' => 'required'
         ]);
         if ($this->file) {
-            $file = $this->file->store('archivo', ['disk' => 'public']);
+            $this->filePath = $this->file->store('archivo', ['disk' => 'public']);
         }
-        $ext = explode('.', $file);
+        $ext = explode('.', $this->filePath);
+        $ext = end($this->fileExtension);
         $this->asunto->archivos()->create([
             'name' => $this->fileName,
-            'extension' => end($ext),
-            'path' => $file,
+            'extension' => $this->fileExtension,
+            'path' => $this->filePath,
         ]);
-
+        dd([
+            'name' => $this->fileName,
+            'extension' => $ext,
+            'path' => $this->filePath,
+        ]);
     }
 
     public function render()
     {
+        if(isset($this->file)){
+            $this->fileName = str_replace('.'.$this->file->getClientOriginalExtension(),'',$this->file->getClientOriginalName());
+        }
         return view('livewire.asuntos.asunto');
     }
 }
