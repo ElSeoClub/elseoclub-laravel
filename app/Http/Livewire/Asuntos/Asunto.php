@@ -79,7 +79,7 @@ class Asunto extends Component
             'name' => $this->fileName,
             'extension' => $ext,
             'path' => $this->filePath,
-        ]);|
+        ]);
     }
 
     public function render()
