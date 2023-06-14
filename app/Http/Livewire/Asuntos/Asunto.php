@@ -38,6 +38,10 @@ class Asunto extends Component
     }
 
     public function agregarActuacion(){
+        $this->validate([
+            'actuationComment' => 'required',
+            'actuationDate' => 'required'
+        ]);
         $this->asunto->actuaciones()->create([
             'comentarios_apertura' => $this->actuationComment,
             'fecha' => $this->actuationDate,
