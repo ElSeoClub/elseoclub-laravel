@@ -9,5 +9,5 @@ class Archivo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['path','name','extension'];
+    protected $fillable = ['path','name','extension','user_id','actuacion_id','asunto_id'];
 }

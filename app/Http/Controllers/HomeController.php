@@ -18,4 +18,7 @@ class HomeController extends Controller
     public function calendar(){
         return view('home.calendar');
     }
+    public function bitacora(){
+        return view('home.bitacora');
+    }
 }

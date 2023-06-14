@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/asuntos/crear', [AsuntosController::class, 'crear'])->name('asuntos.crear');
     Route::get('/asuntos/{asunto}', [AsuntosController::class, 'asunto'])->name('asuntos.asunto');
     Route::get('/calendario', [HomeController::class, 'calendar'])->name('home.calendar');
+    Route::get('/bitacora', [HomeController::class, 'bitacora'])->name('home.bitacora');
     Route::middleware(['changepassword'])->group(function () {
         Route::middleware(['permission:Administrator'])->group(function () {
             Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');

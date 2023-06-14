@@ -92,11 +92,12 @@
         @elseif($view == 'actuaciones')
             <x-button click="view('agregar_actuacion')">Agregar actuación</x-button>
             <div class="flex flex-col divide-y bg-white border rounded shadow">
-                @foreach($asunto->fresh()->actuaciones as $actuacion)
+                @foreach($asunto->fresh()->actuaciones()->orderBy('fecha','desc')->get() as $actuacion)
                     <div class="flex gap-3 p-4" wire:click="editarActuacion({{$actuacion->id}})">
                         <div class="text-xs flex items-center @if($actuacion->status == 0) text-gray-300 @else text-green-600 @endif"><i class="fas fa-circle"></i></div>
                         <div>{{$actuacion->fecha}}</div>
                         <div class="truncate flex-grow">{{$actuacion->comentarios_apertura}}</div>
+                        <div>@if($actuacion->files()->count() > 0)<i class="fas fa-paperclip text-gray-700"></i>@endif</div>
                     </div>
                 @endforeach
             </div>
@@ -112,8 +113,14 @@
             </x-card>
         @elseif($view == 'editarActuacion')
             <x-card title="Actuación">
-                <span class="font-bold">Comentarios de apertura</span>
-                <textarea disabled class="bg-gray-200 w-full">{{$actuacion->comentarios_apertura}}</textarea>
+                <div class="flex gap-3 items-center">
+                    <img src="{{asset('storage/'.$actuacion->usuario_apertura->profile_photo_path)}}" class="w-8 h-8 rounded-full">
+                    <div class="bg-gray-100 shadow rounded w-full p-3">
+                        <div class="text-sm font-bold">{{$actuacion->usuario_apertura->name}}</div>
+                        <div>{{$actuacion->comentarios_apertura}}</div>
+                    </div>
+                </div>
+                
                 <span class="font-bold">Comentarios de cierre</span>
                 @if($actuacion->status == 1)
                     <textarea  class="bg-gray-200 w-full" disabled>{{$actuacion->comentarios_cierre}}</textarea>
@@ -124,10 +131,58 @@
                     </x-slot>
                 @endif
             </x-card>
+        
+            <div class="bg-white p-6">
+                <div
+                        x-data="{ isUploading: false, progress: 0 }"
+                        x-on:livewire-upload-start="isUploading = true"
+                        x-on:livewire-upload-finish="isUploading = false"
+                        x-on:livewire-upload-error="isUploading = false"
+                        x-on:livewire-upload-progress="progress = $event.detail.progress"
+                >
+                    <!-- File Input -->
+                    <input class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+                           type="file" wire:model="fileActuacion" enctype="multipart/form-data" />
+                
+                    <!-- Progress Bar -->
+                    <div x-show="isUploading">
+                        <progress max="100" x-bind:value="progress" class="w-full"></progress>
+                    </div>
+                </div>
+                @if(isset($fileActuacion))
+                    @if(in_array($fileActuacion->getClientOriginalExtension(),[   'png', 'gif', 'bmp', 'svg', 'wav', 'mp4',
+                        'mov', 'avi', 'wmv', 'mp3', 'm4a',
+                        'jpg', 'jpeg', 'mpga', 'webp', 'wma',
+                    ]))
+                        <img src="{{$fileActuacion->temporaryUrl() }}" width='200px;'>
+                    @endif
+                    <input type="text" wire:model.defer="fileNameActuacion">
+                    <x-button click="storeFileActuacion()">Guardar</x-button>
+                    <x-jet-input-error for="fileNameActuacion"></x-jet-input-error>
+                @endif
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 p-5">
+                @foreach($asunto->fresh()->archivos()->where('actuacion_id',$actuacion->id)->orderBy('created_at','desc')->get() as $archivo)
+                    @if($archivo->extension == 'pdf')
+                        <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
+                            <img src="{{asset('svg/pdf-file.png')}}" class="w-full max-h-[250px]">
+                            <div class="text-sm text-center">{{$archivo->name}}</div>
+                        </a>
+                    @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
+                        <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
+                            <div class="flex-grow items-center flex"><img src="{{asset('storage/'.$archivo->path)}}" class="w-full max-h-[250px]"></div>
+                            <div class="text-sm text-center">{{$archivo->name}}</div>
+                        </a>
+                    @else
+                        <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
+                            <div class="flex-grow items-center flex"><img src="{{asset('svg/documents.png')}}" class="w-full max-h-[250px]"></div>
+                            <div class="text-sm text-center">{{$archivo->name}}</div>
+                        </a>
+                    @endif
+                @endforeach
+            </div>
         @elseif($view == 'archivos')
             <div class="bg-white p-6">
-                
-    
                 <div
                         x-data="{ isUploading: false, progress: 0 }"
                         x-on:livewire-upload-start="isUploading = true"
@@ -157,7 +212,7 @@
                 @endif
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 p-5">
-                @foreach($asunto->archivos as $archivo)
+                @foreach($asunto->fresh()->archivos()->orderBy('created_at','desc')->get() as $archivo)
                     @if($archivo->extension == 'pdf')
                         <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
                             <img src="{{asset('svg/pdf-file.png')}}" class="w-full max-h-[250px]">

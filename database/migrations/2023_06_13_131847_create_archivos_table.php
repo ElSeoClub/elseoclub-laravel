@@ -10,12 +10,14 @@ class CreateArchivosTable extends Migration
     {
         Schema::create('archivos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('asunto_id');
             $table->unsignedBigInteger('actuacion_id')->nullable();
             $table->string('name');
             $table->string('path');
             $table->string('extension');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('asunto_id')->references('id')->on('asuntos');
             $table->foreign('actuacion_id')->references('id')->on('actuacions');
         });
