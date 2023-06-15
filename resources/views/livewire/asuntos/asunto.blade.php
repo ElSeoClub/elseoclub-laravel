@@ -32,23 +32,13 @@
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>No. de expediente de la autoridad:</p>
-                            <x-input-text></x-input-text>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>No. de expediente interno:</p>
-                            <x-input-text></x-input-text>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>No. de expediente auxiliar:</p>
-                            <x-input-text></x-input-text>
+                            <x-input-text value="{{$asunto->expediente}}" disabled class="cursor-not-allowed bg-gray-100"></x-input-text>
                         </div>
                     </x-box>
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Promueve:</p>
-                            <x-select>
-                                <option value="">CFE</option>
-                            </x-select>
+                            <x-input-text value="{{$asunto->metas()->where('meta_key','actor')->first()->meta_value}}" disabled class="cursor-not-allowed bg-gray-100   "></x-input-text>
                         </div>
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Fecha de presentación del asunto:</p>
@@ -58,8 +48,8 @@
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Abogado a cargo:</p>
-                            <x-select>
-                                <option value="">Lucio Vargas Galvan</option>
+                            <x-select disabled class="cursor-not-allowed bg-gray-100">
+                                <option value="">{{$asunto->user->name ?? 'Sin abogado designado'}}</option>
                             </x-select>
                         </div>
                     </x-box>
