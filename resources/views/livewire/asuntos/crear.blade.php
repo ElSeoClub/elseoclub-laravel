@@ -48,6 +48,7 @@
                 <div>
                     <p class="text-xs text-slate-700 font-bold"><x-required/>Abogado a cargo:</p>
                     <x-select wire:model.defer="asunto.user_id">
+                        <option value="0">Elige un abogado</option>
                         @foreach($abogados as $abogado)
                             <option value="{{$abogado->id}}">{{$abogado->name}}</option>
                         @endforeach

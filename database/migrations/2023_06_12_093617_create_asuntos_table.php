@@ -13,6 +13,7 @@ class CreateAsuntosTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('tipo_id')->nullable();
             $table->string('expediente');
+            $table->string('status')->default('abierto');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('tipo_id')->references('id')->on('tipos');

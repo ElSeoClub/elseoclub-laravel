@@ -24,7 +24,7 @@
 </head>
 
 <body class="font-sans antialiased ">
-<div class="max-h-screen min-h-screen bg-gray-100 relative">
+<div class="min-h-screen bg-gray-100 relative">
         <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50 text-2xl font-bold">{{ $title }}</div>
         <div class="w-full bg-white  h-14 flex justify-center  border-t z-10">
             <div class="w-full flex items-center justify-between max-w-[480px] mx-auto">
