@@ -38,7 +38,7 @@
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Promueve:</p>
-                            <x-input-text value="{{$asunto->metas()->where('meta_key','actor')->first()->meta_value}}" disabled class="cursor-not-allowed bg-gray-100   "></x-input-text>
+                            <x-input-text value="{{$asunto->metas()->where('meta_key','actor')->first()->meta_value ?? ''}}" disabled class="cursor-not-allowed bg-gray-100   "></x-input-text>
                         </div>
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Fecha de presentación del asunto:</p>
@@ -83,20 +83,39 @@
             <x-button click="view('agregar_actuacion')">Agregar actuación</x-button>
             <div class="flex flex-col divide-y bg-white border rounded shadow">
                 @foreach($asunto->fresh()->actuaciones()->orderBy('fecha','desc')->get() as $actuacion)
-                    <div class="flex gap-3 p-4" wire:click="editarActuacion({{$actuacion->id}})">
+                    <div class="flex gap-3 p-4 items-center" wire:click="editarActuacion({{$actuacion->id}})">
                         <div class="text-xs flex items-center @if($actuacion->status == 0) text-gray-300 @else text-green-600 @endif"><i class="fas fa-circle"></i></div>
-                        <div>{{$actuacion->fecha}}</div>
-                        <div class="truncate flex-grow">{{$actuacion->comentarios_apertura}}</div>
+                       
+                        <div class="flex flex-col gap-2">
+                            <div>Fecha: {{$actuacion->fecha}}</div>
+                            <div class="truncate flex-grow">Comentarios: <span class="font-bold">{{$actuacion->comentarios_apertura}}</span></div>
+                            <div class="">Estado procesal: <span class="p-1 rounded shadow bg-gray-200 text-xs truncate">{{$actuacion->estado->name ?? 'Indefinido'}}</span></div>
+                        </div>
                         <div>@if($actuacion->files()->count() > 0)<i class="fas fa-paperclip text-gray-700"></i>@endif</div>
                     </div>
                 @endforeach
             </div>
         @elseif($view == 'agregar_actuacion')
             <x-card title="Nueva actuación">
-                <textarea wire:model="actuationComment" placeholder="Comentarios de la actuación" class="w-full"></textarea>
-                <x-jet-input-error for="actuationComment"></x-jet-input-error>
-                <input type="datetime-local" wire:model.defer="actuationDate">
-                <x-jet-input-error for="actuationDate"></x-jet-input-error>
+                <div class="flex flex-col gap-3">
+                    <div>
+                        <textarea wire:model="actuationComment" placeholder="Comentarios de la actuación" class="w-full"></textarea>
+                        <x-jet-input-error for="actuationComment"></x-jet-input-error>
+                    </div>
+                    <div>
+                        <select wire:model.defer="actuacionEstado">
+                            <option value="0">Elige un estado procesal</option>
+                            @foreach($estados as $estado)
+                                <option value="{{$estado->id}}">{{$estado->name}}</option>
+                            @endforeach
+                        </select>
+                        <x-jet-input-error for="actuacionEstado"></x-jet-input-error>
+                    </div>
+                    <div>
+                        <input type="datetime-local" wire:model.defer="actuationDate">
+                        <x-jet-input-error for="actuationDate"></x-jet-input-error>
+                    </div>
+                </div>
                 <x-slot name="footer">
                     <x-button click="agregarActuacion()">Agregar actuación</x-button>
                 </x-slot>

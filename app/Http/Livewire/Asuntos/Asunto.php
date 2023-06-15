@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Asuntos;
 
 use App\Models\Actuacion;
 use App\Models\Archivo;
+use App\Models\Estado;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Asunto as DbAsunto;
@@ -14,6 +15,7 @@ class Asunto extends Component
     use WithFileUploads;
 
     public $asunto;
+    public $estados;
 
     public $file;
     public $fileName;
@@ -27,6 +29,8 @@ class Asunto extends Component
     public $actuationComment;
     public $comentariosCierre;
 
+    public $actuacionEstado;
+
     protected $rules = [
         'actuationDate'    => '',
         'actuationComment' => '',
@@ -35,6 +39,7 @@ class Asunto extends Component
 
     public function mount(DbAsunto $asunto){
         $this->asunto = $asunto;
+        $this->estados = Estado::all();
     }
 
     public function view($view){
@@ -44,9 +49,11 @@ class Asunto extends Component
     public function agregarActuacion(){
         $this->validate([
             'actuationComment' => 'required',
-            'actuationDate' => 'required'
+            'actuationDate' => 'required',
+            'actuacionEstado' => 'required|min:1'
         ]);
         $this->asunto->actuaciones()->create([
+            'estado_id' => $this->actuacionEstado,
             'usuario_apertura_id' => Auth::user()->id,
             'comentarios_apertura' => $this->actuationComment,
             'fecha' => $this->actuationDate,
@@ -54,6 +61,7 @@ class Asunto extends Component
         ]);
         $this->actuationComment = '';
         $this->actuationDate = null;
+        $this->actuacionEstado = 0;
         $this->view = 'actuaciones';
         $this->asunto->fresh();
     }

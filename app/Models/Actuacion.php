@@ -9,7 +9,7 @@ class Actuacion extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['comentarios_apertura', 'fecha','status','usuario_apertura_id','usuario_cierre_id'];
+    protected $fillable = ['comentarios_apertura', 'fecha','status','usuario_apertura_id','usuario_cierre_id','estado_id'];
 
     public function asunto(){
         return $this->belongsTo(Asunto::class);
@@ -21,5 +21,9 @@ class Actuacion extends Model
 
     public function files(){
         return $this->hasMany(Archivo::class);
+    }
+
+    public function estado(){
+        return $this->belongsTo(Estado::class);
     }
 }
