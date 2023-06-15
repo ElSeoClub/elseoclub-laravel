@@ -1991,6 +1991,10 @@ select {
 .bg-current {
 	background-color: currentColor;
 }
+.bg-blue-200 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+}
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
 }

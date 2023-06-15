@@ -13,9 +13,14 @@ class Index extends Component
 
     public $search = '';
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $asuntos = Asunto::where('user_id',Auth::user()->id)->where('status','abierto')->where('expediente','like','%'.$this->search.'%')->paginate(10);
+        $asuntos = Asunto::where('status','abierto')->where('expediente','like','%'.$this->search.'%')->paginate(10);
         return view('livewire.asuntos.index', compact('asuntos'));
     }
 }

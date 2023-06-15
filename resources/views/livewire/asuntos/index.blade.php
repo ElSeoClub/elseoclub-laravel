@@ -3,7 +3,8 @@
     <ul class="shadow rounded divide-y bg-white">
         @foreach($asuntos as $asunto)
             <a href="{{route('asuntos.asunto',['asunto' => $asunto])}}" class="p-5 hover:bg-gray-50 flex w-full gap-3 hover:bg-gray-50 cursor-pointer">
-                <div class="flex-grow truncate">{{$asunto->expediente}}</div>
+                <div class="rounded shadow truncate text-xs font-bold bg-gray-200 p-1">{{$asunto->expediente}}</div>
+                <div class="flex-grow"></div>
             </a>
         @endforeach
     </ul>
