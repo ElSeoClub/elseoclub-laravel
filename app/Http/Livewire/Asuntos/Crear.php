@@ -26,7 +26,7 @@ class Crear extends Component
         'asunto.tipo_id'    => 'required|numeric|min:1',
         'asunto.user_id'    => 'required|numeric|min:1',
         'metas.prioridad.meta_value' => 'required',
-        'metas.fecha_presentacion.meta_value' => 'required',
+        'metas.fecha_presentacion.meta_value' => '',
         'metas.accion_ejercida.meta_value' => 'required',
         'metas.demandado.meta_value' => 'required',
     ];
