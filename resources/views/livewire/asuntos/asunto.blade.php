@@ -4,7 +4,7 @@
             <div wire:click="view('info')" class="w-[20%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400 @if($view == 'info')  border-red-400 @endif"><img src="{{asset('svg/info.png')}}" width="26" alt=""></div>
             <div wire:click="view('archivos')" class="w-[20%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400 @if($view == 'archivos')  border-red-400 @endif"><img src="{{asset('svg/files.png')}}" width="26" alt=""></div>
             <div wire:click="view('dinero')" class="w-[20%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400 @if($view == 'dinero')  border-red-400 @endif"><img src="{{asset('svg/money-bag.png')}}" width="26" alt=""></div>
-            <div wire:click="view('actuaciones')" class="w-[20%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400 @if($view == 'actuaciones')  border-red-400 @endif"><img src="{{asset('svg/wall-clock.png')}}" width="26" alt=""></div>
+            <div wire:click="view('actuaciones')" class="w-[20%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400 relative @if($view == 'actuaciones')  border-red-400 @endif"><img src="{{asset('svg/wall-clock.png')}}" width="26" alt=""> <div class="px-1 bg-red-600 absolute text-xs rounded-full font-bold text-white top-2 right-4">{{$asunto->fresh()->actuaciones()->where('status',0)->count()}}</div></div>
             <div wire:click="view('configuracion')" class="w-[20%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400 @if($view == 'configuracion')  border-red-400 @endif"><img src="{{asset('svg/cog.png')}}" width="26" alt=""></div>
         </div>
     </div>
@@ -15,34 +15,15 @@
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Prioridad:</p>
-                            <x-select>
-                                <option value="">Alta</option>
-                                <option value="">Media</option>
-                                <option value="">Baja</option>
-                            </x-select>
+                            <x-input-text value="{{$asunto->metas()->where('meta_key','prioridad')->first()->meta_value ?? 'Media'}}" disabled class="cursor-not-allowed bg-gray-100"></x-input-text>
                         </div>
                         <div></div>
-                        <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>Estado procesal del asunto:</p>
-                            <x-select>
-                                <option value="">Ofrecimiento de pruebas</option>
-                            </x-select>
-                        </div>
+                        <div></div>
                     </x-box>
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>No. de expediente de la autoridad:</p>
                             <x-input-text value="{{$asunto->expediente}}" disabled class="cursor-not-allowed bg-gray-100"></x-input-text>
-                        </div>
-                    </x-box>
-                    <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
-                        <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>Promueve:</p>
-                            <x-input-text value="{{$asunto->metas()->where('meta_key','actor')->first()->meta_value ?? ''}}" disabled class="cursor-not-allowed bg-gray-100   "></x-input-text>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>Fecha de presentación del asunto:</p>
-                            <x-input-date></x-input-date>
                         </div>
                     </x-box>
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
@@ -59,8 +40,12 @@
                             <x-input-text value="{{$asunto->metas()->where('meta_key','accion_ejercida')->first()->meta_value ?? ''}}" disabled class="cursor-not-allowed bg-gray-100   "></x-input-text>
                         </div>
                         <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>Promovido:</p>
-                            <x-input-text></x-input-text>
+                            <p class="text-xs text-slate-700 font-bold"><x-required/>Promueve:</p>
+                            <x-input-text value="{{$asunto->metas()->where('meta_key','actor')->first()->meta_value ?? ''}}" disabled class="cursor-not-allowed bg-gray-100   "></x-input-text>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-700 font-bold"><x-required/>Fecha de presentación del asunto:</p>
+                            <x-input-date></x-input-date>
                         </div>
                     </x-box>
                 </x-container>
