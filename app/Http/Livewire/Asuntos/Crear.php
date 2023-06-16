@@ -41,7 +41,7 @@ class Crear extends Component
             ],
             'fecha_presentacion' => [
                 'meta_key' => 'fecha_presentacion',
-                'meta_value' => null
+                'meta_value' => 1
             ],
             'accion_ejercida' => [
                 'meta_key' => 'accion_ejercida',
