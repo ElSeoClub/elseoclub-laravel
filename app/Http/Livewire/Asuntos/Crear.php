@@ -25,8 +25,10 @@ class Crear extends Component
         'asunto.expediente' => 'required',
         'asunto.tipo_id'    => 'required|numeric|min:1',
         'asunto.user_id'    => 'required|numeric|min:1',
-        'metas.prioridad.meta_value' => '',
-        'metas.estado_procesal.meta_value' => ''
+        'metas.prioridad.meta_value' => 'required',
+        'metas.fecha_presentacion.meta_value' => 'required',
+        'metas.accion_ejercida.meta_value' => 'required',
+        'metas.demandado.meta_value' => 'required',
     ];
 
     public function mount(){
@@ -37,8 +39,16 @@ class Crear extends Component
                 'meta_key' => 'prioridad',
                 'meta_value' => null
             ],
-            'estado_procesal' => [
-                'meta_key' => 'estado_procesal',
+            'fecha_presentacion' => [
+                'meta_key' => 'fecha_presentacion',
+                'meta_value' => null
+            ],
+            'accion_ejercida' => [
+                'meta_key' => 'accion_ejercida',
+                'meta_value' => null
+            ],
+            'demandado' => [
+                'meta_key' => 'demandado',
                 'meta_value' => null
             ]
         ];
@@ -52,8 +62,6 @@ class Crear extends Component
             $asunto->metas()->create($meta);
         }
         $this->redirectRoute('asuntos.asunto',compact('asunto'));
-
-
     }
 
     public function render()

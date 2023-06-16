@@ -55,22 +55,8 @@
                     </x-box>
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>Ubicación geográfica de la problemática (Entidad):</p>
-                            <x-select>
-                                <option value="">CIUDAD DE MÉXICO</option>
-                            </x-select>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>Municipio:</p>
-                            <x-select>
-                                <option value="">MIGUEL HIDALGO</option>
-                            </x-select>
-                        </div>
-                    </x-box>
-                    <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
-                        <div>
-                            <p class="text-xs text-slate-700 font-bold"><x-required/>Promovente:</p>
-                            <x-input-text></x-input-text>
+                            <p class="text-xs text-slate-700 font-bold"><x-required/>Acción ejercida:</p>
+                            <x-input-text value="{{$asunto->metas()->where('meta_key','accion_ejercida')->first()->meta_value ?? ''}}" disabled class="cursor-not-allowed bg-gray-100   "></x-input-text>
                         </div>
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Promovido:</p>

@@ -14,7 +14,7 @@ class Index extends Component
     public function render()
     {
 
-        $actuaciones = Actuacion::orderBy('fecha','asc')->get();
+        $actuaciones = Actuacion::whereDate('fecha', '=', date('Y-m-d'))->orderBy('fecha','asc')->get();
         return view('livewire.calendar.index', compact('actuaciones'));
     }
 }
