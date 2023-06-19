@@ -20,7 +20,7 @@ class Index extends Component
 
     public function render()
     {
-        $asuntos = Asunto::where('status','abierto')->where('expediente','like','%'.$this->search.'%')->paginate(10);
+        $asuntos = Asunto::where('expediente','like','%'.$this->search.'%')->paginate(10);
         return view('livewire.asuntos.index', compact('asuntos'));
     }
 }
