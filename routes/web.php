@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AsuntosController;
+use App\Http\Controllers\ReportesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/asuntos/{asunto}', [AsuntosController::class, 'asunto'])->name('asuntos.asunto');
     Route::get('/calendario', [HomeController::class, 'calendar'])->name('home.calendar');
     Route::get('/bitacora', [HomeController::class, 'bitacora'])->name('home.bitacora');
+    Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');;
+    Route::get('/proxima-semana', [ReportesController::class, 'proximaSemana'])->name('reportes.proxima_semana');
     Route::middleware(['changepassword'])->group(function () {
         Route::middleware(['permission:Administrator'])->group(function () {
             Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
