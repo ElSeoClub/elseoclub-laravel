@@ -17,9 +17,9 @@
             <td>{{$actuacion->fecha}}</td>
             <td>{{$actuacion->asunto->metas()->where('meta_key','actor')->first()->meta_value ?? ''}}</td>
             <td>{{$actuacion->asunto->metas()->where('meta_key','accion_ejercida')->first()->meta_value ?? ''}}</td>
-            <td>{{$actuacion->asunto->user->name ?? ''}}</td>
             <td>{{$actuacion->estado->name ?? 'Indefinido.'}}</td>
             <td>{{$actuacion->comentarios_apertura ?? ''}}</td>
+            <td>{{$actuacion->asunto->user->name ?? ''}}</td>
         </tr>
     @endforeach
     </tbody>
