@@ -29,12 +29,17 @@ class Crear extends Component
         'metas.fecha_presentacion.meta_value' => '',
         'metas.accion_ejercida.meta_value' => 'required',
         'metas.demandado.meta_value' => 'required',
+        'metas.actor.meta_value' => 'required',
     ];
 
     public function mount(){
         $this->tipos = Tipo::all();
         $this->abogados = User::all();
         $this->metas = [
+            'actor' => [
+                'meta_key' => 'actor',
+                'meta_value' => null
+            ],
             'prioridad' => [
                 'meta_key' => 'prioridad',
                 'meta_value' => null
