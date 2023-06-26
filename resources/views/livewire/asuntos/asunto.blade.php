@@ -15,7 +15,7 @@
                     <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Prioridad:</p>
-                            <x-input-text value="{{$asunto->metas()->where('meta_key','prioridad')->first()->meta_value and $asunto->metas()->where('meta_key','prioridad')->first()->meta_value == 1 ? 'Alta' :($asunto->metas()->where('meta_key','prioridad')->first()->meta_value and $asunto->metas()->where('meta_key','prioridad')->first()->meta_value == 2 ? 'Media': 'Baja') }}" disabled class="cursor-not-allowed bg-gray-100"></x-input-text>
+                            <x-input-text value="{{$asunto->metas()->where('meta_key','prioridad')->first()->meta_value and $asunto->metas()->where('meta_key','prioridad')->first()->meta_value ?? null == 1 ? 'Alta' :($asunto->metas()->where('meta_key','prioridad')->first()->meta_value and $asunto->metas()->where('meta_key','prioridad')->first()->meta_value ?? null == 2 ? 'Media': 'Baja') }}" disabled class="cursor-not-allowed bg-gray-100"></x-input-text>
                         </div>
                         <div></div>
                         <div></div>
