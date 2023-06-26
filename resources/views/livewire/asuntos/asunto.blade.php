@@ -16,7 +16,11 @@
                         <div>
                             <p class="text-xs text-slate-700 font-bold"><x-required/>Prioridad:</p>
                             @php
-                                $prioridad = $asunto->metas()->where('meta_key','prioridad')->first()->meta_value ?? null
+                                if($asunto->metas()->where('meta_key','prioridad')->first())
+                                $prioridad = $asunto->metas()->where('meta_key','prioridad')->first()->meta_value
+                                else{
+                                    $prioridad = null
+                                }
                             @endphp
                             <x-input-text value="{{$prioridad == 1 ? 'Alta' :($prioridad == 2 ? 'Media': 'Baja') }}" disabled class="cursor-not-allowed bg-gray-100"></x-input-text>
                         </div>
