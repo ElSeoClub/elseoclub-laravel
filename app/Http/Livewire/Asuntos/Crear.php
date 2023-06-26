@@ -30,6 +30,7 @@ class Crear extends Component
         'metas.accion_ejercida.meta_value' => 'required',
         'metas.demandado.meta_value' => 'required',
         'metas.actor.meta_value' => 'required',
+        'metas.junta.meta_value' => 'required',
     ];
 
     public function mount(){
@@ -54,6 +55,10 @@ class Crear extends Component
             ],
             'demandado' => [
                 'meta_key' => 'demandado',
+                'meta_value' => null
+            ],
+            'junta' => [
+                'meta_key' => 'junta',
                 'meta_value' => null
             ]
         ];

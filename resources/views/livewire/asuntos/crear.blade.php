@@ -104,6 +104,14 @@
                     <x-jet-input-error for="metas.actor.meta_value"></x-jet-input-error>
                 </div>
             </x-box>
+    
+            <x-box class="grid grid-cols-1 md:gap-3 md:grid-cols-3">
+                <div>
+                    <p class="text-xs text-slate-700 font-bold"><x-required/>Junta</p>
+                    <x-input-text wire:model.defer="metas.junta.meta_value"></x-input-text>
+                    <x-jet-input-error for="metas.junta.meta_value"></x-jet-input-error>
+                </div>
+            </x-box>
         </x-container>
         
         <x-slot name="footer">
