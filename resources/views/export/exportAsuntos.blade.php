@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>Expediente</th>
+            <th>Junta</th>
             <th>Fecha</th>
             <th>Actor</th>
             <th>Acción ejercida</th>
@@ -14,6 +15,7 @@
     @foreach($actuaciones as $actuacion)
         <tr class="border">
             <td>{{$actuacion->asunto->expediente}}</td>
+            <td>{{$actuacion->asunto->metas()->where('meta_key','junta')->first()->meta_value ?? ''}}</td>
             <td>{{$actuacion->fecha}}</td>
             <td>{{$actuacion->asunto->metas()->where('meta_key','actor')->first()->meta_value ?? ''}}</td>
             <td>{{$actuacion->asunto->metas()->where('meta_key','accion_ejercida')->first()->meta_value ?? ''}}</td>
