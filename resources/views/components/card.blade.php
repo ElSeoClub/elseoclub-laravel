@@ -1,5 +1,5 @@
-<div>
-    <div class="rounded shadow bg-white mb-5">
+<div {{ $attributes->merge(['class' => 'w-full']) }} {{$attributes}}>
+    <div class="rounded shadow bg-white">
         @if ($title)
         <div class="flex justify-between border-b border-gray-200 px-6 py-3">
             <div>

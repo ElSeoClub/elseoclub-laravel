@@ -8,6 +8,9 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AsuntosController;
 use App\Http\Controllers\ReportesController;
+use App\Http\Controllers\MatterController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,4 +98,20 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     Route::get('/legitimaciones/consultas/view/1/{event}', [CustomvotationController::class, 'asistencia'])->name('legitimation.customvotation.asistencia');
     Route::get('/legitimaciones/consultas/view/2/{event}', [CustomvotationController::class, 'votacion'])->name('legitimation.customvotation.votacion');
     Route::get('/legitimaciones/consultas/{event}', [CustomvotationController::class, 'index'])->name('legitimation.customvotation');
+
+
+    #Matters
+    Route::get('/temas', [MatterController::class, 'index'])->name('matters.index');
+    Route::get('/temas/nuevo', [MatterController::class, 'create'])->name('matters.create');
+    Route::get('/temas/editar/{matter}', [MatterController::class, 'edit'])->name('matters.edit');
+
+    #Subjects
+    Route::get('/temas/{matter}', [SubjectController::class, 'index'])->name('subjects.index');
+    Route::get('/asuntos/ver/{subject}', [SubjectController::class, 'view'])->name('subjects.subject.view');
+    Route::get('/asuntos/archivos/{subject}', [SubjectController::class, 'attachments'])->name('subjects.subject.attachments');
+    Route::get('/asuntos/actuaciones/{subject}', [SubjectController::class, 'tasks'])->name('subjects.subject.tasks');
+    Route::get('/asuntos/nuevo/{matter}', [SubjectController::class, 'create'])->name('subjects.create');
+
+    #Activities
+    Route::get('/actividades', [ActivityController::class, 'index'])->name('activities.index');
 });

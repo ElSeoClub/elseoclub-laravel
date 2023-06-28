@@ -1,3 +1,3 @@
 <div>
-    <input type="date" class="px-1 py-0 text-sm w-full">
+    <input type="date" {{ $attributes->merge(['class' => "w-full"]) }} {{$attributes}}>
 </div>

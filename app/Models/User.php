@@ -127,4 +127,8 @@ class User extends Authenticatable
     {
         return Door::find($this->pivot->door_id);
     }
+
+    public function activities(){
+        return $this->hasMany(Activity::class);
+    }
 }
