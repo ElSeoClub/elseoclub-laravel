@@ -6,7 +6,6 @@
                 <div>{{$actuacion->fecha}}</div>
                 <div class>{{$actuacion->subject->name}}</div>
                 <div class>{{$actuacion->subject->comments}}</div>
-                <div class>{{$actuacion->subject->user->name ?? ''}}</div>
             </a>
         @endforeach
     </ul>
