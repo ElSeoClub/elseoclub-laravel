@@ -2,8 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Asunto;
-use App\Models\Actuacion;
+use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -16,7 +15,7 @@ class ExportAsuntos implements FromView
         $proximoLunes = Carbon::now()->startOfWeek()->addWeek(); // Obtener la fecha del próximo lunes
         $proximoDomingo = $proximoLunes->copy()->addDays(6); // Agregar 6 días para obtener la fecha del próximo domingo
 
-        $actuaciones = Actuacion::whereBetween('fecha', [$proximoLunes, $proximoDomingo])->with('asunto')->orderBy('fecha','asc')
+        $actuaciones = Task::whereBetween('fecha', [$proximoLunes, $proximoDomingo])->with('subject')->orderBy('fecha','asc')
                      ->get();
 
 

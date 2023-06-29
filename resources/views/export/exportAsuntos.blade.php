@@ -14,14 +14,29 @@
     <tbody>
     @foreach($actuaciones as $actuacion)
         <tr class="border">
-            <td>{{$actuacion->asunto->expediente}}</td>
-            <td>{{$actuacion->asunto->metas()->where('meta_key','junta')->first()->meta_value ?? ''}}</td>
+            <td>{{$actuacion->subject->name}}</td>
+            {{-- Junta --}}
+            @if($actuacion->subject->metadata == null)
+                <td>Indefinido</td>
+            @else
+                <td>{{unserialize($actuacion->subject->metadata)[2][1] ?? 'Indefinido'}}</td>
+            @endif
             <td>{{$actuacion->fecha}}</td>
-            <td>{{$actuacion->asunto->metas()->where('meta_key','actor')->first()->meta_value ?? ''}}</td>
-            <td>{{$actuacion->asunto->metas()->where('meta_key','accion_ejercida')->first()->meta_value ?? ''}}</td>
-            <td>{{$actuacion->estado->name ?? 'Indefinido.'}}</td>
+            {{-- Actor --}}
+            @if($actuacion->subject->metadata == null)
+                <td>Indefinido</td>
+            @else
+                <td>{{unserialize($actuacion->subject->metadata)[1][1] ?? 'Indefinido'}}</td>
+            @endif
+            {{-- Accion ejercida --}}
+            @if($actuacion->subject->metadata == null)
+                <td>Indefinido</td>
+            @else
+                <td>{{unserialize($actuacion->subject->metadata)[1][2] ?? 'Indefinido'}}</td>
+            @endif
+            <td>{{$actuacion->action}}</td>
             <td>{{$actuacion->comentarios_apertura ?? ''}}</td>
-            <td>{{$actuacion->asunto->user->name ?? ''}}</td>
+            <td>{{$actuacion->subject->user->name ?? ''}}</td>
         </tr>
     @endforeach
     </tbody>
