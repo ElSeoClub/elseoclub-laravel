@@ -18,6 +18,16 @@
                         Materia
                         <div>{{$subject->matter->name}}</div>
                     </div>
+                    <div>
+                        Abogado a cargo
+                        <div>
+                            <select wire:model.defer="subject.user_id" class="w-full">
+                                @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </x-box>
     
                 @foreach($subject->matter->blocks()->where('status','publish')->orderBy('position','asc')->get() as $block)

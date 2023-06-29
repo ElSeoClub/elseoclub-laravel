@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['comentarios_apertura', 'fecha','status','usuario_apertura_id','usuario_cierre_id','estado_id','action'];
+    protected $fillable = ['comentarios_apertura', 'fecha','status','usuario_apertura_id','usuario_cierre_id','estado_id','action','created_at','updated_at'];
 
     public function subject(){
         return $this->belongsTo(Subject::class);

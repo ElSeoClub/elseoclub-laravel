@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Subjects\Subject;
 
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -15,14 +16,17 @@ class View extends Component
     public $fileName;
     public $subject;
     public $metadata;
+    public $users;
 
     protected array $rules = [
+        'subject.user_id' => '',
         'subject.name' => '',
         'subject.comments' => '',
         'metadata.*' => ''
     ];
 
     public function mount(Subject $subject){
+        $this->users = User::all();
         $this->subject = $subject;
         $this->metadata = $subject->metadata == null ? []: unserialize($subject->metadata);
     }

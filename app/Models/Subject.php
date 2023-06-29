@@ -9,7 +9,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'comments','user_id'];
+    protected $fillable = ['matter_id','name', 'comments','user_id','metadata'];
 
     public function matter(){
         return $this->belongsTo(Matter::class);
