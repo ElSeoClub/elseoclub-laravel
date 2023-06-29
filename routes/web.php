@@ -30,9 +30,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    Route::get('/asuntos', [AsuntosController::class, 'index'])->name('asuntos.index');
-    Route::get('/asuntos/crear', [AsuntosController::class, 'crear'])->name('asuntos.crear');
-    Route::get('/asuntos/{asunto}', [AsuntosController::class, 'asunto'])->name('asuntos.asunto');
+//    Route::get('/asuntos', [AsuntosController::class, 'index'])->name('asuntos.index');
+//    Route::get('/asuntos/crear', [AsuntosController::class, 'crear'])->name('asuntos.crear');
+//    Route::get('/asuntos/{asunto}', [AsuntosController::class, 'asunto'])->name('asuntos.asunto');
     Route::get('/calendario', [HomeController::class, 'calendar'])->name('home.calendar');
     Route::get('/bitacora', [HomeController::class, 'bitacora'])->name('home.bitacora');
     Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');;
@@ -114,4 +114,5 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
 
     #Activities
     Route::get('/actividades', [ActivityController::class, 'index'])->name('activities.index');
+    Route::get('/importer', [HomeController::class, 'importer'])->name('importer.index');
 });
