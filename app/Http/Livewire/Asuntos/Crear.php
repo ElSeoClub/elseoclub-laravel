@@ -24,13 +24,13 @@ class Crear extends Component
     protected $rules = [
         'asunto.expediente' => 'required',
         'asunto.tipo_id'    => 'required|numeric|min:1',
-        'asunto.user_id'    => 'required|numeric|min:1',
-        'metas.prioridad.meta_value' => 'required',
+        'asunto.user_id'    => '',
+        'metas.prioridad.meta_value' => '',
         'metas.fecha_presentacion.meta_value' => '',
-        'metas.accion_ejercida.meta_value' => 'required',
-        'metas.demandado.meta_value' => 'required',
-        'metas.actor.meta_value' => 'required',
-        'metas.junta.meta_value' => 'required',
+        'metas.accion_ejercida.meta_value' => '',
+        'metas.demandado.meta_value' => '',
+        'metas.actor.meta_value' => '',
+        'metas.junta.meta_value' => '',
     ];
 
     public function mount(){
@@ -68,7 +68,9 @@ class Crear extends Component
         $this->validate();
         $asunto = Asunto::create($this->asunto);
 
-        foreach($this->metas as $meta){
+        foreach($this->metas as $meta) {
+            if ($meta['meta_value'] == null)
+                $meta['meta_value'] = '';
             $asunto->metas()->create($meta);
         }
         $this->redirectRoute('asuntos.asunto',compact('asunto'));
