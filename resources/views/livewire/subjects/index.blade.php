@@ -7,7 +7,7 @@
         <a href="{{route('subjects.subject.view', $subject)}}" class="p-3 hover:bg-coolGray-100 cursor-pointer flex gap-2 w-full block">
             <div class="bg-blue-500 text-white rounded shadow text-sm px-1 items-center flex whitespace-nowrap">{{$subject->name}}</div>
             <div class="truncate flex-grow">{{$subject->comments}}</div>
-            @if(auth()->user()->id != $subject->user->id)
+            @if($subject->user != null && auth()->user()->id != $subject->user->id)
                 <div><img src="{{asset('storage/'.$subject->user->profile_photo_path)}}" class="w-6 h-6 rounded-full shadow"></div>
             @endif
         </a>
