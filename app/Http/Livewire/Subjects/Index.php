@@ -34,7 +34,6 @@ class Index extends Component
             })->paginate(10);
         }else{
             $subjects = $this->matter->subjects()
-             ->where('user_id',Auth::user()->id)
              ->where(function($q)  {
                  $q->where('name','like','%'.$this->search.'%')
                    ->orWhere('comments','like','%'.$this->search.'%')
