@@ -11,12 +11,12 @@
             <x-container>
                 <x-box class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
-                        Nombre o número de expediente
+                        Número de expediente
                         <x-input-text wire:model.defer="subject.name"></x-input-text>
                     </div>
                     <div>
-                        Materia
-                        <div>{{$subject->matter->name}}</div>
+                        Título del asunto
+                        <x-input-text wire:model.defer="subject.comments"></x-input-text>
                     </div>
                     <div>
                         Abogado a cargo
@@ -100,10 +100,6 @@
                             </div>
                         </x-box>
                 @endforeach
-                <x-box>
-                    Descripción del asunto
-                    <textarea class="w-full resize-none" wire:model.defer="subject.comments"></textarea>
-                </x-box>
             </x-container>
             <x-slot name="footer">
                 <x-button icon="fas fa-save" click="test">Guardar cambios</x-button>
