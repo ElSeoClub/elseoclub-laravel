@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=12">
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}?v=12">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}?v=12">
 
     @livewireStyles
 
@@ -25,8 +25,23 @@
 
 <body class="font-sans antialiased ">
 <div class="min-h-screen bg-gray-100 relative">
-        <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50 text-2xl font-bold">{{ $title }}</div>
-        <div class="w-full bg-white  h-14 flex justify-center  border-t z-10">
+        <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50 text-2xl font-bold justify-between">
+            <span class="truncate flex-grow">{{ $title }}</span>
+            <div x-data="{dropdownMenu: false}" class="relative">
+                <button @click="dropdownMenu = ! dropdownMenu" class="flex items-center p-2 rounded-md">
+                    <img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}" alt="" class="border-4 border-orange-600 w-10 h-10 rounded-full">
+                </button>
+                <div x-show="dropdownMenu" class="absolute right-0 py-2 mt-2 bg-white rounded-md shadow-xl w-44 z-50">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    <span onclick="event.preventDefault();this.closest('form').submit();" :route="route('logout')" class="cursor-pointer block px-4 py-2 text-sm  text-gray-700 hover:bg-gray-400 hover:text-white">
+                        Cerrar sesión
+                    </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="w-full bg-white  h-14 flex justify-center  border-t z-40">
             <div class="w-full flex items-center justify-between max-w-[480px] mx-auto">
                 <a href="{{route('home.index')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'home') border-red-400 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-red-400 @endif"><img src="{{asset('svg/home.png')}}" width="26" alt=""></a>
                 <a href="{{route('home.calendar')}}" class="w-[25%] text-center h-14 flex items-center cursor-pointer justify-center border-t-4 relative @if(isset($active) && $active == 'calendars') border-red-400 bg-gray-100 @else border-white hover:bg-gray-100 hover:border-red-400 @endif"><img src="{{asset('svg/calendar.png')}}" width="26" alt=""> <div class="px-1 bg-red-600 absolute text-xs rounded-full font-bold text-white top-2 right-5">12</div></a>
