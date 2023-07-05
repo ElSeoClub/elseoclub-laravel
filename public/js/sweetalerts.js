@@ -20,6 +20,28 @@ Livewire.on("alert", function (message) {
     }
 });
 
+Livewire.on("saveAlert", function () {
+    Swal.fire({
+        position: "bottom-left",
+        showConfirmButton: false,
+        backdrop: false,
+        width: "380",
+        background: "#15803d",
+        showClass: {
+            popup: "animate__animated animate__backInLeft animate__faster",
+        },
+        hideClass: {
+            popup: "animate__animated animate__backOutLeft animate__slow",
+        },
+        html: '<div class="flex gap-5 mt-2 text-lg text-white font-bold"><i class="fas fa-check-circle text-2xl"></i><span>Datos guardados correctamente.</span></div>',
+        customClass: {
+            title: "text-sm",
+        },
+        timer: 5000,
+    });
+});
+
+
 Livewire.on("alert_confirmation", function (data) {
     Swal.fire({
         title: data.title,

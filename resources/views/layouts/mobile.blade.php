@@ -34,7 +34,7 @@
                 <div x-show="dropdownMenu" class="absolute right-0 py-2 mt-2 bg-white rounded-md shadow-xl w-44 z-50">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                    <span onclick="event.preventDefault();this.closest('form').submit();" :route="route('logout')" class="cursor-pointer block px-4 py-2 text-sm  text-gray-700 hover:bg-gray-400 hover:text-white">
+                    <span onclick="event.preventDefault();this.closest('form').submit();"  class="cursor-pointer block px-4 py-2 text-sm  text-gray-700 hover:bg-gray-400 hover:text-white">
                         Cerrar sesión
                     </span>
                     </form>

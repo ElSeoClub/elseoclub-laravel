@@ -59,8 +59,9 @@ class View extends Component
         $this->fileName = null;
     }
 
-    public function test(){
+    public function save(){
         $this->subject->metadata = serialize($this->metadata);
+        $this->emit('saveAlert','Datos guardados exitosamente');
         $this->subject->save();
     }
 
