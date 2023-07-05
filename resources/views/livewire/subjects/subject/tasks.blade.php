@@ -1,18 +1,18 @@
 <div>
     <div class="w-full h-14 flex bg-white flex justify-center">
         <div class="w-full flex max-w-[480px] justify-center">
-            <a href="{{route('subjects.subject.view', $subject)}}" class="w-[33.33%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400"><img src="{{asset('svg/info.png')}}" width="26" alt=""></a>
-            <a href="{{route('subjects.subject.attachments', $subject)}}" class="w-[33.33%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400"><img src="{{asset('svg/files.png')}}" width="26" alt=""></a>
-            <a class="w-[33.33%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-50 border-b-4 border-white hover:border-red-400 relative border-red-400"><img src="{{asset('svg/wall-clock.png')}}" width="26" alt=""> <div class="px-1 bg-red-600 absolute text-xs rounded-full font-bold text-white top-2 right-4"></div></a>
+            <a href="{{route('subjects.subject.view', $subject)}}" class="w-[33.33%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-100 border-b-4 border-white hover:border-red-400"><img src="{{asset('svg/info.png')}}" width="26" alt=""></a>
+            <a href="{{route('subjects.subject.attachments', $subject)}}" class="w-[33.33%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-100 border-b-4 border-white hover:border-red-400"><img src="{{asset('svg/files.png')}}" width="26" alt=""></a>
+            <a href="{{route('subjects.subject.tasks', $subject)}}" class="w-[33.33%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-100 border-b-4 border-white hover:border-red-400 relative border-red-400"><img src="{{asset('svg/wall-clock.png')}}" width="26" alt=""> <div class="px-1 bg-red-600 absolute text-xs rounded-full font-bold text-white top-2 right-4"></div></a>
         </div>
     </div>
     
     <x-content>
         @if($view == 'tasks')
         <x-button click="view('agregar_actuacion')">Agregar actuación</x-button>
-        <div class="flex flex-col divide-y bg-white border rounded shadow w-full">
+        <div class="flex flex-col divide-y bg-white border rounded w-full">
             @foreach($subject->fresh()->tasks()->orderBy('fecha','desc')->get() as $actuacion)
-                <div class="flex gap-3 p-4 items-center" wire:click="editarActuacion({{$actuacion->id}})">
+                <div class="flex gap-3 p-4 items-center cursor-pointer hover:bg-orange-50" wire:click="editarActuacion({{$actuacion->id}})">
                     <div class="text-xs flex items-center @if($actuacion->status == 0) text-gray-300 @else text-green-600 @endif"><i class="fas fa-circle"></i></div>
                 
                     <div class="flex flex-col gap-2">
