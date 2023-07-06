@@ -50,24 +50,31 @@
                 </x-slot>
             </x-card>
         @elseif($view == 'editarActuacion')
-            <x-card title="Actuación">
-                <div class="flex gap-3 items-center">
-                    <img src="{{asset('storage/'.$task->usuario_apertura->profile_photo_path)}}" class="w-8 h-8 rounded-full">
-                    <div class="bg-gray-100 shadow rounded w-full p-3">
-                        <div class="text-sm font-bold">{{$task->usuario_apertura->name}}</div>
-                        <div>{{$task->comentarios_apertura}}</div>
+            <x-card title="Actuación" >
+                <div class="gap-3 flex flex-col">
+                    <div class="flex gap-3 items-center">
+                        <img src="{{asset('storage/'.$task->usuario_apertura->profile_photo_path)}}" class="w-8 h-8 rounded-full">
+                        <div class="bg-gray-100 shadow rounded w-full p-3">
+                            <div class="text-sm font-bold">{{$task->usuario_apertura->name}}</div>
+                            <div>{{$task->comentarios_apertura}}</div>
+                        </div>
                     </div>
+                    @if($task->fresh()->usuario_cierre)
+                        <div class="flex gap-3 items-center">
+                            
+                            <div class="bg-gray-100 shadow rounded w-full p-3">
+                                <div class="text-sm font-bold">{{$task->usuario_apertura->name}}</div>
+                                <div>{{$task->comentarios_apertura}}</div>
+                            </div>
+                            <img src="{{asset('storage/'.$task->usuario_cierre->profile_photo_path)}}" class="w-8 h-8 rounded-full">
+                        </div>
+                    @else
+                        <textarea class="w-full" wire:model.defer="comentariosCierre"></textarea>
+                        <x-slot name="footer">
+                            <x-button click="cerrarActuacion()">Finalizar actuación</x-button>
+                        </x-slot>
+                    @endif
                 </div>
-            
-                <span class="font-bold">Comentarios de cierre</span>
-                @if($task->status == 1)
-                    <textarea  class="bg-gray-200 w-full" disabled>{{$task->comentarios_cierre}}</textarea>
-                @else
-                    <textarea class="w-full" wire:model.defer="comentariosCierre"></textarea>
-                    <x-slot name="footer">
-                        <x-button click="cerrarActuacion()">Finalizar actuación</x-button>
-                    </x-slot>
-                @endif
             </x-card>
         
             <div class="bg-white p-6">

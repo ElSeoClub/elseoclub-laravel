@@ -19,6 +19,10 @@ class Task extends Model
         return $this->belongsTo(User::class, 'usuario_apertura_id', 'id');
     }
 
+    public function usuario_cierre(){
+        return $this->belongsTo(User::class, 'usuario_cierre_id', 'id');
+    }
+
     public function files(){
         return $this->hasMany(Attachment::class);
     }
