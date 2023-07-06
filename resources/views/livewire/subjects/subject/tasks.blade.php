@@ -63,7 +63,7 @@
                         <div class="flex gap-3 items-center">
                             
                             <div class="bg-gray-100 shadow rounded w-full p-3">
-                                <div class="text-sm font-bold">{{$task->comentarios_cierre->name}}</div>
+                                <div class="text-sm font-bold">{{$task->usuario_cierre->name}}</div>
                                 <div>{{$task->comentarios_cierre}}</div>
                             </div>
                             <img src="{{asset('storage/'.$task->usuario_cierre->profile_photo_path)}}" class="w-8 h-8 rounded-full">
