@@ -1,15 +1,15 @@
 <table>
     <thead>
-        <tr>
-            <th>Expediente</th>
-            <th>Junta</th>
-            <th>Fecha</th>
-            <th>Actor</th>
-            <th>Acción ejercida</th>
-            <th>Estado procesal</th>
-            <th>Comentarios</th>
-            <th>Abogado responsable</th>
-        </tr>
+    <tr>
+        <th>Expediente</th>
+        <th>Junta</th>
+        <th>Fecha</th>
+        <th>Actor</th>
+        <th>Acción ejercida</th>
+        <th>Estado procesal</th>
+        <th>Comentarios</th>
+        <th>Abogado responsable</th>
+    </tr>
     </thead>
     <tbody>
     @foreach($actuaciones as $actuacion)

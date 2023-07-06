@@ -16,7 +16,7 @@
                     <div class="text-xs flex items-center @if($actuacion->status == 0) text-gray-300 @else text-green-600 @endif"><i class="fas fa-circle"></i></div>
                 
                     <div class="flex flex-col gap-2">
-                        <div>Fecha: {{$actuacion->fecha}}</div>
+                        <div>Fecha: {{$actuacion->fecha->format('d/m/Y H:i:s')}}</div>
                         <div class="truncate flex-grow">Comentarios: <span class="font-bold">{{$actuacion->comentarios_apertura}}</span></div>
                         <div class="">Estado procesal: <span class="p-1 rounded shadow bg-gray-200 text-xs truncate">{{$actuacion->action ?? 'Indefinido'}}</span></div>
                     </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <select wire:model.defer="actuacionEstado">
-                            <option value="0">Elige una acción o  estado procesal</option>
+                            <option value="0">Elige una acción o estado procesal</option>
                             @foreach($estados as $estado)
                                 <option value="{{$estado}}">{{$estado}}</option>
                             @endforeach
@@ -55,7 +55,15 @@
                     <div class="flex gap-3 items-center">
                         <img src="{{asset('storage/'.$task->usuario_apertura->profile_photo_path)}}" class="w-8 h-8 rounded-full">
                         <div class="bg-gray-100 shadow rounded w-full p-3">
-                            <div class="text-sm font-bold">{{$task->usuario_apertura->name}}</div>
+                            <div class="text-sm font-bold flex justify-between">
+                                <div class="truncate">
+                                {{$task->usuario_apertura->name}}
+                                </div>
+                                <div class="flex-grow text-right">
+                                    {{$task->fecha->format('d/m/Y H:i:s')}}
+                                </div>
+                            </div>
+                            <div class="text-sm font-bold">{{$task->action ?? 'Indefinido'}}</div>
                             <div>{{$task->comentarios_apertura}}</div>
                         </div>
                     </div>
