@@ -25,21 +25,12 @@ class Index extends Component
 
     public function render()
     {
-        if(Auth::user()->hasPermission('Jurídico Global') || Auth::user()->hasPermission('Administrator')){
         $subjects = $this->matter->subjects()
-            ->where(function($q)  {
-                $q->where('name','like','%'.$this->search.'%')
-                  ->orWhere('comments','like','%'.$this->search.'%')
-                ->orWhere('metadata','like','%'.$this->search.'%');
-            })->paginate(10);
-        }else{
-            $subjects = $this->matter->subjects()
-             ->where(function($q)  {
-                 $q->where('name','like','%'.$this->search.'%')
-                   ->orWhere('comments','like','%'.$this->search.'%')
-                   ->orWhere('metadata','like','%'.$this->search.'%');
-             })->paginate(10);
-        }
+                                 ->where(function($q)  {
+                                     $q->where('name','like','%'.$this->search.'%')
+                                       ->orWhere('comments','like','%'.$this->search.'%')
+                                       ->orWhere('metadata','like','%'.$this->search.'%');
+                                 })->paginate(10);
 
         return view('livewire.subjects.index',compact('subjects'));
     }

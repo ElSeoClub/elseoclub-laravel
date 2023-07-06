@@ -19,7 +19,7 @@ class Index extends Component
 
     public function render()
     {
-        $matters = Matter::where('name','like','%'.$this->search.'%')->paginate(20);
+        $matters = Matter::where('name','like','%'.$this->search.'%')->orderBy('name','asc')->paginate(20);
         return view('livewire.matters.index', compact('matters'));
     }
 }
