@@ -28,8 +28,8 @@
         <div class="h-14 w-full bg-white items-center flex p-6 border-b z-50 text-2xl font-bold justify-between">
             <span class="truncate flex-grow">{{ $title }}</span>
             <div x-data="{dropdownMenu: false}" class="relative">
-                <button @click="dropdownMenu = ! dropdownMenu" class="flex items-center p-2 rounded-md">
-                    <img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}" alt="" class="border-4 border-orange-600 w-10 h-10 rounded-full">
+                <button @click="dropdownMenu = ! dropdownMenu" class="flex items-center rounded-md w-10 h-10 ">
+                    <img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}" width="40" height="40" class="border-4 border-orange-600 w-10 h-10 rounded-full object-fill ">
                 </button>
                 <div x-show="dropdownMenu" class="absolute right-0 py-2 mt-2 bg-white rounded-md shadow-xl w-44 z-50">
                     <form method="POST" action="{{ route('logout') }}">
