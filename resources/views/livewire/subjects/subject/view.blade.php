@@ -22,6 +22,7 @@
                         Abogado a cargo
                         <div>
                             <select wire:model.defer="subject.user_id" class="w-full">
+                                <option value="0">Indefinido</option>
                                 @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach

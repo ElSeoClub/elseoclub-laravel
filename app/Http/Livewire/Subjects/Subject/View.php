@@ -60,6 +60,10 @@ class View extends Component
     }
 
     public function save(){
+
+        if($this->subject->user_id == 0){
+            $this->subject->user_id = null;
+        }
         $this->subject->metadata = serialize($this->metadata);
         $this->emit('saveAlert','Datos guardados exitosamente');
         $this->subject->save();
