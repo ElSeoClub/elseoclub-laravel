@@ -1,5 +1,5 @@
-<div>
-    <div class="relative mb-5">
+<div {{ $attributes->merge(['class' => ""]) }}>
+    <div class="relative ">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
             <i class="fa fa-search"></i>
         </span>

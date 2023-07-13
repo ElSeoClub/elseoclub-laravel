@@ -15,6 +15,7 @@ class Attachments extends Component
     public $file;
     public $fileName;
     public $subject;
+    public string $search = '';
 
 
     public function mount(Subject $subject){
@@ -54,6 +55,8 @@ class Attachments extends Component
         if(isset($this->file)){
             $this->fileName = $this->file->getClientOriginalName();
         }
-        return view('livewire.subjects.subject.attachments');
+
+        $attachments = $this->subject->fresh()->attachments()->where('name','like','%'.$this->search.'%')->orderBy('name','asc')->get();
+        return view('livewire.subjects.subject.attachments',compact('attachments'));
     }
 }

@@ -36,8 +36,11 @@
                 <x-jet-input-error for="fileName"></x-jet-input-error>
             @endif
         </div>
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 p-5">
-            @foreach($subject->fresh()->attachments()->orderBy('created_at','desc')->get() as $archivo)
+    
+        <x-search class="w-full  p-3 md:p-0"></x-search>
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 p-3 md:p-0">
+            
+            @foreach($attachments as $archivo)
                 @if($archivo->extension == 'pdf')
                     <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
                         <img src="{{asset('svg/pdf-file.png')}}" class="w-full max-h-[250px]">
