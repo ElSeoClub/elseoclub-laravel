@@ -6,7 +6,9 @@
                 @if($user->profile_photo_path == null)
                     <img src="{{asset('storage/profile_photos/user.png')}}" class="w-24 h-24 rounded-full">
                 @else
-                    <img src="{{asset('storage/'.$user->profile_photo_path)}}" class="w-24 h-24 rounded-full">
+                <div class="w-24 h-24">
+                    <img src="{{asset('storage/'.$user->profile_photo_path)}}" width="96" height="96" class="w-24 h-24 rounded-full object-fill">
+                </div>
                 @endif
             </div>
             <div class="flex-grow p-3 flex flex-col gap-2">
