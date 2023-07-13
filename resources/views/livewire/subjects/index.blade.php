@@ -1,15 +1,23 @@
 <x-content class="gap-0">
-    <div class="w-full mt-5">
-    <x-search class="w-full"></x-search>
-        </div>
+    <div class="w-full mt-5 md:px-0 px-3">
+        <x-search class="w-full"></x-search>
+    </div>
     <x-container class="bg-white shadow rounded w-full">
     @foreach($subjects as $subject)
         <a href="{{route('subjects.subject.view', $subject)}}" class="p-3 hover:bg-coolGray-100 cursor-pointer flex gap-2 w-full block">
-            <div class="bg-blue-500 text-white rounded shadow text-sm px-1 items-center flex whitespace-nowrap">{{$subject->name}}</div>
-            <div class="truncate flex-grow">{{$subject->comments}}</div>
-            @if($subject->user != null && auth()->user()->id != $subject->user->id)
-                <div><img src="{{asset('storage/'.$subject->user->profile_photo_path)}}" class="w-6 h-6 rounded-full shadow"></div>
-            @endif
+            <div class="flex flex-col  flex-grow max-w-[calc(100%-34px)] md:max-w-[calc(100%-50px)]">
+                <div class="max-w-full">
+                    <div class="bg-blue-500 text-white rounded shadow text-sm px-1 truncate inline-block max-w-full">{{$subject->name}}</div>
+                </div>
+                <div class="truncate">{{$subject->comments}}</div>
+            </div>
+            <div class="md:w-10 md:h-10 md:min-w-10 w-6 h-6 min-w-6">
+                @if($subject->user != null)
+                    <img src="{{asset('storage/'.$subject->user->profile_photo_path)}}" class="object-fill md:w-10 md:h-10 w-6 h-6 rounded-full shadow">
+                @else
+                    <img src="{{asset('img/question-user.png')}}" class="object-fill md:w-10 md:h-10 w-6 h-6 rounded-full shadow">
+                @endif
+            </div>
         </a>
     @endforeach
     </x-container>
