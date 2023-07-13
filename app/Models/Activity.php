@@ -9,5 +9,5 @@ class Activity extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'comments'];
+    protected $fillable = ['type', 'comments','created_at'];
 }

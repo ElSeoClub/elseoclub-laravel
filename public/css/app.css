@@ -2944,6 +2944,10 @@ select {
 		margin-top: 0px;
 	}
 
+	.md\:inline-block {
+		display: inline-block;
+	}
+
 	.md\:grid {
 		display: grid;
 	}
@@ -2952,8 +2956,24 @@ select {
 		height: 2.5rem;
 	}
 
+	.md\:h-24 {
+		height: 6rem;
+	}
+
 	.md\:w-10 {
 		width: 2.5rem;
+	}
+
+	.md\:w-auto {
+		width: auto;
+	}
+
+	.md\:w-48 {
+		width: 12rem;
+	}
+
+	.md\:w-24 {
+		width: 6rem;
 	}
 
 	.md\:max-w-\[calc\(100\%-50px\)\] {

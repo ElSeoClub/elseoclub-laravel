@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Activities;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -12,8 +13,11 @@ class Index extends Component
 
     public $customActivity;
 
+    public $timer;
+
     protected $rules = [
-        'customActivity' => 'required'
+        'customActivity' => 'required',
+        'timer' => ''
     ];
 
     public function mount(){
@@ -26,9 +30,20 @@ class Index extends Component
 
     public function addActivity(){
         $this->validate();
+
+        if($this->timer != null){
+            $time = Carbon::today();
+            $timer = explode(':',$this->timer);
+            $time->addHours($timer[0]);
+            $time->addMinutes($timer[1]);
+            $time->addSeconds($timer[2]);
+        }else{
+            $time = Carbon::now();
+        }
         Auth::user()->activities()->create([
             'type' => 'otras',
-            'comments' => $this->customActivity
+            'comments' => $this->customActivity,
+            'created_at' => $time
         ]);
         $this->customActivity = null;
     }
