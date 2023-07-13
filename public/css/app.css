@@ -2988,6 +2988,10 @@ select {
 		border-left-width: 1px;
 	}
 
+	.md\:p-0 {
+		padding: 0px;
+	}
+
 	.md\:px-16 {
 		padding-left: 4rem;
 		padding-right: 4rem;
