@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=12">
-    <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}?v=12">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}?v=12">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=13">
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.css') }}?v=13">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}?v=13">
 
     @livewireStyles
 
