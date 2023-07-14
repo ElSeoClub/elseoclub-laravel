@@ -35,8 +35,8 @@ class Index extends Component
             $time = Carbon::today();
             $timer = explode(':',$this->timer);
             $time->addHours($timer[0]);
-            $time->addMinutes($timer[1]);
-            $time->addSeconds($timer[2]);
+            $time->addMinutes($timer[1] ?? 0);
+            $time->addSeconds($timer[2] ?? 0);
         }else{
             $time = Carbon::now();
         }
