@@ -31,7 +31,7 @@ class Create extends Component
 
         Auth::user()->activities()->create([
             'type'     => 'digitalización',
-            'comments' => 'Alta de un nuevo asunto: <span class="font-bold"> '.$subject->matter->name.'</span> - <a href="'.route('subjects.subject.attachments',$subject).'" class="font-bold text-red-600">' . $subject->name.'</a>.'
+            'comments' => 'Alta de un nuevo asunto: <span class="font-bold"> '.$subject->matter->name.'</span> - <a href="'.route('subjects.subject.view',$subject).'" class="font-bold text-red-600">' . $subject->name.'</a>.'
         ]);
 
         $this->redirectRoute('subjects.subject.view',$subject);
