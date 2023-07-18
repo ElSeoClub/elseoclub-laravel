@@ -13,7 +13,8 @@ class Edit extends Component
     protected $rules = [
         'matter.name'   => 'required',
         'matter.status' => 'required',
-        'matter.task_types' => 'required'
+        'matter.task_types' => 'required',
+        'matter.visibility' => 'required'
     ];
 
     public function mount(Matter $matter){

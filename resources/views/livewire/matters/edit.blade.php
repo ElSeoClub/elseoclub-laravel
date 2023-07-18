@@ -7,6 +7,14 @@
                     <x-input-text wire:model.defer="matter.name"></x-input-text>
                     <x-jet-input-error for="matter.name"></x-jet-input-error>
                 </div>
+                <div>
+                    <p class="text-xs text-slate-700 font-bold"><x-required/>Visibilidad:</p>
+                    <select wire:model.defer="matter.visibility">
+                        <option value="all">Tipo de visibilidad</option>
+                        <option value="all">Todos</option>
+                        <option value="self">Solo casos propios</option>
+                    </select>
+                </div>
                 <p class="text-xs text-slate-700 font-bold"><x-required/>Acciones o estados procesales:</p>
                 <textarea class="resize-none" rows="10" wire:model.defer="matter.task_types" placeholder="Uno por línea"></textarea>
                 <div>
