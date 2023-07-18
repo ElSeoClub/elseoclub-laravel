@@ -101,9 +101,21 @@
                         </div>
                     </x-box>
                 @endforeach
+    
+                <x-box class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div>
+                        <div>
+                            Situación del asunto
+                            <select wire:model.defer="subject.status" class="w-full">
+                                <option value="open">Abierto</option>
+                                <option value="closed">Cerrado</option>
+                            </select>
+                        </div>
+                    </div>
+                </x-box>
             </x-container>
             <x-slot name="footer">
-                <x-button icon="fas fa-save" click="save">Guardar cambios</x-button>
+                <x-button icon="fas fa-save" click="save" color="red">Guardar cambios</x-button>
             </x-slot>
         </x-card>
     </x-content>

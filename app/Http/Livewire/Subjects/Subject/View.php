@@ -22,6 +22,7 @@ class View extends Component
         'subject.user_id' => '',
         'subject.name' => '',
         'subject.comments' => '',
+        'subject.status' => '',
         'metadata.*' => ''
     ];
 
