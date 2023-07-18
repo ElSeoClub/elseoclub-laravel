@@ -67,6 +67,29 @@
                             <div>{{$task->comentarios_apertura}}</div>
                         </div>
                     </div>
+                    @foreach($task->fresh()->comments as $n => $comment)
+                        <div class="flex gap-3 items-center">
+                            @if($n % 2 != 0)
+                                <img src="{{asset('storage/'.$comment->user->profile_photo_path)}}" class="w-8 h-8 rounded-full">
+                            @endif
+            
+                            <div class="bg-gray-100 shadow rounded w-full p-3">
+                                <div class="text-sm font-bold flex justify-between">
+                                    <div class="truncate">
+                                        {{$comment->user->name}}
+                                    </div>
+                                    <div class="flex-grow text-right">
+                                        {{$comment->created_at->format('d/m/Y H:i:s')}}
+                                    </div>
+                                </div>
+                                <div>{{$comment->comment}}</div>
+                            </div>
+                                @if($n % 2 == 0)
+                                    <img src="{{asset('storage/'.$comment->user->profile_photo_path)}}" class="w-8 h-8 rounded-full">
+                                @endif
+                        </div>
+                    @endforeach
+                    
                     @if($task->fresh()->usuario_cierre)
                         <div class="flex gap-3 items-center">
                             
@@ -76,12 +99,15 @@
                             </div>
                             <img src="{{asset('storage/'.$task->usuario_cierre->profile_photo_path)}}" class="w-8 h-8 rounded-full">
                         </div>
-                    @else
-                        <textarea class="w-full" wire:model.defer="comentariosCierre"></textarea>
-                        <x-slot name="footer">
-                            <x-button click="cerrarActuacion()">Finalizar actuación</x-button>
-                        </x-slot>
                     @endif
+                </div>
+                <div class="flex w-full mt-3">
+                    <textarea class="flex-grow" wire:model.defer="comment"></textarea>
+                    <div class="h-full" wire:click="addComment">
+                        <button  class="text-base bg-gray-500 text-white font-bold px-3 py-2 rounded
+        hover:bg-gray-600 focus:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-600
+        focus:ring-opacity-50"><i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </x-card>
         

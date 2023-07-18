@@ -18,12 +18,17 @@ class Tasks extends Component
     public $actuationDate;
     public $actuationComment;
     public $comentariosCierre;
+    public $comment;
 
 
     public $fileActuacion;
     public $fileNameActuacion;
 
     public $actuacionEstado;
+
+    protected $rules = [
+        'comment'  => 'required'
+    ];
 
 
     public function mount(Subject $subject){
@@ -97,6 +102,17 @@ class Tasks extends Component
         ]);
         $this->fileActuacion = null;
         $this->fileNameActuacion = null;
+    }
+
+    public function addComment(){
+        $this->validate([
+            'comment' => 'required'
+        ]);
+        $this->task->comments()->create([
+            'user_id' => Auth::user()->id,
+            'comment' => $this->comment
+        ]);
+        $this->emit('saveAlert');
     }
 
 
