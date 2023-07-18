@@ -31,7 +31,8 @@ class Index extends Component
                      $q->where('name','like','%'.$this->search.'%')
                        ->orWhere('comments','like','%'.$this->search.'%')
                        ->orWhere('metadata','like','%'.$this->search.'%');
-                 })->paginate(10);
+                 })
+                 ->orderBy('id','desc')->paginate(10);
         }else{
             $subjects = $this->matter->subjects()
                 ->where('user_id', Auth::user()->id)
@@ -39,7 +40,8 @@ class Index extends Component
                                          $q->where('name','like','%'.$this->search.'%')
                                            ->orWhere('comments','like','%'.$this->search.'%')
                                            ->orWhere('metadata','like','%'.$this->search.'%');
-                                     })->paginate(10);
+                                     })
+                                     ->orderBy('id','desc')->paginate(10);
         }
 
         return view('livewire.subjects.index',compact('subjects'));
