@@ -9,16 +9,17 @@
     
     <x-content>
         @if($view == 'tasks')
-        <x-button click="view('agregar_actuacion')">Agregar actuación</x-button>
+            <div class="flex flex-col p-6 bg-white shadow w-full mt-5 text-center cursor-pointer hover:bg-orange-50 text-red-500 hover:text-red-600" wire:click="view('agregar_actuacion')">
+                <i class="fas fa-calendar-plus text-3xl"></i>
+                <span class="text-2xl">Agregar actuación</span>
+            </div>
         <div class="flex flex-col divide-y bg-white border rounded w-full">
             @foreach($subject->fresh()->tasks()->orderBy('fecha','desc')->get() as $actuacion)
                 <div class="flex gap-3 p-4 items-center cursor-pointer hover:bg-orange-50" wire:click="editarActuacion({{$actuacion->id}})">
-                    <div class="text-xs flex items-center @if($actuacion->status == 0) text-gray-300 @else text-green-600 @endif"><i class="fas fa-circle"></i></div>
-                
                     <div class="flex flex-col gap-2">
                         <div>Fecha: {{$actuacion->fecha->format('d/m/Y H:i:s')}}</div>
                         <div class="truncate flex-grow">Comentarios: <span class="font-bold">{{$actuacion->comentarios_apertura}}</span></div>
-                        <div class="">Estado procesal: <span class="p-1 rounded shadow bg-gray-200 text-xs truncate">{{$actuacion->action ?? 'Indefinido'}}</span></div>
+                        <div class="">Actuación: <span class="p-1 rounded shadow bg-gray-200 text-xs truncate">{{$actuacion->action ?? 'Indefinido'}}</span></div>
                     </div>
                     <div>@if($actuacion->files()->count() > 0)<i class="fas fa-paperclip text-gray-700"></i>@endif</div>
                 </div>
