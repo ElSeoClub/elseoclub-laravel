@@ -1,4 +1,4 @@
-<div>
+<div class="select-none">
     <div class="w-full h-14 flex bg-white flex justify-center">
         <div class="w-full flex max-w-[480px] justify-center">
             <a href="{{route('subjects.subject.view', $subject)}}" class="w-[33.33%] h-14 flex items-center justify-center cursor-pointer hover:bg-gray-100 border-b-4 border-white hover:border-red-400"><img src="{{asset('svg/info.png')}}" width="26" alt=""></a>
@@ -29,28 +29,92 @@
                 <x-jet-input-error for="fileName"></x-jet-input-error>
             @endif
         </div>
-    
         <x-search class="w-full  p-3 md:p-0"></x-search>
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 p-3 md:p-0">
+        <div class=" bg-white w-full grid grid-cols-1 divide-y border">
+        @foreach($attachments as $archivo)
+            <div class="relative flex {{$archivo->status == 'deleted' ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-gray-100'}}">
+                <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="flex-grow flex gap-3 items-center align-middle p-3">
+                    
+                    @if($archivo->extension == 'pdf')
+                            <img src="{{asset('svg/pdf-file.png')}}" class="w-[32px] max-h-[32px]">
+                    @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
+                        
+                            <img src="{{asset('storage/'.$archivo->path)}}" class="w-[32px] max-h-[32px]">
+                    @else
+                        <img src="{{asset('svg/documents.png')}}" class="w-[32px]    max-h-[32px]">
+                    @endif
+                    <div>{{$archivo ->name}}</div>
+                    
+                </a>
+    
+                <div class="flex justify-center items-center mr-3">
+                    <div
+                            x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+                            x-on:keydown.escape.prevent.stop="close($refs.button)"
+                            x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                            x-id="['dropdown-button']"
+                            class="relative"
+                    >
+                        <!-- Button -->
+                        <button
+                                x-ref="button"
+                                x-on:click="toggle()"
+                                :aria-expanded="open"
+                                :aria-controls="$id('dropdown-button')"
+                                type="button"
+                                class="flex items-center gap-2 bg-white px-5 py-2.5 hover:bg-gray-100 rounded border"
+                        >
+                            <i class="fas fa-bars"></i>
+                        </button>
             
-            @foreach($attachments as $archivo)
-                @if($archivo->extension == 'pdf')
-                    <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
-                        <img src="{{asset('svg/pdf-file.png')}}" class="w-full max-h-[250px]">
-                        <div class="text-sm text-center">{{$archivo->name}}</div>
-                    </a>
-                @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
-                    <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
-                        <div class="flex-grow items-center flex"><img src="{{asset('storage/'.$archivo->path)}}" class="w-full max-h-[250px]"></div>
-                        <div class="text-sm text-center">{{$archivo->name}}</div>
-                    </a>
-                @else
-                    <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
-                        <div class="flex-grow items-center flex"><img src="{{asset('svg/documents.png')}}" class="w-full max-h-[250px]"></div>
-                        <div class="text-sm text-center">{{$archivo->name}}</div>
-                    </a>
-                @endif
-            @endforeach
+                        <!-- Panel -->
+                        <div
+                                x-ref="panel"
+                                x-show="open"
+                                x-transition.origin.top.left
+                                x-on:click.outside="close($refs.button)"
+                                :id="$id('dropdown-button')"
+                                style="display: none;"
+                                class="absolute left-[-136px] w-48 rounded-md bg-white shadow-md z-10 border flex flex-col divide-y"
+                        >
+                            <a href="#" class="cursor-pointer flex items-center w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                                <i class="fas fa-edit w-6"></i> Cambiar nombre
+                            </a>
+                            
+                            @if($archivo->status == 'deleted')
+                                <a wire:click="restore({{$archivo->id}})" class="cursor-pointer flex items-center text-red-600 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                                    <i class="fas fa-trash-restore w-6"></i> Restablecer
+                                </a>
+                            @else
+                                <a wire:click="delete({{$archivo->id}})" class="cursor-pointer flex items-center text-red-600 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                                    <i class="fas fa-trash w-6"></i> Eliminar
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        @endforeach
         </div>
+       <div class="h-[65px]"></div>
     </x-content>
 </div>

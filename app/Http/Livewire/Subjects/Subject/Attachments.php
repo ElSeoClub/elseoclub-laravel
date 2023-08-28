@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Subjects\Subject;
 
-use App\Models\Activity;
+use App\Models\Attachment;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -54,9 +54,36 @@ class Attachments extends Component
     }
 
 
+    public function delete(Attachment $attachment){
+        if($this->subject->id != $attachment->subject_id) {
+            abort(403);
+        }
+
+
+        $attachment->status = 'deleted';
+        $attachment->save();
+        $this->emit('saveAlert','El archivo '.$attachment->name .' fue eliminado exitosamente.');
+    }
+
+    public function restore(Attachment $attachment){
+        if($this->subject->id != $attachment->subject_id) {
+            abort(403);
+        }
+
+
+        $attachment->status = 'publish';
+        $attachment->save();
+        $this->emit('saveAlert','El archivo '.$attachment->name .' fue eliminado exitosamente.');
+    }
+
     public function render()
     {
-        $attachments = $this->subject->fresh()->attachments()->where('name','like','%'.$this->search.'%')->orderBy('name','asc')->get();
+        if (Auth::user()->hasPermission('Administrator') || Auth::user()->hasPermission('Jurídico Global')) {
+            $attachments = $this->subject->fresh()->attachments()->where('name','like','%'.$this->search.'%')->orderBy('name','asc')->get();
+        }else{
+            $attachments = $this->subject->fresh()->attachments()->where('status','publish')->where('name','like','%'.$this->search.'%')->orderBy('name','asc')->get();
+        }
+
         return view('livewire.subjects.subject.attachments',compact('attachments'));
     }
 }
