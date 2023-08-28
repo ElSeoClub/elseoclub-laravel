@@ -15,8 +15,7 @@ class Attachments extends Component
     public $files;
     public $subject;
     public string $search = '';
-
-
+    protected $listeners = ['deleteAccepted','restoreAccepted'];
 
     public function mount(Subject $subject){
         $this->subject = $subject;
@@ -55,22 +54,31 @@ class Attachments extends Component
 
 
     public function delete(Attachment $attachment){
+        $this->emit('alert_confirmation', ['title' => 'Estas seguro de borrar el archivo<br> <span class="text-red-600 font-bold">'.$attachment->name.'</span>', 'word' => 'SI', 'emitTo' => 'subjects.subject.attachments', 'callback' => 'deleteAccepted', 'id' => $attachment->id]);
+
+    }
+
+    public function deleteAccepted(Attachment $attachment){
         if($this->subject->id != $attachment->subject_id) {
             abort(403);
         }
-
-
         $attachment->status = 'deleted';
         $attachment->save();
         $this->emit('saveAlert','El archivo '.$attachment->name .' fue eliminado exitosamente.');
     }
 
     public function restore(Attachment $attachment){
-        if($this->subject->id != $attachment->subject_id) {
+        if($this->subject->id != $attachment->subject_id &&  (!Auth::user()->hasPermission('Administrator') || !Auth::user()->hasPermission('Jurídico Global'))) {
             abort(403);
         }
+        $this->emit('alert_confirmation', ['title' => 'Estas seguro de restablecer el archivo<br> <span class="text-red-600 font-bold">'.$attachment->name.'</span>', 'word' => 'SI', 'emitTo' => 'subjects.subject.attachments', 'callback' => 'restoreAccepted', 'id' => $attachment->id]);
 
+    }
 
+    public function restoreAccepted(Attachment $attachment){
+        if($this->subject->id != $attachment->subject_id &&  (!Auth::user()->hasPermission('Administrator') || !Auth::user()->hasPermission('Jurídico Global'))) {
+            abort(403);
+        }
         $attachment->status = 'publish';
         $attachment->save();
         $this->emit('saveAlert','El archivo '.$attachment->name .' fue eliminado exitosamente.');
@@ -83,7 +91,6 @@ class Attachments extends Component
         }else{
             $attachments = $this->subject->fresh()->attachments()->where('status','publish')->where('name','like','%'.$this->search.'%')->orderBy('name','asc')->get();
         }
-
         return view('livewire.subjects.subject.attachments',compact('attachments'));
     }
 }
