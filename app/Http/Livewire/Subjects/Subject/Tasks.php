@@ -21,8 +21,7 @@ class Tasks extends Component
     public $comment;
 
 
-    public $fileActuacion;
-    public $fileNameActuacion;
+    public $filesActuacion;
 
     public $actuacionEstado;
 
@@ -78,30 +77,33 @@ class Tasks extends Component
 
     public function storeFileActuacion(){
         $this->validate([
-            'fileActuacion'     => 'required',
-            'fileNameActuacion' => 'required'
+            'filesActuacion'     => 'required',
         ]);
         $ext = 'unf';
-        if ($this->fileActuacion) {
-            $filePath = $this->fileActuacion->store('archivo', ['disk' => 'public']);
-            $ext = explode('.', $filePath);
-            $ext = end($ext);
+        if($this->filesActuacion){
+            foreach ($this->filesActuacion as $fileActuacion) {
+                if ($fileActuacion) {
+                    $filePath = $fileActuacion->store('archivo', ['disk' => 'public']);
+                    $ext = explode('.', $filePath);
+                    $ext = end($ext);
+                }
+
+                $this->subject->attachments()->create([
+                    'name' => $fileActuacion->getClientOriginalName(),
+                    'extension' => $ext,
+                    'path' => $filePath,
+                    'user_id' => Auth::user()->id,
+                    'task_id' => $this->task->id
+                ]);
+
+                Auth::user()->activities()->create([
+                    'type'     => 'digitalización',
+                    'comments' => 'Digitalización de documento: <a target="_blank" class="font-bold text-red-600" href="'.asset('storage/'.$filePath).'">'.$fileActuacion->getClientOriginalName().'</a> en ' . $this->subject->matter->name . ': <a href="'.route('subjects.subject.attachments',$this->subject).'" class="font-bold text-red-600">' . $this->subject->name.'</a>.'
+                ]);
+                $this->filesActuacion = null;
+                $this->emit('saveAlert', 'Archivo(s) subidos exitosamente.');
+            }
         }
-
-        $this->subject->attachments()->create([
-            'name' => $this->fileNameActuacion,
-            'extension' => $ext,
-            'path' => $filePath,
-            'user_id' => Auth::user()->id,
-            'task_id' => $this->task->id
-        ]);
-
-        Auth::user()->activities()->create([
-            'type'     => 'digitalización',
-            'comments' => 'Digitalización de documento: <a target="_blank" class="font-bold text-red-600" href="'.asset('storage/'.$filePath).'">'.$this->fileNameActuacion.'</a> en ' . $this->subject->matter->name . ': <a href="'.route('subjects.subject.attachments',$this->subject).'" class="font-bold text-red-600">' . $this->subject->name.'</a>.'
-        ]);
-        $this->fileActuacion = null;
-        $this->fileNameActuacion = null;
     }
 
     public function addComment(){
@@ -118,10 +120,6 @@ class Tasks extends Component
 
     public function render()
     {
-
-        if(isset($this->fileActuacion)){
-            $this->fileNameActuacion = $this->fileActuacion->getClientOriginalName();
-        }
         return view('livewire.subjects.subject.tasks');
     }
 }
