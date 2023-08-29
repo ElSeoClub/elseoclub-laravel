@@ -16,6 +16,12 @@ class Attachments extends Component
     public $subject;
     public string $search = '';
     protected $listeners = ['deleteAccepted','restoreAccepted'];
+    protected $rules = [
+        'attachEditName' => ''
+    ];
+
+    public $attachEditId = null;
+    public $attachEditName = null;
 
     public function mount(Subject $subject){
         $this->subject = $subject;
@@ -54,7 +60,7 @@ class Attachments extends Component
 
 
     public function delete(Attachment $attachment){
-        $this->emit('alert_confirmation', ['title' => 'Estas seguro de borrar el archivo<br> <span class="text-red-600 font-bold">'.$attachment->name.'</span>', 'word' => 'SI', 'emitTo' => 'subjects.subject.attachments', 'callback' => 'deleteAccepted', 'id' => $attachment->id]);
+        $this->emit('alert_confirmation', ['title' => 'Estás seguro de borrar el archivo<br> <span class="text-red-600 font-bold">'.$attachment->name.'</span>', 'word' => 'SI', 'emitTo' => 'subjects.subject.attachments', 'callback' => 'deleteAccepted', 'id' => $attachment->id]);
 
     }
 
@@ -71,7 +77,7 @@ class Attachments extends Component
         if($this->subject->id != $attachment->subject_id &&  (!Auth::user()->hasPermission('Administrator') || !Auth::user()->hasPermission('Jurídico Global'))) {
             abort(403);
         }
-        $this->emit('alert_confirmation', ['title' => 'Estas seguro de restablecer el archivo<br> <span class="text-red-600 font-bold">'.$attachment->name.'</span>', 'word' => 'SI', 'emitTo' => 'subjects.subject.attachments', 'callback' => 'restoreAccepted', 'id' => $attachment->id]);
+        $this->emit('alert_confirmation', ['title' => 'Estás seguro de restablecer el archivo<br> <span class="text-red-600 font-bold">'.$attachment->name.'</span>', 'word' => 'SI', 'emitTo' => 'subjects.subject.attachments', 'callback' => 'restoreAccepted', 'id' => $attachment->id]);
 
     }
 
@@ -82,6 +88,29 @@ class Attachments extends Component
         $attachment->status = 'publish';
         $attachment->save();
         $this->emit('saveAlert','El archivo '.$attachment->name .' fue eliminado exitosamente.');
+    }
+
+    public function edit(Attachment $attachment)
+    {
+        $this->attachEditId = $attachment->id;
+        $this->attachEditName = $attachment->name;
+    }
+
+    public function updateName(){
+        $attachment = Attachment::find($this->attachEditId);
+        if($this->subject->id != $attachment->subject_id) {
+            abort(403);
+        }
+
+        if($attachment){
+            if($this->attachEditName != ''){
+                $attachment->name = $this->attachEditName;
+                $attachment->save();
+                $this->attachEditName = null;
+                $this->attachEditId = null;
+                $this->emit('saveAlert');
+            }
+        }
     }
 
     public function render()

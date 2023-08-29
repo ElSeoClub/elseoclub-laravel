@@ -33,19 +33,39 @@
         <div class=" bg-white w-full grid grid-cols-1 divide-y border">
         @foreach($attachments as $archivo)
             <div class="relative flex {{$archivo->status == 'deleted' ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-gray-100'}}">
-                <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="flex-grow flex gap-3 items-center align-middle p-3">
-                    
-                    @if($archivo->extension == 'pdf')
+                @if($attachEditId == $archivo->id)
+                    <div class="flex-grow flex gap-3 items-center align-middle p-3">
+                        @if($archivo->extension == 'pdf')
                             <img src="{{asset('svg/pdf-file.png')}}" class="w-[32px] max-h-[32px]">
-                    @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
-                        
+                        @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
+        
                             <img src="{{asset('storage/'.$archivo->path)}}" class="w-[32px] max-h-[32px]">
-                    @else
-                        <img src="{{asset('svg/documents.png')}}" class="w-[32px]    max-h-[32px]">
-                    @endif
-                    <div>{{$archivo ->name}}</div>
-                    
-                </a>
+                        @else
+                            <img src="{{asset('svg/documents.png')}}" class="w-[32px]    max-h-[32px]">
+                        @endif
+                        <div class="flex-grow flex items-center">
+                            <input type="text" wire:model.defer="attachEditName" class="w-full" wire:keydown.enter="updateName()s"/>
+                            <div class="cursor-pointer bg-green-600 h-[43px] border flex items-center rounded-r text-white" wire:click="updateName()">
+                                <i class="fas fa-save px-3"></i>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="flex-grow flex gap-3 items-center align-middle p-3">
+            
+                        @if($archivo->extension == 'pdf')
+                            <img src="{{asset('svg/pdf-file.png')}}" class="w-[32px] max-h-[32px]">
+                        @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
+                
+                            <img src="{{asset('storage/'.$archivo->path)}}" class="w-[32px] max-h-[32px]">
+                        @else
+                            <img src="{{asset('svg/documents.png')}}" class="w-[32px]    max-h-[32px]">
+                        @endif
+                        <div>{{$archivo ->name}}</div>
+        
+                    </a>
+                @endif
+                
     
                 <div class="flex justify-center items-center mr-3">
                     <div
@@ -95,10 +115,9 @@
                                 style="display: none;"
                                 class="absolute left-[-136px] w-48 rounded-md bg-white shadow-md z-10 border flex flex-col divide-y"
                         >
-                            <a href="#" class="cursor-pointer flex items-center w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                            <a wire:click="edit({{$archivo->id}})" href="#" class="cursor-pointer flex items-center w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
                                 <i class="fas fa-edit w-6"></i> Cambiar nombre
                             </a>
-                            
                             @if($archivo->status == 'deleted')
                                 <a wire:click="restore({{$archivo->id}})" class="cursor-pointer flex items-center text-red-600 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
                                     <i class="fas fa-trash-restore w-6"></i> Restablecer
