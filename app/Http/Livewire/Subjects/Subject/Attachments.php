@@ -94,6 +94,7 @@ class Attachments extends Component
     {
         $this->attachEditId = $attachment->id;
         $this->attachEditName = $attachment->name;
+        $this->emit('focusAttachEditName');
     }
 
     public function updateName(){
@@ -111,6 +112,12 @@ class Attachments extends Component
                 $this->emit('saveAlert');
             }
         }
+    }
+
+    public function cancelUpdate()
+    {
+        $this->attachEditName = null;
+        $this->attachEditId = null;
     }
 
     public function render()
