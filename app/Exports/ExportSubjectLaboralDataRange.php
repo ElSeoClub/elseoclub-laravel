@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Task;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
+use Carbon\Carbon;
 
 class ExportSubjectLaboralDataRange implements FromView
 {
@@ -14,6 +15,9 @@ class ExportSubjectLaboralDataRange implements FromView
 
     public function view(): View
     {
+
+        $start = Carbon::createFromFormat('d/m/Y', $this->start);
+        $end = Carbon::createFromFormat('d/m/Y', $this->end)->addDay();
         $actuaciones = Task::whereBetween('fecha', [$this->start, $this->end])->with('subject')->orderBy('fecha','asc')
                            ->get();
 
