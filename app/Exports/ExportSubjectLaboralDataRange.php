@@ -16,9 +16,9 @@ class ExportSubjectLaboralDataRange implements FromView
     public function view(): View
     {
 
-        $start = Carbon::createFromFormat('d/m/Y', $this->start);
-        $end = Carbon::createFromFormat('d/m/Y', $this->end)->addDay();
-        $actuaciones = Task::whereBetween('fecha', [$this->start, $this->end])->with('subject')->orderBy('fecha','asc')
+        $start = Carbon::parse($this->start);
+        $end = Carbon::parse($this->end)->addDay();
+        $actuaciones = Task::whereBetween('fecha', [$start, $end])->with('subject')->orderBy('fecha','asc')
                            ->get();
 
         return view('export.ExportSubjectLaboralThisWeek',
