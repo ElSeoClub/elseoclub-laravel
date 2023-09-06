@@ -36,8 +36,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/calendario', [HomeController::class, 'calendar'])->name('home.calendar');
     Route::get('/bitacora', [HomeController::class, 'bitacora'])->name('home.bitacora');
     Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');;
-    Route::get('/proxima-semana', [ReportesController::class, 'proximaSemana'])->name('reportes.proxima_semana');
+    Route::get('/reportes/laboral/proxima-semana', [ReportesController::class, 'proximaSemana'])->name('reportes.proxima_semana');
     Route::get('/reportes/laboral/semana-en-curso', [ReportesController::class, 'laboralEstaSemana'])->name('reportes.laboral.semana-en-curso');
+    Route::get('/reportes/laboral/rango-fechas', [ReportesController::class, 'rangoFechas'])->name('reportes.laboral.rango-fechas');
+    Route::get('/reportes/laboral/rango-fechas-excel/{start}/{end}', [ReportesController::class, 'rangoFechasExcel'])->name('reportes.laboral.rango-fechas-excel');
     Route::middleware(['changepassword'])->group(function () {
         Route::middleware(['permission:Administrator'])->group(function () {
             Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
