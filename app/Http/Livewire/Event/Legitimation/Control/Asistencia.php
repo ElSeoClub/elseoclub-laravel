@@ -9,6 +9,7 @@ class Asistencia extends Component
 {
 
     public $event;
+    protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function mount(Event $event){
         $this->event = $event;

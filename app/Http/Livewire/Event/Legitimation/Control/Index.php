@@ -10,6 +10,7 @@ class Index extends Component
     public $event;
 
     public string $screen = 'asistencia';
+    protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function mount(Event $event){
         $this->event = $event;

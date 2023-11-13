@@ -4,9 +4,9 @@
             <div class="bg-white grid grid-cols-12 w-[750px] text-2xl rounded border shadow">
                 <div class="col-span-9 px-3  pb-1 font-bold"></div>
                 <div class="col-span-3 px-3  pb-1 font-bold text-center">Asistentes</div>
-                @foreach($event->locations as $location)
+                @foreach($event->fresh()->locations as $location)
                     <div class="col-span-9 px-3 pb-1 font-bold">{{$location->name}}</div>
-                    <div class="col-span-3 px-3  pb-1 font-bold text-center">{{$location->guests()->whereNotNull('attendance_door_id')->count()}} de {{$location->guests()->count()}}</div>
+                    <div class="col-span-3 px-3  pb-1 font-bold text-center">{{$location->fresh()->guests()->whereNotNull('attendance_door_id')->count()}} de {{$location->guests()->count()}}</div>
                 @endforeach
             </div>
             <div class="w-full mt-5">
