@@ -4,14 +4,6 @@
         <x-layout.general.breadcrumb-option name="Legitimaciones" arrow="true" :route="route('legitimation.index')" />
         <x-layout.general.breadcrumb-option :name="$event->name" arrow="false" />
     </x-layout.general.breadcrumbs>
-    <div
-        class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-md text-red-100 bg-red-700 border border-red-700 mb-5 py-3">
-        <div class="text-xl max-w-full flex-initial font-bold text-center">
-            NADIE PODRÁ INICIAR CONTEO DE VOTOS, HASTA QUE SE LES COMUNIQUE POR PARTE DEL EQUIPO JURÍDICO QUE ESTARÁ
-            CONECTADO CON EL CENTRO, PARA DAR LA INDICACIÓN DE INICIO DEL ESCRUTINIO DE BOLETAS 6PM HORA DE MÉXICO
-            CENTRO.</div>
-
-    </div>
     <div class="grid grid-cols-2 gap-5 mb-5">
         @if (Auth::user()->hasPermission('Administrator'))
         <x-card-image image="{{asset('svg/note.svg')}}">
@@ -38,47 +30,70 @@
                     Gestionar puertas</x-button>
             </div>
         </x-card-image>
+            <x-card-image image="{{asset('svg/steps.svg')}}">
+                <div class="font-bold text-2xl">Seguimiento de las sedes</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button href="{{route('legitimation.statistics', ['event' => $event])}}" color="blue" class="w-full">
+                        Ver seguimiento</x-button>
+                </div>
+            </x-card-image>
+            <x-card-image image="{{asset('svg/statistics.svg')}}">
+                <div class="font-bold text-2xl">Estadísticas y reportes</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button href="{{route('legitimation.reports.index', ['event' => $event])}}" color="blue"
+                              class="w-full">
+                        Ver estadísticas</x-button>
+                </div>
+            </x-card-image>
+            <x-card-image image="{{asset('svg/vote1.svg')}}">
+                <div class="font-bold text-2xl">Computo de resultados por sección</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button href="{{route('legitimation.vottingseccion',['event' => $event])}}" color="blue"
+                              class="w-full">
+                        Gestionar
+                        votaciones</x-button>
+                </div>
+            </x-card-image>
+            <x-card-image image="{{asset('svg/voting.svg')}}">
+                <div class="font-bold text-2xl">Computo de resultados por sede</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button href="{{route('legitimation.votting',['event' => $event])}}" color="blue" class="w-full">
+                        Gestionar
+                        votaciones</x-button>
+                </div>
+            </x-card-image>
+            <x-card-image image="{{asset('svg/printer.svg')}}">
+                <div class="font-bold text-2xl">Expediente para el día del evento</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button :href="route('legitimation.archive.index',compact('event'))" color="blue" class="w-full">Ver
+                        expediente</x-button>
+                </div>
+            </x-card-image>
+            <x-card-image image="{{asset('svg/qr.svg')}}">
+                <div class="font-bold text-2xl">Cédula de identificación de temporales</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button :href="route('legitimation.credentials.index',compact('event'))" color="blue" class="w-full">
+                        Ver
+                        cédulas</x-button>
+                </div>
+            </x-card-image>
         @endif
 
         @if (Auth::user()->hasPermission('Enlace Siconecta') || Auth::user()->hasPermission('Administrator'))
-        <x-card-image image="{{asset('svg/steps.svg')}}">
-            <div class="font-bold text-2xl">Seguimiento de las sedes</div>
-            <div>&nbsp;</div>
-            <div class="mt-20 w-full">
-                <x-button href="{{route('legitimation.statistics', ['event' => $event])}}" color="blue" class="w-full">
-                    Ver seguimiento</x-button>
-            </div>
-        </x-card-image>
+
         @endif
 
         @if (Auth::user()->hasPermission('Enlace Siconecta') || Auth::user()->hasPermission('Administrator') ||
         Auth::user()->hasPermission('Jurídico') || Auth::user()->hasPermission('Jurídico Global'))
-        <x-card-image image="{{asset('svg/statistics.svg')}}">
-            <div class="font-bold text-2xl">Estadísticas y reportes</div>
-            <div>&nbsp;</div>
-            <div class="mt-20 w-full">
-                <x-button href="{{route('legitimation.reports.index', ['event' => $event])}}" color="blue"
-                    class="w-full">
-                    Ver estadísticas</x-button>
-            </div>
-        </x-card-image>
+
         @endif
-        {{-- <x-card-image image="{{asset('svg/stats.svg')}}">
-            <div class="font-bold text-2xl">Estadísticas</div>
-            <div>Asistencia global
-                0 de
-                0</div>
-            <div class="mt-20 w-full">
-                <x-button href="#" color="blue" class="w-full">Ver estadísticas</x-button>
-            </div>
-        </x-card-image>
-        <x-card-image image="{{asset('svg/seo-report.svg')}}">
-            <div class="font-bold text-2xl">Reportes</div>
-            <div>a</div>
-            <div class="mt-20 w-full">
-                <x-button href="#" color="blue" class="w-full">Ver reportes</x-button>
-            </div>
-        </x-card-image> --}}
+
         <x-card-image image="{{asset('svg/immigration.svg')}}">
             <div class="font-bold text-2xl">Pase de asistencia</div>
             <div>&nbsp;</div>
@@ -87,25 +102,7 @@
                     Gestionar asistencia</x-button>
             </div>
         </x-card-image>
-        <x-card-image image="{{asset('svg/vote1.svg')}}">
-            <div class="font-bold text-2xl">Computo de resultados por sección</div>
-            <div>&nbsp;</div>
-            <div class="mt-20 w-full">
-                <x-button href="{{route('legitimation.vottingseccion',['event' => $event])}}" color="blue"
-                    class="w-full">
-                    Gestionar
-                    votaciones</x-button>
-            </div>
-        </x-card-image>
-        <x-card-image image="{{asset('svg/voting.svg')}}">
-            <div class="font-bold text-2xl">Computo de resultados por sede</div>
-            <div>&nbsp;</div>
-            <div class="mt-20 w-full">
-                <x-button href="{{route('legitimation.votting',['event' => $event])}}" color="blue" class="w-full">
-                    Gestionar
-                    votaciones</x-button>
-            </div>
-        </x-card-image>
+
 
         @if (Auth::user()->hasPermission('Administrator') || Auth::user()->hasPermission('Jurídico'))
         <x-card-image image="{{asset('svg/vote.svg')}}">
@@ -127,22 +124,6 @@
                     Gestionar evidencia</x-button>
             </div>
         </x-card-image>
-        <x-card-image image="{{asset('svg/printer.svg')}}">
-            <div class="font-bold text-2xl">Expediente para el día del evento</div>
-            <div>&nbsp;</div>
-            <div class="mt-20 w-full">
-                <x-button :href="route('legitimation.archive.index',compact('event'))" color="blue" class="w-full">Ver
-                    expediente</x-button>
-            </div>
-        </x-card-image>
-        <x-card-image image="{{asset('svg/qr.svg')}}">
-            <div class="font-bold text-2xl">Cédula de identificación de temporales</div>
-            <div>&nbsp;</div>
-            <div class="mt-20 w-full">
-                <x-button :href="route('legitimation.credentials.index',compact('event'))" color="blue" class="w-full">
-                    Ver
-                    cédulas</x-button>
-            </div>
-        </x-card-image>
+
     </div>
 </x-general-layout>

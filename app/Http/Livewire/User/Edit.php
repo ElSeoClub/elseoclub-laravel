@@ -18,8 +18,8 @@ class Edit extends Component
     public $profile_photo;
     protected $listeners = ['set_new_password'];
     protected $rules = [
-        'user.username' => 'required|min:5|max:30',
-        'user.name'     => 'required|min:5|max:255',
+        'user.username' => 'required|min:3|max:30',
+        'user.name'     => 'required|min:3|max:255',
         'user.email'    => 'required|min:5|max:255',
         'profile_photo' => 'nullable|image|max:1024',
         'user.permission_id'    => 'required',
@@ -34,8 +34,8 @@ class Edit extends Component
     public function save()
     {
         $this->validate([
-            'user.username' => 'required|unique:users,users.username,' . $this->user->id . '|min:5|max:30',
-            'user.name'     => 'required|min:5|max:255',
+            'user.username' => 'required|unique:users,users.username,' . $this->user->id . '|min:3|max:30',
+            'user.name'     => 'required|min:3|max:255',
             'user.email'    => 'required|email|unique:users,users.email,' . $this->user->id . '|min:5|max:255',
             'profile_photo' => 'nullable|image|max:1024',
             'user.permission_id'    => 'required|exists:permissions,permissions.id',

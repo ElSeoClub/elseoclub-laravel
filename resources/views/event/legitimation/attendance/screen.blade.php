@@ -5,7 +5,7 @@
                     src="{{asset('svg/siconecta-txt.svg')}}" style="height:40px"></a>
         </div>
         <div class="text-3xl text-center w-full h-full align-middle">
-            Legitimación del contrato colectivo de trabajo 2021
+            Congreso Nacional Extraordinario XX
         </div>
     </div>
     <div class="m-6">

@@ -20,12 +20,12 @@ class Door extends Model
 
     public function attendances()
     {
-        return $this->belongsToMany(User::class, 'guests', 'attendance_door_id', 'user_id')->withPivot('attendance_date')->orderBy('pivot_attendance_date', 'desc');;
+        return $this->belongsToMany(User::class, 'guests', 'attendance_door_id', 'user_id')->withPivot('attendance_date')->orderBy('pivot_attendance_date', 'desc');
     }
 
     public function guests()
     {
-        return $this->belongsToMany(User::class, 'guests', 'door_id', 'user_id');
+        return $this->belongsToMany(User::class, 'guests', 'door_id', 'user_id')->withPivot('attendance_door_id');
     }
 
     public function coordination()
