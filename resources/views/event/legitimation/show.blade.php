@@ -83,6 +83,14 @@
                         cédulas</x-button>
                 </div>
             </x-card-image>
+            <x-card-image image="{{asset('svg/folder.svg')}}">
+                <div class="font-bold text-2xl">Pantalla de control</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button :href="route('legitimation.control.index',compact('event'))" color="blue" class="w-full">
+                        Ver pantalla de control</x-button>
+                </div>
+            </x-card-image>
         @endif
 
         @if (Auth::user()->hasPermission('Enlace Siconecta') || Auth::user()->hasPermission('Administrator'))

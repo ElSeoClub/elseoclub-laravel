@@ -222,4 +222,11 @@ class EventController extends Controller
     {
         return view('event.legitimation.credentials.index', compact('event'));
     }
+
+
+    public function control(Event $event)
+    {
+        return view('event.control.index', compact('event'));
+    }
+
 }
