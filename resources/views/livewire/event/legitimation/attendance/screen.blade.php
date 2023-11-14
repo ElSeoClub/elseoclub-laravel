@@ -21,13 +21,13 @@
                         </div>
                         <div class="w-full h-full mt-5">
                             <span class="font-bold text-xl">Asistencia general:
-                            {{$door->location->event->guests()->whereNotNull('attendance_door_id')->count()}} de
-                            {{$door->location->event->guests()->count()}}
+                            {{$door->location->guests()->whereNotNull('attendance_door_id')->count()}} de
+                            {{$door->location->guests()->count()}}
                             </span>
                             <div class=" shadow-md w-full bg-gray-200 h-9 rounded">
                                 <div class="bg-green-500 text-xs leading-none text-center text-white h-full rounded py-2 font-bold text-lg"
                                      style="width: {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%">
-                                    {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%
+                                    {{round(($door->location->guests()->whereNotNull('attendance_door_id')->count()/$door->location->guests()->count())*100)}}%
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,6 @@
 
                     </div>
                     <div class="grid grid-cols-6 items-center text-center overflow-y-scroll"  style="height:calc(100vh - 200px)">
-
                         @foreach($door->fresh()->guests as $guest)
                             <div>
                                 <img src="{{Storage::url($guest->profile_photo_path)}}"
