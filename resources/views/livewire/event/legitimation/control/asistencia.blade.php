@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-row gap-3 w-full p-6 bg-gray-100">
         <div class="w-[750px]">
-            <h1 class="text-2xl text-center">Asistencia preliminar</h1>
+            <h1 class="text-2xl text-center font-bold">Asistencia preliminar</h1>
             <div class="bg-white grid grid-cols-12 w-[750px] text-2xl rounded border shadow">
                 <div class="col-span-9 px-3  pb-1 font-bold"></div>
                 <div class="col-span-3 px-3  pb-1 font-bold text-center">Asistentes</div>
