@@ -13,7 +13,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     @livewireStyles
 
@@ -25,9 +24,11 @@
 <x-jet-banner />
 
 <div class="min-h-screen bg-gray-100">
+
+
     <!-- Page Content -->
     <main>
-        @livewire('event.legitimation.control.index', ['event' => $event])
+        @livewire('event.legitimation.control.vote', ['event' => $event])
     </main>
 </div>
 

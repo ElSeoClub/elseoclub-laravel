@@ -228,5 +228,9 @@ class EventController extends Controller
     {
         return view('event.control.index', compact('event'));
     }
+    public function vote(Event $event)
+    {
+        return view('event.control.vote', compact('event'));
+    }
 
 }

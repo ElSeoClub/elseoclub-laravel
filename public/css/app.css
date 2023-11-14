@@ -1118,12 +1118,6 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
-.col-span-10 {
-	grid-column: span 10 / span 10;
-}
-.col-span-2 {
-	grid-column: span 2 / span 2;
-}
 .col-span-9 {
 	grid-column: span 9 / span 9;
 }
@@ -1798,13 +1792,13 @@ select {
 .bg-transparent {
 	background-color: transparent;
 }
-.bg-blue-500 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
-}
 .bg-green-500 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+}
+.bg-blue-500 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
 }
 .bg-blue-600 {
 	--tw-bg-opacity: 1;
@@ -1921,6 +1915,10 @@ select {
 .px-10 {
 	padding-left: 2.5rem;
 	padding-right: 2.5rem;
+}
+.px-8 {
+	padding-left: 2rem;
+	padding-right: 2rem;
 }
 .px-5 {
 	padding-left: 1.25rem;
@@ -2071,11 +2069,11 @@ select {
 .leading-4 {
 	line-height: 1rem;
 }
-.leading-normal {
-	line-height: 1.5;
-}
 .leading-none {
 	line-height: 1;
+}
+.leading-normal {
+	line-height: 1.5;
 }
 .tracking-widest {
 	letter-spacing: 0.1em;

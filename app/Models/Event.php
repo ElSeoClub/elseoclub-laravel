@@ -41,4 +41,9 @@ class Event extends Model
     {
         return $this->archives()->whereNull('location_id')->orderBy('name')->get();
     }
+
+    public function votaciones()
+    {
+        return $this->hasMany(Votacion::class);
+    }
 }

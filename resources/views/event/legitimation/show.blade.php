@@ -91,6 +91,14 @@
                         Ver pantalla de control</x-button>
                 </div>
             </x-card-image>
+            <x-card-image image="{{asset('svg/folder.svg')}}">
+                <div class="font-bold text-2xl">Votaciones y elecciones</div>
+                <div>&nbsp;</div>
+                <div class="mt-20 w-full">
+                    <x-button :href="route('legitimation.control.vote',compact('event'))" color="blue" class="w-full">
+                        Ver votaciones y elecciones</x-button>
+                </div>
+            </x-card-image>
         @endif
 
         @if (Auth::user()->hasPermission('Enlace Siconecta') || Auth::user()->hasPermission('Administrator'))
