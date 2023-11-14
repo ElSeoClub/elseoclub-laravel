@@ -26,7 +26,7 @@
                             </span>
                             <div class=" shadow-md w-full bg-gray-200 h-9 rounded">
                                 <div class="bg-green-500 text-xs leading-none text-center text-white h-full rounded py-2 font-bold text-lg"
-                                     style="width: {{round(($door->location->event->guests()->whereNotNull('attendance_door_id')->count()/$door->location->event->guests()->count())*100)}}%">
+                                     style="width: {{round(($door->location->guests()->whereNotNull('attendance_door_id')->count()/$door->location->guests()->count())*100)}}%">
                                     {{round(($door->location->guests()->whereNotNull('attendance_door_id')->count()/$door->location->guests()->count())*100)}}%
                                 </div>
                             </div>
