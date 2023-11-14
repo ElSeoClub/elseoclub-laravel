@@ -9,7 +9,7 @@
         <div wire:loading.remove wire:target="search">
             <x-table>
                 <x-slot name="thead">
-                    <th class="text-left px-3 py-2">{{__('Legitimación')}}</th>
+                    <th class="text-left px-3 py-2">{{__('Evento')}}</th>
                     <th class="text-left px-3 py-2 w-44">{{__('Fecha de inicio')}}</th>
                     <th class="text-left px-3 py-2 w-44">{{__('Fecha de cierre')}}</th>
                     <th class="w-4"></th>
