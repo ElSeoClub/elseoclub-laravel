@@ -5,7 +5,7 @@
                     src="{{asset('svg/siconecta-txt.svg')}}" style="height:40px"></a>
         </div>
         <div class="text-3xl text-center w-full h-full align-middle">
-            Congreso Nacional Extraordinario XX
+            XXXI Consejo Nacional Ordinario
         </div>
     </div>
     <div class="m-6">
