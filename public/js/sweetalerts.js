@@ -120,3 +120,10 @@ Livewire.on("alert_message", function (data) {
         }
     });
 });
+
+
+Livewire.on("focusAttachEditName", function (data) {
+    document.querySelector('#attachEditName').focus();
+    document.querySelector('#attachEditName').select();
+
+});

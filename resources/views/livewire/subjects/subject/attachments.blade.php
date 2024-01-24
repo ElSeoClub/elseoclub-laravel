@@ -44,9 +44,11 @@
                             <img src="{{asset('svg/documents.png')}}" class="w-[32px]    max-h-[32px]">
                         @endif
                         <div class="flex-grow flex items-center">
-                            <input type="text" wire:model.defer="attachEditName" class="w-full" wire:keydown.enter="updateName()s"/>
-                            <div class="cursor-pointer bg-green-600 h-[43px] border flex items-center rounded-r text-white" wire:click="updateName()">
+                            <input id="attachEditName" type="text" wire:model.defer="attachEditName" class="w-full" wire:keydown.enter="updateName()" wire:keydown.escape="cancelUpdate()" autofocus/>
+                            <div class="cursor-pointer bg-green-600 hover:bg-green-700 h-[45px] border flex items-center text-white" wire:click="updateName()">
                                 <i class="fas fa-save px-3"></i>
+                            </div><div class="cursor-pointer bg-gray-400 hover:bg-gray-500 h-[45px] border flex items-center rounded-r text-white" wire:click="cancelUpdate()">
+                                <i class="fas fa-times px-3"></i>
                             </div>
                         </div>
                     </div>
@@ -115,15 +117,15 @@
                                 style="display: none;"
                                 class="absolute left-[-136px] w-48 rounded-md bg-white shadow-md z-10 border flex flex-col divide-y"
                         >
-                            <a wire:click="edit({{$archivo->id}})" href="#" class="cursor-pointer flex items-center w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                            <a wire:click="edit({{$archivo->id}})" href="#" class="cursor-pointer hover:bg-gray-100 flex items-center w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm disabled:text-gray-500">
                                 <i class="fas fa-edit w-6"></i> Cambiar nombre
                             </a>
                             @if($archivo->status == 'deleted')
-                                <a wire:click="restore({{$archivo->id}})" class="cursor-pointer flex items-center text-red-600 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                                <a wire:click="restore({{$archivo->id}})" class="cursor-pointer hover:bg-gray-100 flex items-center text-red-600 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm disabled:text-gray-500">
                                     <i class="fas fa-trash-restore w-6"></i> Restablecer
                                 </a>
                             @else
-                                <a wire:click="delete({{$archivo->id}})" class="cursor-pointer flex items-center text-red-600 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                                <a wire:click="delete({{$archivo->id}})" class="cursor-pointer hover:bg-gray-100 flex items-center text-red-600 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm disabled:text-gray-500">
                                     <i class="fas fa-trash w-6"></i> Eliminar
                                 </a>
                             @endif
