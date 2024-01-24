@@ -72,8 +72,10 @@
                                             });
                                         </script>
                                     @else
-                                        <i class="fas fa-edit cursor-pointer hover:text-orange-500" wire:click="editDate({{$task->id}})"></i>
+                                        <div wire:click="editDate({{$task->id}})" class="cursor-pointer">
+                                        <i class="fas fa-edit cursor-pointer hover:text-orange-500" ></i>
                                         {{$task->fecha->format('d/m/Y H:i:s')}}
+                                        </div>
                                     @endif
                                 </div>
                             </div>
