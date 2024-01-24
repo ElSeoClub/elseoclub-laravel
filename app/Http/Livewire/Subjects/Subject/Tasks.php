@@ -19,14 +19,21 @@ class Tasks extends Component
     public $actuationComment;
     public $comentariosCierre;
     public $comment;
+    public $editDate = null;
 
+    public $newDate = null;
 
     public $filesActuacion;
 
     public $actuacionEstado;
 
     protected $rules = [
-        'comment'  => 'required'
+        'comment' => 'required',
+        'newDate' => 'datetime'
+    ];
+
+    protected $listeners = [
+        'uptodateDate' => 'uptodateDate',
     ];
 
 
@@ -115,6 +122,22 @@ class Tasks extends Component
             'comment' => $this->comment
         ]);
         $this->emit('saveAlert');
+    }
+
+    public function editDate($id){
+        $this->editDate = $id;
+        $this->newDate = $this->task->fecha->format('Y-m-d\TH:i');
+    }
+
+    public function uptodateDate(){
+        $this->editDate = null;
+    }
+
+    public function updatedNewDate(){
+        if($this->newDate && $this->task){
+            $this->task->fecha = $this->newDate;
+            $this->task->save();
+        }
     }
 
 
