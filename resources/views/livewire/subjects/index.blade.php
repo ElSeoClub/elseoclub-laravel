@@ -28,7 +28,7 @@
     {{$subjects->links()}}
     </div>
 
-    @if(Auth::user()->id !== 1 && Auth::user()->id !== 17)
+    @if(Auth::user()->id !== 17)
         <x-button href="{{route('subjects.create',$matter)}}">Añadir {{$matter->name}}</x-button>
     @endif
 </x-content>
