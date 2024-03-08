@@ -27,6 +27,8 @@
     <div class="w-full mt-2">
     {{$subjects->links()}}
     </div>
-    
-    <x-button href="{{route('subjects.create',$matter)}}">Añadir {{$matter->name}}</x-button>
+
+    @if(Auth::user()->id !== 1 && Auth::user()->id !== 17)
+        <x-button href="{{route('subjects.create',$matter)}}">Añadir {{$matter->name}}</x-button>
+    @endif
 </x-content>
