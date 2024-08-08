@@ -16,6 +16,18 @@
     </div>
     <div class="text-xl">Tribunal</div>
     <div class="p-3 grid grid-cols-1 gap-3 lg:grid-cols-2 max-w-[1200px] m-auto">
+        <a href="{{route('reportes.tribunal')}}" class="p-5 flex bg-white shadow rounded-lg gap-3 items-center active:border-gray-600 active:border select-none">
+            <div class="w-10"><img src="{{asset('svg/report.png')}}" class="h-8"></div>
+            <div class="grid-grow truncate">1 Audiencias de la próxima semana (Tribunal)</div>
+        </a>
+        <a href="{{route('reportes.tribunal_now')}}" class="p-5 flex bg-white shadow rounded-lg gap-3 items-center active:border-gray-600 active:border select-none">
+            <div class="w-10"><img src="{{asset('svg/report.png')}}" class="h-8"></div>
+            <div class="grid-grow truncate">2 Audiencias de la semana en curso (Tribunal)</div>
+        </a>
+        <a href="{{route('reportes.tribunal_date')}}" class="p-5 flex bg-white shadow rounded-lg gap-3 items-center active:border-gray-600 active:border select-none">
+            <div class="w-10"><img src="{{asset('svg/report.png')}}" class="h-8"></div>
+            <div class="grid-grow truncate">3 Audiencias por rango de fechas (Tribunal)</div>
+        </a>
     </div>
 
     <div class="text-xl">Conciliación Prejudicial</div>

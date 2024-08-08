@@ -41,6 +41,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/reportes/laboral/conciliacion-prejudicial-ahora', [ReportesController::class, 'conciliacionPrejudicialNow'])->name('reportes.conciliacion_prejudicial_now');
     Route::get('/reportes/laboral/conciliacion-prejudicial-fecha', [ReportesController::class, 'conciliacionPrejudicialrangoFechas'])->name('reportes.conciliacion_prejudicial_date');
     Route::get('/reportes/laboral/conciliacion-prejudicial-fecha-excel/{start}/{end}', [ReportesController::class, 'conciliacionPrejudicialDate'])->name('reportes.conciliacion_prejudicial_date_excel');
+
+
+    Route::get('/reportes/laboral/tribunal', [ReportesController::class, 'tribunal'])->name('reportes.tribunal');
+    Route::get('/reportes/laboral/tribunal-ahora', [ReportesController::class, 'tribunalNow'])->name('reportes.tribunal_now');
+    Route::get('/reportes/laboral/tribunal-fecha', [ReportesController::class, 'tribunalrangoFechas'])->name('reportes.tribunal_date');
+    Route::get('/reportes/laboral/tribunal-fecha-excel/{start}/{end}', [ReportesController::class, 'tribunalDate'])->name('reportes.tribunal_date_excel');
+
     Route::get('/reportes/laboral/semana-en-curso', [ReportesController::class, 'laboralEstaSemana'])->name('reportes.laboral.semana-en-curso');
     Route::get('/reportes/laboral/rango-fechas', [ReportesController::class, 'rangoFechas'])->name('reportes.laboral.rango-fechas');
     Route::get('/reportes/laboral/rango-fechas-excel/{start}/{end}', [ReportesController::class, 'rangoFechasExcel'])->name('reportes.laboral.rango-fechas-excel');

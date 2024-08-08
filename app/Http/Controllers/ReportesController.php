@@ -9,6 +9,9 @@ use App\Exports\ExportConciliacionPrejudicialNow;
 use App\Exports\ExportSubjectLaboralDataRange;
 use App\Exports\ExportSubjectLaboralRange;
 use App\Exports\ExportSubjectLaboralThisWeek;
+use App\Exports\ExportTribunal;
+use App\Exports\ExportTribunalDate;
+use App\Exports\ExportTribunalNow;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -65,5 +68,30 @@ class ReportesController extends Controller
     public function conciliacionPrejudicialDate($start,$end){
 
         return Excel::download(new ExportConciliacionPrejudicialDate($start,$end), 'conciliacion_prejudicial_'.$start.'_al_'.$end.'.xlsx');
+    }
+
+    public function tribunal(){
+
+        $proximoLunes = Carbon::now()->startOfWeek()->addWeek(); // Obtener la fecha del próximo lunes
+        $proximoDomingo = $proximoLunes->copy()->addDays(6); // Agregar 6 días para obtener la fecha del próximo domingo
+        return Excel::download(new ExportTribunal(), 'tribunal_'.$proximoLunes->day.'_al_'.$proximoDomingo->day.'_de_'.$proximoDomingo->monthName.'_del_'.$proximoDomingo->year.'.xlsx');
+    }
+
+
+    public function tribunalNow(){
+        $proximoLunes = Carbon::now()->startOfWeek(); // Obtener la fecha del próximo lunes
+        $proximoDomingo = $proximoLunes->copy()->addDays(6); // Agregar 6 días para obtener la fecha del próximo domingo
+        return Excel::download(new ExportTribunalNow(), 'tribunal_'.$proximoLunes->day.'_al_'.$proximoDomingo->day.'_de_'.$proximoDomingo->monthName.'_del_'.$proximoDomingo->year.'.xlsx');
+    }
+
+
+    public function tribunalrangoFechas(){
+        return view('reportes.tribunalrangofechas');
+    }
+
+
+    public function tribunalDate($start,$end){
+
+        return Excel::download(new ExportTribunalDate($start,$end), 'tribunal_'.$start.'_al_'.$end.'.xlsx');
     }
 }
