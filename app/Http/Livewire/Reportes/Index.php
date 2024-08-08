@@ -21,8 +21,10 @@ class Index extends Component
                            ->orderBy('fecha', 'asc')
                            ->get();
 
-        foreach($actuaciones as $actuacion) {
-            dd( unserialize( $actuacion->subject->metadata[0][1] ) );
+        foreach($actuaciones as $n => $actuacion) {
+            if($n > 0) {
+                dd( unserialize( $actuacion->subject->metadata[0][1] ) );
+            }
         }
         return view('livewire.reportes.index');
     }
