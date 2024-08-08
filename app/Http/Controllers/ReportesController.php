@@ -56,6 +56,12 @@ class ReportesController extends Controller
         return Excel::download(new ExportConciliacionPrejudicialNow(), 'conciliacion_prejudicial_'.$proximoLunes->day.'_al_'.$proximoDomingo->day.'_de_'.$proximoDomingo->monthName.'_del_'.$proximoDomingo->year.'.xlsx');
     }
 
+
+    public function conciliacionPrejudicialrangoFechas(){
+        return view('reportes.conciliacionPrejudicialrangofechas');
+    }
+
+
     public function conciliacionPrejudicialDate($start,$end){
 
         return Excel::download(new ExportConciliacionPrejudicialDate($start,$end), 'conciliacion_prejudicial_'.$start.'_al_'.$end.'.xlsx');

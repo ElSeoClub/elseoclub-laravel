@@ -1,4 +1,4 @@
-<div class="space-y-6 w-full max-w-6xl mx-auto">
+<div class="space-y-6 w-full max-w-6xl mx-auto py-12">
     <div class="text-xl">Laboral</div>
     <div class="p-3 grid grid-cols-1 gap-3 lg:grid-cols-2 max-w-[1200px] m-auto">
         <a href="{{route('reportes.proxima_semana')}}" class="p-5 flex bg-white shadow rounded-lg gap-3 items-center active:border-gray-600 active:border select-none">
