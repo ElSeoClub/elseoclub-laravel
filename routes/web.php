@@ -38,6 +38,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');;
     Route::get('/reportes/laboral/proxima-semana', [ReportesController::class, 'proximaSemana'])->name('reportes.proxima_semana');
     Route::get('/reportes/laboral/conciliacion-prejudicial', [ReportesController::class, 'conciliacionPrejudicial'])->name('reportes.conciliacion_prejudicial');
+    Route::get('/reportes/laboral/conciliacion-prejudicial-ahora', [ReportesController::class, 'conciliacionPrejudicialNow'])->name('reportes.conciliacion_prejudicial_now');
+    Route::get('/reportes/laboral/conciliacion-prejudicial-fecha', [ReportesController::class, 'conciliacionPrejudicialDate'])->name('reportes.conciliacion_prejudicial_date');
     Route::get('/reportes/laboral/semana-en-curso', [ReportesController::class, 'laboralEstaSemana'])->name('reportes.laboral.semana-en-curso');
     Route::get('/reportes/laboral/rango-fechas', [ReportesController::class, 'rangoFechas'])->name('reportes.laboral.rango-fechas');
     Route::get('/reportes/laboral/rango-fechas-excel/{start}/{end}', [ReportesController::class, 'rangoFechasExcel'])->name('reportes.laboral.rango-fechas-excel');

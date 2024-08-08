@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class ExportSubjectLaboralThisWeek implements FromView
+class ExportConciliacionPrejudicialNow implements FromView
 {
     public function view(): View
     {
@@ -16,15 +16,15 @@ class ExportSubjectLaboralThisWeek implements FromView
         $proximoDomingo = $proximoLunes->copy()->addDays(6); // Agregar 6 días para obtener la fecha del próximo domingo
 
         $actuaciones = Task::whereBetween('fecha', [$proximoLunes, $proximoDomingo])
-            ->whereHas('subject.matter', function($query) {
-                $query->where('id', 2);
-            })
-            ->with('subject')
-              ->orderBy('fecha','asc')
+                           ->whereHas('subject.matter', function($query) {
+                               $query->where('id', 24);
+                           })
+                           ->with('subject')
+                           ->orderBy('fecha','asc')
                            ->get();
 
 
-        return view('export.ExportSubjectLaboralThisWeek',
+        return view('export.ExportSubjectLaboralNow',
             [
                 'actuaciones' => $actuaciones
             ]);
