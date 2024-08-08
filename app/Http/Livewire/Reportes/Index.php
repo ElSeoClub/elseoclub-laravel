@@ -11,7 +11,7 @@ class Index extends Component
     public function render()
     {
 
-        $proximoLunes = Carbon::now()->startOfWeek()->addWeek(); // Obtener la fecha del próximo lunes
+        $proximoLunes = Carbon::now()->startOfWeek()->addMonths(-2); // Obtener la fecha del próximo lunes
         $proximoDomingo = $proximoLunes->copy()->addDays(6); // Agregar 6 días para obtener la fecha del próximo domingo
 
         $actuaciones = Task::whereBetween('fecha', [$proximoLunes, $proximoDomingo])
