@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportAsuntos;
 use App\Exports\ExportConciliacionPrejudicial;
+use App\Exports\ExportConciliacionPrejudicialDate;
 use App\Exports\ExportConciliacionPrejudicialNow;
 use App\Exports\ExportSubjectLaboralDataRange;
 use App\Exports\ExportSubjectLaboralRange;
@@ -53,5 +54,10 @@ class ReportesController extends Controller
         $proximoLunes = Carbon::now()->startOfWeek(); // Obtener la fecha del próximo lunes
         $proximoDomingo = $proximoLunes->copy()->addDays(6); // Agregar 6 días para obtener la fecha del próximo domingo
         return Excel::download(new ExportConciliacionPrejudicialNow(), 'conciliacion_prejudicial_'.$proximoLunes->day.'_al_'.$proximoDomingo->day.'_de_'.$proximoDomingo->monthName.'_del_'.$proximoDomingo->year.'.xlsx');
+    }
+
+    public function conciliacionPrejudicialDate($start,$end){
+
+        return Excel::download(new ExportConciliacionPrejudicialDate($start,$end), 'conciliacion_prejudicial_'.$start.'_al_'.$end.'.xlsx');
     }
 }
