@@ -23,7 +23,7 @@ class Index extends Component
 
         foreach($actuaciones as $n => $actuacion) {
             if($n > 0) {
-                dd( unserialize( $actuacion->subject->metadata[0][1] ) );
+                dd( unserialize( $actuacion->subject->metadata) );
             }
         }
         return view('livewire.reportes.index');
