@@ -2,10 +2,11 @@
     <thead>
     <tr>
         <th>Expediente</th>
-        <th>Junta</th>
+        <th>Autoridad</th>
         <th>Fecha</th>
         <th>Actor</th>
         <th>Acción ejercida</th>
+        <th>Demandado</th>
         <th>Estado procesal</th>
         <th>Comentarios</th>
         <th>Abogado responsable</th>
@@ -19,20 +20,25 @@
             @if($actuacion->subject->metadata == null)
                 <td>Indefinido</td>
             @else
-                <td>{{unserialize($actuacion->subject->metadata)[2][1] ?? 'Indefinido'}}</td>
+                <td>{{unserialize($actuacion->subject->metadata)[37][2] ?? 'Indefinido'}}</td>
             @endif
             <td>{{$actuacion->fecha->format('d/m/Y H:i:s')}}</td>
             {{-- Actor --}}
             @if($actuacion->subject->metadata == null)
                 <td>Indefinido</td>
             @else
-                <td>{{unserialize($actuacion->subject->metadata)[1][1] ?? 'Indefinido'}}</td>
+                <td>{{unserialize($actuacion->subject->metadata)[36][1] ?? 'Indefinido'}}</td>
             @endif
             {{-- Accion ejercida --}}
             @if($actuacion->subject->metadata == null)
                 <td>Indefinido</td>
             @else
-                <td>{{unserialize($actuacion->subject->metadata)[1][2] ?? 'Indefinido'}}</td>
+                <td>{{unserialize($actuacion->subject->metadata)[36][2] ?? 'Indefinido'}}</td>
+            @endif
+            @if($actuacion->subject->metadata == null)
+                <td>Indefinido</td>
+            @else
+                <td>{{unserialize($actuacion->subject->metadata)[36][3] ?? 'Indefinido'}}</td>
             @endif
             <td>{{$actuacion->action}}</td>
             <td>{{$actuacion->comentarios_apertura ?? ''}}</td>
