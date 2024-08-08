@@ -24,7 +24,7 @@ class ExportTribunalNow implements FromView
                            ->get();
 
 
-        return view('export.ExportSubjectLaboralThisWeek',
+        return view('export.ExportTribunalNow',
             [
                 'actuaciones' => $actuaciones
             ]);
