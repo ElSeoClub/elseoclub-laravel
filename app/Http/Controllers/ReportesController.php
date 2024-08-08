@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportAsuntos;
 use App\Exports\ExportConciliacionPrejudicial;
+use App\Exports\ExportConciliacionPrejudicialNow;
 use App\Exports\ExportSubjectLaboralDataRange;
 use App\Exports\ExportSubjectLaboralRange;
 use App\Exports\ExportSubjectLaboralThisWeek;
