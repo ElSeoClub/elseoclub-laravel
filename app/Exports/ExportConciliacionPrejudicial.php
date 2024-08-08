@@ -5,10 +5,10 @@ namespace App\Exports;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 
-
-class ExportAsuntos implements FromView
+class ExportConciliacionPrejudicial implements FromView
 {
     public function view(): View
     {
@@ -17,16 +17,15 @@ class ExportAsuntos implements FromView
 
         $actuaciones = Task::whereBetween('fecha', [$proximoLunes, $proximoDomingo])
                            ->whereHas('subject.matter', function($query) {
-                               $query->where('id', 2);
+                               $query->where('id', 24);
                            })
                            ->with('subject')
                            ->orderBy('fecha', 'asc')
                            ->get();
 
-
-        return view('export.exportAsuntos',
-        [
-            'actuaciones' => $actuaciones
-        ]);
+        return view('export.conciliacionPrejudicial',
+            [
+                'actuaciones' => $actuaciones
+            ]);
     }
 }
