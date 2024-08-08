@@ -18,12 +18,12 @@
             @if($actuacion->subject->metadata == null)
                 <td>Indefinido</td>
             @else
-                <td>{{unserialize($actuacion->subject->metadata)[0][1] ?? 'Indefinido'}}</td>
+                <td>{{unserialize($actuacion->subject->metadata)[56][1] ?? 'Indefinido'}}</td>
             @endif
             @if($actuacion->subject->metadata == null)
                 <td>Indefinido</td>
             @else
-                <td>{{unserialize($actuacion->subject->metadata)[0][2] ?? 'Indefinido'}}</td>
+                <td>{{unserialize($actuacion->subject->metadata)[56][2] ?? 'Indefinido'}}</td>
             @endif
             <td>{{$actuacion->action}}</td>
             <td>{{$actuacion->comentarios_apertura ?? ''}}</td>
