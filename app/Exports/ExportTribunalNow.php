@@ -10,21 +10,21 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class ExportTribunalNow implements FromView
 {
-    public function __construct(public $start, public $end)
-    {
-    }
-
     public function view(): View
     {
-        $start = Carbon::parse($this->start);
-        $end = Carbon::parse($this->end)->addDay();
-        $actuaciones = Task::whereBetween('fecha', [$start, $end])->with('subject')
+        $proximoLunes = Carbon::now()->startOfWeek(); // Obtener la fecha del próximo lunes
+        $proximoDomingo = $proximoLunes->copy()->addDays(6); // Agregar 6 días para obtener la fecha del próximo domingo
+
+        $actuaciones = Task::whereBetween('fecha', [$proximoLunes, $proximoDomingo])
                            ->whereHas('subject.matter', function($query) {
                                $query->where('id', 13);
-                           })->orderBy('fecha','asc')
+                           })
+                           ->with('subject')
+                           ->orderBy('fecha','asc')
                            ->get();
 
-        return view('export.ExportTribunalNow',
+
+        return view('export.ExportSubjectLaboralThisWeek',
             [
                 'actuaciones' => $actuaciones
             ]);
