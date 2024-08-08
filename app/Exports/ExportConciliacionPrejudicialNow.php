@@ -24,7 +24,7 @@ class ExportConciliacionPrejudicialNow implements FromView
                            ->get();
 
 
-        return view('export.ExportSubjectLaboralNow',
+        return view('export.ExportConciliacionPrejudicialNow',
             [
                 'actuaciones' => $actuaciones
             ]);
