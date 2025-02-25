@@ -5,6 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AsuntosController;
 use App\Http\Controllers\ReportesController;
@@ -129,4 +130,9 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     #Activities
     Route::get('/actividades', [ActivityController::class, 'index'])->name('activities.index');
     Route::get('/importer', [HomeController::class, 'importer'])->name('importer.index');
+
+
+    Route::get('/test/empresas', [TestController::class, 'empresas'])->name('test.empresas');
+    Route::get('/test/cfe', [TestController::class, 'cfe'])->name('test.cfe');
+    Route::get('/test/contratos', [TestController::class, 'contratos'])->name('test.contratos');
 });
