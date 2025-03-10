@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomvotationController;
+use App\Http\Controllers\EmpresasController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -135,4 +136,10 @@ Route::middleware(['auth:sanctum', 'verified', 'changepassword'])->group(functio
     Route::get('/test/empresas', [TestController::class, 'empresas'])->name('test.empresas');
     Route::get('/test/cfe', [TestController::class, 'cfe'])->name('test.cfe');
     Route::get('/test/contratos', [TestController::class, 'contratos'])->name('test.contratos');
+
+    Route::get('/empresas', [EmpresasController::class, 'index'])->name('empresas.index');
+    Route::get('/empresas/crear', [EmpresasController::class, 'create'])->name('empresas.create');
+    Route::get('/empresas/crear/{folder}', [EmpresasController::class, 'createChild'])->name('empresas.folder.create');
+    Route::get('/empresas/{folder}', [EmpresasController::class, 'folder'])->name('empresas.folder.index');
+    Route::get('/empresas/{folder}/file', [EmpresasController::class, 'file'])->name('empresas.folder.file');
 });
