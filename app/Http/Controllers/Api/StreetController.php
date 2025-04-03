@@ -9,8 +9,13 @@ class StreetController extends Controller
 {
     public function test(Request $request)
     {
+        // Obtener el valor del parámetro 'd' de la solicitud
+        $d = $request->query('d');
+
+        // Retornar una respuesta JSON con el valor de 'd'
         return response()->json([
-            'message' => 'Hello, this is a test response from the StreetController!'
+            'message' => 'Recieved data',
+            'data_received' => $d,
         ]);
     }
 }
