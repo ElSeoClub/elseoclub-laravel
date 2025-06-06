@@ -22,7 +22,9 @@ class Index extends Component
     public function render()
     {
 
-        $folders = Folder::whereNull('parent_id')->where('name','like','%'.$this->search.'%')->pagiante();
+        $folders = Folder::whereNull('parent_id')->where('name','like','%'.$this->search.'%')->paginate(10);
+
+
         return view('livewire.folder.index',compact('folders'));
     }
 }
