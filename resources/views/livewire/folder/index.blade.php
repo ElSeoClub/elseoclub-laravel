@@ -27,6 +27,9 @@
             </tbody>
         </table>
     </div>
+        <x-slot name="footer">
+            {{$folders->links()}}
+        </x-slot>
     </x-card>
     <div class="flex">
         <div class="flex-grow"></div>

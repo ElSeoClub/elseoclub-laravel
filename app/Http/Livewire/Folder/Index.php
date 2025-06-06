@@ -4,19 +4,25 @@ namespace App\Http\Livewire\Folder;
 
 use Livewire\Component;
 use App\Models\Folder;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
 
-    public $folders;
+    use WithPagination;
 
-    public function mount(): void
+    public string $search = '';
+
+    public function updatingSearch()
     {
-        $this->folders = Folder::whereNull('parent_id')->get();
+        $this->resetPage();
     }
+
 
     public function render()
     {
-        return view('livewire.folder.index');
+
+        $folders = Folder::whereNull('parent_id')->where('name','like','%'.$this->search.'%')->pagiante();
+        return view('livewire.folder.index',compact('folders'));
     }
 }
