@@ -18,7 +18,14 @@
                         <tr class=" hover:bg-gray-50 cursor-pointer">
                             <td>
                                 <a href="{{route('empresas.folder.index', $folder)}}"
-                                   class="p-2 block w-full">{{$folder->name}}</a>
+                                   class="p-3 hover:bg-coolGray-100 cursor-pointer flex gap-2 w-full block items-center">
+                                    <div class="flex flex-col  flex-grow max-w-[calc(100%-34px)] md:max-w-[calc(100%-50px)]">
+                                        <div class="max-w-full flex gap-1">
+                                            <div class="bg-blue-500 text-white rounded shadow text-sm px-1 truncate inline-block max-w-full">{{$folder->name}}</div>
+                                        </div>
+                                        <div class="truncate">{{$folder->description}}</div>
+                                    </div>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
