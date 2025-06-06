@@ -94,6 +94,23 @@
     @if($folder->parent_id === null)
         <div>
             <x-card title="Informacion general">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        Empresa
+                        <x-input-text wire:model.defer="name"></x-input-text>
+                        <x-jet-input-error for="name"></x-jet-input-error>
+                    </div>
+                    <div>
+                        Centro de trabajo
+                        <x-input-text wire:model.defer="description"></x-input-text>
+                        <x-jet-input-error for="description"></x-jet-input-error>
+                    </div>
+                </div>
+                <x-slot name="footer">
+                    <x-button color="blue" icon="fas fa-plus" class="w-full max-w-xs"
+                              wire:click="save">Giardar cambios
+                    </x-button>
+                </x-slot>
             </x-card>
         </div>
     @endif

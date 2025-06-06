@@ -13,12 +13,16 @@ class Folder extends Component
     public $ancestors;
     public $files;
 
+    public $name;
+    public $description;
+
     public function mount(): void
     {
-        $this->folders = $this->folder->folders;
-        $this->files = $this->folder->files;
-        $this->ancestors = $this->ancestors();
-
+        $this->folders     = $this->folder->folders;
+        $this->files       = $this->folder->files;
+        $this->ancestors   = $this->ancestors();
+        $this->name        = $this->folder->name;
+        $this->description = $this->folder->description;
     }
 
     public function ancestors(): Collection
@@ -33,7 +37,21 @@ class Folder extends Component
                 $parent = $parent->parent;
             }
         }
+
         return $ancestors;
+    }
+
+    public function save()
+    {
+        $this->validate([
+            'name'        => 'required',
+            'description' => 'required',
+        ]);
+
+        $this->folder->name        = $this->name;
+        $this->folder->description = $this->description;
+        $this->folder->save();
+        $this->emit('saveAlert', 'Datos guardados exitosamente');
     }
 
     public function render()
