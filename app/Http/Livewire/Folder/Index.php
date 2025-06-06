@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Folder;
 
-use Livewire\Component;
 use App\Models\Folder;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -18,13 +18,10 @@ class Index extends Component
         $this->resetPage();
     }
 
-
     public function render()
     {
+        $folders = Folder::whereNull('parent_id')->where('name', 'like', '%' . $this->search . '%')->paginate(10);
 
-        $folders = Folder::whereNull('parent_id')->where('name','like','%'.$this->search.'%')->paginate(10);
-
-
-        return view('livewire.folder.index',compact('folders'));
+        return view('livewire.folder.index', compact('folders'));
     }
 }
