@@ -30,6 +30,10 @@ class SyncAttachmentsToR2Command extends Command
      */
     public function handle()
     {
+        // Configurar límites para comandos largos
+        set_time_limit(0); // Sin límite de tiempo
+        ini_set('memory_limit', '512M'); // Aumentar límite de memoria
+        
         $limit = (int) $this->option('limit');
 
         // Contar attachments pendientes
@@ -91,8 +95,8 @@ class SyncAttachmentsToR2Command extends Command
             throw new \Exception("El archivo no existe en public storage: {$attachment->path}");
         }
 
-        // Generar ruta para R2 (mantener estructura con storage/)
-        $r2Path = 'storage/attachments/' . date('Y/m/d') . '/' . $attachment->id . '_' . $attachment->name . '.' . $attachment->extension;
+        // El path en R2 debe ser storage/ + path
+        $r2Path = 'storage/' . $attachment->path;
 
         // Leer el contenido del archivo desde public storage
         $fileContent = Storage::disk('public')->get($attachment->path);
@@ -101,12 +105,12 @@ class SyncAttachmentsToR2Command extends Command
         $uploaded = Storage::disk('r2')->put($r2Path, $fileContent);
 
         if (!$uploaded) {
-            throw new \Exception("No se pudo subir el archivo a R2: {$attachment->name}");
+            throw new \Exception("No se pudo subir el archivo a R2: {$attachment->path}");
         }
 
         // Actualizar el attachment en la base de datos
         $attachment->update([
-            'r2_path' => $r2Path,
+            'r2_path' => $attachment->path,
             'r2_synced' => true,
             'r2_synced_at' => now(),
         ]);

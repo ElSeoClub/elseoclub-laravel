@@ -51,10 +51,10 @@ class Attachment extends Model
     public function getFileUrlAttribute()
     {
         if ($this->r2_synced && $this->r2_path) {
-            return Storage::disk('r2')->url($this->r2_path);
+            // En R2, el path real es storage/ + r2_path
+            return Storage::disk('r2')->url('storage/' . $this->r2_path);
         }
-        
-        // Para archivos en public storage
+        // En local, el path es directo en public
         return Storage::disk('public')->url($this->path);
     }
 
@@ -71,6 +71,6 @@ class Attachment extends Model
      */
     public function existsInR2()
     {
-        return $this->r2_synced && $this->r2_path && Storage::disk('r2')->exists($this->r2_path);
+        return $this->r2_synced && $this->r2_path && Storage::disk('r2')->exists('storage/' . $this->r2_path);
     }
 }
