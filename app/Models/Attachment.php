@@ -54,18 +54,16 @@ class Attachment extends Model
             return Storage::disk('r2')->url($this->r2_path);
         }
         
-        // Para archivos locales, construir la ruta completa
-        $localPath = 'storage/' . $this->path;
-        return Storage::disk('public')->url($localPath);
+        // Para archivos en public storage
+        return Storage::disk('public')->url($this->path);
     }
 
     /**
-     * Verificar si el archivo existe en local
+     * Verificar si el archivo existe en public storage
      */
     public function existsInLocal()
     {
-        $localPath = 'storage/' . $this->path;
-        return Storage::disk('public')->exists($localPath);
+        return Storage::disk('public')->exists($this->path);
     }
 
     /**
