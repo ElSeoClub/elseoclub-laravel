@@ -31,6 +31,12 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->withoutOverlapping()
             ->runInBackground();
+            
+        // Sincronizar folder files a R2 cada minuto
+        $schedule->command('folder-files:sync-to-r2')
+            ->everyMinute()
+            ->withoutOverlapping()
+            ->runInBackground();
     }
 
     /**

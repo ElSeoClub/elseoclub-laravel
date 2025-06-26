@@ -70,7 +70,7 @@
                             @foreach($files as $f)
                                 <tr class=" hover:bg-gray-50 cursor-pointer">
                                     <td>
-                                        <a href="/storage/{{$f->path}}" target="_blank"
+                                        <a href="{{$f->file_url}}" target="_blank"
                                            class="p-2 block w-full">{{$f->name}}</a>
                                     </td>
                                 </tr>
