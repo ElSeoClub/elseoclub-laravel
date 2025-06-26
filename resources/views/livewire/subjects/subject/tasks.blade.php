@@ -152,17 +152,17 @@
             <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 p-5">
                 @foreach($subject->fresh()->attachments()->where('task_id',$task->id)->orderBy('created_at','desc')->get() as $archivo)
                     @if($archivo->extension == 'pdf')
-                        <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
+                        <a target="_blank" href="{{$archivo->file_url}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
                             <img src="{{asset('svg/pdf-file.png')}}" class="w-full max-h-[250px]">
                             <div class="text-sm text-center">{{$archivo->name}}</div>
                         </a>
                     @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
-                        <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
-                            <div class="flex-grow items-center flex"><img src="{{asset('storage/'.$archivo->path)}}" class="w-full max-h-[250px]"></div>
+                        <a target="_blank" href="{{$archivo->file_url}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
+                            <div class="flex-grow items-center flex"><img src="{{$archivo->file_url}}" class="w-full max-h-[250px]"></div>
                             <div class="text-sm text-center">{{$archivo->name}}</div>
                         </a>
                     @else
-                        <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
+                        <a target="_blank" href="{{$archivo->file_url}}" class="bg-white rounded shadow border flex flex-col justify-between hover:bg-gray-50">
                             <div class="flex-grow items-center flex"><img src="{{asset('svg/documents.png')}}" class="w-full max-h-[250px]"></div>
                             <div class="text-sm text-center">{{$archivo->name}}</div>
                         </a>
