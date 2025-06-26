@@ -86,16 +86,19 @@ class SyncAttachmentsToR2Command extends Command
      */
     private function syncAttachmentToR2(Attachment $attachment)
     {
+        // Construir la ruta completa del archivo local
+        $localPath = 'storage/' . $attachment->path;
+        
         // Verificar que el archivo existe en local
-        if (!Storage::disk('local')->exists($attachment->path)) {
-            throw new \Exception("El archivo no existe en local: {$attachment->path}");
+        if (!Storage::disk('local')->exists($localPath)) {
+            throw new \Exception("El archivo no existe en local: {$localPath}");
         }
 
-        // Generar ruta para R2 (mantener estructura similar)
-        $r2Path = 'attachments/' . date('Y/m/d') . '/' . $attachment->id . '_' . $attachment->name . '.' . $attachment->extension;
+        // Generar ruta para R2 (mantener estructura con storage/)
+        $r2Path = 'storage/attachments/' . date('Y/m/d') . '/' . $attachment->id . '_' . $attachment->name . '.' . $attachment->extension;
 
         // Leer el contenido del archivo local
-        $fileContent = Storage::disk('local')->get($attachment->path);
+        $fileContent = Storage::disk('local')->get($localPath);
 
         // Subir a R2
         $uploaded = Storage::disk('r2')->put($r2Path, $fileContent);
