@@ -25,6 +25,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        
+        // Sincronizar attachments a R2 cada minuto
+        $schedule->command('attachments:sync-to-r2 --queue')
+            ->everyMinute()
+            ->withoutOverlapping()
+            ->runInBackground();
     }
 
     /**

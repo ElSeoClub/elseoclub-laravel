@@ -108,7 +108,7 @@
                 </div>
                 <x-slot name="footer">
                     <x-button color="blue" icon="fas fa-plus" class="w-full max-w-xs"
-                              wire:click="save">Giardar cambios
+                              wire:click="save">Guardar cambios
                     </x-button>
                 </x-slot>
             </x-card>
