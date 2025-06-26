@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         
         // Sincronizar attachments a R2 cada minuto
-        $schedule->command('attachments:sync-to-r2 --queue')
+        $schedule->command('attachments:sync-to-r2')
             ->everyMinute()
             ->withoutOverlapping()
             ->runInBackground();

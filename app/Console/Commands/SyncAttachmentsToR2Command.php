@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SyncAttachmentsToR2;
 use App\Models\Attachment;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class SyncAttachmentsToR2Command extends Command
 {
@@ -13,7 +14,7 @@ class SyncAttachmentsToR2Command extends Command
      *
      * @var string
      */
-    protected $signature = 'attachments:sync-to-r2 {--limit=10 : Número de archivos a procesar} {--queue : Ejecutar en cola}';
+    protected $signature = 'attachments:sync-to-r2 {--limit=10 : Número de archivos a procesar}';
 
     /**
      * The console command description.
@@ -23,16 +24,6 @@ class SyncAttachmentsToR2Command extends Command
     protected $description = 'Sincronizar attachments de local a R2';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return int
@@ -40,7 +31,6 @@ class SyncAttachmentsToR2Command extends Command
     public function handle()
     {
         $limit = (int) $this->option('limit');
-        $useQueue = $this->option('queue');
 
         // Contar attachments pendientes
         $pendingCount = Attachment::notSyncedToR2()->whereNotNull('path')->count();
@@ -56,48 +46,69 @@ class SyncAttachmentsToR2Command extends Command
             return 0;
         }
 
-        if ($useQueue) {
-            // Ejecutar en cola
-            SyncAttachmentsToR2::dispatch();
-            $this->info("Job enviado a la cola para procesamiento.");
-        } else {
-            // Ejecutar inmediatamente
-            $this->info("Iniciando sincronización...");
-            
-            $attachments = Attachment::notSyncedToR2()
-                ->whereNotNull('path')
-                ->limit($limit)
-                ->get();
+        // Obtener attachments a procesar
+        $attachments = Attachment::notSyncedToR2()
+            ->whereNotNull('path')
+            ->limit($limit)
+            ->get();
 
-            $bar = $this->output->createProgressBar($attachments->count());
-            $bar->start();
+        $this->info("Iniciando sincronización...");
+        
+        $bar = $this->output->createProgressBar($attachments->count());
+        $bar->start();
 
-            $successCount = 0;
-            $errorCount = 0;
+        $successCount = 0;
+        $errorCount = 0;
 
-            foreach ($attachments as $attachment) {
-                try {
-                    // Crear una instancia del job y ejecutar el método directamente
-                    $job = new SyncAttachmentsToR2();
-                    $reflection = new \ReflectionClass($job);
-                    $method = $reflection->getMethod('syncAttachmentToR2');
-                    $method->setAccessible(true);
-                    $method->invoke($job, $attachment);
-                    
-                    $successCount++;
-                } catch (\Exception $e) {
-                    $errorCount++;
-                    $this->error("Error con {$attachment->name}: " . $e->getMessage());
-                }
-                
-                $bar->advance();
+        foreach ($attachments as $attachment) {
+            try {
+                $this->syncAttachmentToR2($attachment);
+                $successCount++;
+                Log::info("Archivo sincronizado exitosamente: {$attachment->name}");
+            } catch (\Exception $e) {
+                $errorCount++;
+                Log::error("Error sincronizando archivo {$attachment->name}: " . $e->getMessage());
+                $this->error("Error con {$attachment->name}: " . $e->getMessage());
             }
-
-            $bar->finish();
-            $this->newLine();
-            $this->info("Sincronización completada. Exitosos: {$successCount}, Errores: {$errorCount}");
+            
+            $bar->advance();
         }
 
+        $bar->finish();
+        $this->newLine();
+        $this->info("Sincronización completada. Exitosos: {$successCount}, Errores: {$errorCount}");
+
         return 0;
+    }
+
+    /**
+     * Sincronizar un attachment específico a R2
+     */
+    private function syncAttachmentToR2(Attachment $attachment)
+    {
+        // Verificar que el archivo existe en local
+        if (!Storage::disk('local')->exists($attachment->path)) {
+            throw new \Exception("El archivo no existe en local: {$attachment->path}");
+        }
+
+        // Generar ruta para R2 (mantener estructura similar)
+        $r2Path = 'attachments/' . date('Y/m/d') . '/' . $attachment->id . '_' . $attachment->name . '.' . $attachment->extension;
+
+        // Leer el contenido del archivo local
+        $fileContent = Storage::disk('local')->get($attachment->path);
+
+        // Subir a R2
+        $uploaded = Storage::disk('r2')->put($r2Path, $fileContent);
+
+        if (!$uploaded) {
+            throw new \Exception("No se pudo subir el archivo a R2: {$attachment->name}");
+        }
+
+        // Actualizar el attachment en la base de datos
+        $attachment->update([
+            'r2_path' => $r2Path,
+            'r2_synced' => true,
+            'r2_synced_at' => now(),
+        ]);
     }
 }
