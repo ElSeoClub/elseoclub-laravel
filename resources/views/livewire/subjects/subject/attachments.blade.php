@@ -36,12 +36,11 @@
                 @if($attachEditId == $archivo->id)
                     <div class="flex-grow flex gap-3 items-center align-middle p-3">
                         @if($archivo->extension == 'pdf')
-                            <img src="{{asset('svg/pdf-file.png')}}" class="w-[32px] max-h-[32px]">
+                            <img src="pdf-file.png')}}" class="w-[32px] max-h-[32px]">
                         @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
-        
-                            <img src="{{asset('storage/'.$archivo->path)}}" class="w-[32px] max-h-[32px]">
+                            <img src="{{$archivo->file_url}}" class="w-[32px] max-h-[32px]">
                         @else
-                            <img src="{{asset('svg/documents.png')}}" class="w-[32px]    max-h-[32px]">
+                            <img src="{{asset('svg/documents.png')}}" class="w-[32px] max-h-[32px]">
                         @endif
                         <div class="flex-grow flex items-center">
                             <input id="attachEditName" type="text" wire:model.defer="attachEditName" class="w-full" wire:keydown.enter="updateName()" wire:keydown.escape="cancelUpdate()" autofocus/>
@@ -53,17 +52,17 @@
                         </div>
                     </div>
                 @else
-                    <a target="_blank" href="{{asset('storage/'.$archivo->path)}}" class="flex-grow flex gap-3 items-center align-middle p-3">
+                    <a target="_blank" href="{{$archivo->file_url}}" class="flex-grow flex gap-3 items-center align-middle p-3">
             
                         @if($archivo->extension == 'pdf')
                             <img src="{{asset('svg/pdf-file.png')}}" class="w-[32px] max-h-[32px]">
                         @elseif($archivo->extension == 'png' || $archivo->extension == 'jpg')
                 
-                            <img src="{{asset('storage/'.$archivo->path)}}" class="w-[32px] max-h-[32px]">
+                            <img src="{{$archivo->file_url}}" class="w-[32px] max-h-[32px]">
                         @else
-                            <img src="{{asset('svg/documents.png')}}" class="w-[32px]    max-h-[32px]">
+                            <img src="{{asset('svg/documents.png')}}" class="w-[32px] max-h-[32px]">
                         @endif
-                        <div>{{$archivo ->name}}</div>
+                        <div>{{$archivo->name}}</div>
         
                     </a>
                 @endif
