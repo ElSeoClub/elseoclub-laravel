@@ -90,7 +90,7 @@ class SyncAttachmentsToR2Command extends Command
         $localPath = 'storage/' . $attachment->path;
         
         // Verificar que el archivo existe en local
-        if (!Storage::disk('local')->exists($localPath)) {
+        if (!Storage::disk('public')->exists($localPath)) {
             throw new \Exception("El archivo no existe en local: {$localPath}");
         }
 
@@ -98,7 +98,7 @@ class SyncAttachmentsToR2Command extends Command
         $r2Path = 'storage/attachments/' . date('Y/m/d') . '/' . $attachment->id . '_' . $attachment->name . '.' . $attachment->extension;
 
         // Leer el contenido del archivo local
-        $fileContent = Storage::disk('local')->get($localPath);
+        $fileContent = Storage::disk('public')->get($localPath);
 
         // Subir a R2
         $uploaded = Storage::disk('r2')->put($r2Path, $fileContent);
